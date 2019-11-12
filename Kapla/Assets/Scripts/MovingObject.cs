@@ -5,6 +5,7 @@ public class MovingObject : MonoBehaviour
 {
 #pragma warning disable 0649
     [SerializeField] float movementSpeed=3;
+    [SerializeField] int rotationAngle = 90;
 #pragma warning restore 0649
 
     public GameObject currentPiece;
@@ -42,15 +43,29 @@ public class MovingObject : MonoBehaviour
                 {
                     StartCoroutine(DropPiece());
                 }
+                if (Input.GetButtonDown("RotX"))
+                {
+                    currentPiece.transform.eulerAngles += new Vector3(rotationAngle, 0, 0);
+                }
+                if (Input.GetButtonDown("RotY"))
+                {
+                    currentPiece.transform.eulerAngles += new Vector3(0, rotationAngle, 0);
+                }
+                if (Input.GetButtonDown("RotZ"))
+                {
+                    currentPiece.transform.eulerAngles += new Vector3(0, 0, rotationAngle);
+                }
             }
         }
     }
 
     IEnumerator DropPiece()
     {
+        GameObject stockPiece = currentPiece;
         currentPiece.GetComponent<Piece>().Drop();
         GameManager.instance.ChangePlayer();
         yield return new WaitForSeconds(1);
+        GameManager.instance.AllPieces.Add(stockPiece);
         GameManager.instance.InstantiateNewPiece();
     }
 }

@@ -159,7 +159,6 @@ MonoBehaviour:
   - ID: 0
     prob: 0
   NeutralPieces:
-  - {fileID: 4817231320814351470, guid: e69882b131c99df479a03afc091273fc, type: 3}
   - {fileID: 6331328847225006843, guid: cc619677462db744daa230734cb9b1c8, type: 3}
   GummyPieces: []
   StickyPieces: []
@@ -177,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
+  rotationAngle: 90
   currentPiece: {fileID: 0}
   canDrop: 0
 --- !u!114 &495198129
@@ -195,6 +195,7 @@ MonoBehaviour:
   canDropMaterial: {fileID: 2100000, guid: ac0acc087e12bb847805547b5ac8aef4, type: 2}
   defeat: 0
   lastPlayer: 
+  AllPieces: []
   movingScript: {fileID: 0}
   distributorScript: {fileID: 0}
 --- !u!4 &495198130
@@ -548,7 +549,7 @@ Transform:
   m_GameObject: {fileID: 862994553}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 100, y: 0.08, z: 1000}
+  m_LocalScale: {x: 100, y: 0.08, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -697,7 +698,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.9}
-  m_AnchorMax: {x: 0.2, y: 1}
+  m_AnchorMax: {x: 0.1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
@@ -843,7 +844,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413571515}
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963194228}

@@ -65,3 +65,5 @@ crashlytics-build.properties
 Kapla/Library/
 
 Kapla/obj/Debug/
+
+Kapla/Temp/

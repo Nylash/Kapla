@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 #pragma warning disable 0649
-    [SerializeField] Vector3 offsetSpawn = new Vector3(0,5,0);
+    [SerializeField] Vector3 offsetSpawn = new Vector3(0,4,0);
 #pragma warning restore 0649
+    
 
     GameObject center;
     TextMeshProUGUI playerText;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Material canDropMaterial;
     public bool defeat;
     public string lastPlayer;
+    public List<GameObject> AllPieces = new List<GameObject>();
 
     [HideInInspector]
     public MovingObject movingScript;
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        center.transform.position = Vector3.Lerp(center.transform.position, new Vector3(0, GetMaxHigh(), 0), Time.deltaTime);
     }
 
     public void InstantiateNewPiece()
@@ -55,7 +58,7 @@ public class GameManager : MonoBehaviour
         if (piece)
         {
             GameObject currentPiece = GameObject.Instantiate(piece, center.transform.position + offsetSpawn, piece.transform.rotation);
-            movingScript.currentPiece = currentPiece;            
+            movingScript.currentPiece = currentPiece;
         }
     }
 
@@ -75,5 +78,20 @@ public class GameManager : MonoBehaviour
                 Debug.LogError("You shouldn't be here.");
                 break;
         }
+    }
+
+    float GetMaxHigh()
+    {
+        float max = 0;
+        if(AllPieces.Count != 0)
+        {
+            foreach (GameObject item in AllPieces)
+            {
+                if (item.transform.position.y > max)
+                    max = item.transform.position.y;
+            }
+            return max;
+        }
+        return 0;
     }
 }
