@@ -12,14 +12,14 @@ public class MovingObject : MonoBehaviour
     public bool canDrop;
 
     Camera mainCamera;
-    
+
     private void Start()
     {
         mainCamera = Camera.main;
         canDrop = true;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (!GameManager.instance.defeat)
         {
