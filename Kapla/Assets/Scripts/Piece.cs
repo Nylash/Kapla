@@ -12,6 +12,8 @@ public class Piece : MonoBehaviour
     MeshRenderer meshRender;
     Material pieceOriginalMaterial;
 
+    bool toPlace;
+
     private void Start()
     {
         coll = GetComponent<Collider>();
@@ -21,6 +23,7 @@ public class Piece : MonoBehaviour
         rigid.isKinematic = true;
         meshRender = GetComponent<MeshRenderer>();
         pieceOriginalMaterial = meshRender.material;
+        toPlace = true;
     }
 
     public void Drop()
@@ -29,18 +32,25 @@ public class Piece : MonoBehaviour
         rigid.useGravity = true;
         rigid.isKinematic = false;
         coll.isTrigger = false;
+        toPlace = false;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        GameManager.instance.movingScript.canDrop = false;
-        meshRender.material = GameManager.instance.canDropMaterial;
+        if (toPlace)
+        {
+            GameManager.instance.movingScript.canDrop = false;
+            meshRender.material = GameManager.instance.cantDropMaterial;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        GameManager.instance.movingScript.canDrop = true;
-        meshRender.material = pieceOriginalMaterial;
+        if (toPlace)
+        {
+            GameManager.instance.movingScript.canDrop = true;
+            meshRender.material = pieceOriginalMaterial;
+        }
     }
 
     public enum PieceType

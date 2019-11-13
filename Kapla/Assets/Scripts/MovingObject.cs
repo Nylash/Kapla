@@ -38,7 +38,7 @@ public class MovingObject : MonoBehaviour
                 {
                     desiredMoveDirection = right * horizontalAxis;
                 }
-                currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime);
+                currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
                 if (Input.GetButtonDown("Drop") && canDrop)
                 {
                     StartCoroutine(DropPiece());
@@ -59,7 +59,7 @@ public class MovingObject : MonoBehaviour
         }
     }
 
-    IEnumerator DropPiece()
+    public IEnumerator DropPiece()
     {
         GameObject stockPiece = currentPiece;
         currentPiece.GetComponent<Piece>().Drop();

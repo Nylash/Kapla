@@ -8,13 +8,18 @@ public class GameManager : MonoBehaviour
 {
 #pragma warning disable 0649
     [SerializeField] Vector3 offsetSpawn = new Vector3(0,4,0);
+    [SerializeField] int timeBeforeAutoDrop = 16;
 #pragma warning restore 0649
     
 
     GameObject center;
     TextMeshProUGUI playerText;
+    TextMeshProUGUI timerText;
 
-    public Material canDropMaterial;
+    float timer;
+    bool timerStopped;
+
+    public Material cantDropMaterial;
     public bool defeat;
     public string lastPlayer;
     public List<GameObject> AllPieces = new List<GameObject>();
@@ -40,6 +45,7 @@ public class GameManager : MonoBehaviour
         distributorScript = GetComponent<PiecesDistributor>();
         center = GameObject.FindGameObjectWithTag("Center");
         playerText = GameObject.FindGameObjectWithTag("PlayerText").GetComponent<TextMeshProUGUI>();
+        timerText = GameObject.FindGameObjectWithTag("Timer").GetComponent<TextMeshProUGUI>();
 
         playerText.text = "P1";
         InstantiateNewPiece();
@@ -50,10 +56,21 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         center.transform.position = Vector3.Lerp(center.transform.position, new Vector3(0, GetMaxHigh(), 0), Time.deltaTime);
+        if (!timerStopped && !defeat)
+        {
+            timer -= Time.deltaTime;
+            timerText.text = ((int)timer).ToString();
+            if ((int)timer == 0)
+                StartCoroutine(movingScript.DropPiece());
+        }
+        else
+            timerText.text = "";
     }
 
     public void InstantiateNewPiece()
     {
+        timer = timeBeforeAutoDrop;
+        timerStopped = false;
         GameObject piece = distributorScript.GetRandomPiece();
         if (piece)
         {
@@ -64,6 +81,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangePlayer()
     {
+        timerStopped = true;
         switch (playerText.text)
         {
             case "P1":
