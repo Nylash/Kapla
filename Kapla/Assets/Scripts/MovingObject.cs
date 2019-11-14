@@ -49,19 +49,19 @@ public class MovingObject : MonoBehaviour
                     desiredMoveDirection = right * horizontalAxis;
                 }
                 currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
-                if (Input.GetButtonDown("Drop") && canDrop)
+                if (Input.GetButtonDown("Drop") && canDrop && !rotating)
                 {
                     StartCoroutine(DropPiece());
                 }
-                if (Input.GetButtonDown("RotX"))
+                if (Input.GetButtonDown("RotX") && !rotating)
                 {
                     Rotate("RotX");
                 }
-                if (Input.GetButtonDown("RotY"))
+                if (Input.GetButtonDown("RotY") && !rotating)
                 {
                     Rotate("RotY");
                 }
-                if (Input.GetButtonDown("RotZ"))
+                if (Input.GetButtonDown("RotZ") && !rotating)
                 {
                     Rotate("RotZ");
                 }
