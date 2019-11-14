@@ -4,18 +4,28 @@ using UnityEngine;
 public class MovingObject : MonoBehaviour
 {
 #pragma warning disable 0649
+    [Header("MOVEMENT CONFIGURATION")]
     [SerializeField] float movementSpeed=3;
     [SerializeField] int rotationAngle = 90;
+    [SerializeField] float rotationSpeed = 1;
 #pragma warning restore 0649
 
+    [Header("SCRIPT INFORMATIONS")]
     public GameObject currentPiece;
     public bool canDrop;
 
     Camera mainCamera;
 
+    bool rotating;
+    protected Quaternion rotationBefore;
+    protected Quaternion rotationAfter;
+    float rotationTime = 0;
+    float currentRotationSpeed;
+
     private void Start()
     {
         mainCamera = Camera.main;
+        currentRotationSpeed = rotationSpeed;
         canDrop = true;
     }
 
@@ -45,18 +55,51 @@ public class MovingObject : MonoBehaviour
                 }
                 if (Input.GetButtonDown("RotX"))
                 {
-                    currentPiece.transform.eulerAngles += new Vector3(rotationAngle, 0, 0);
+                    Rotate("RotX");
                 }
                 if (Input.GetButtonDown("RotY"))
                 {
-                    currentPiece.transform.eulerAngles += new Vector3(0, rotationAngle, 0);
+                    Rotate("RotY");
                 }
                 if (Input.GetButtonDown("RotZ"))
                 {
-                    currentPiece.transform.eulerAngles += new Vector3(0, 0, rotationAngle);
+                    Rotate("RotZ");
+                }
+                if (rotating)
+                {
+                    rotationTime += Time.deltaTime * currentRotationSpeed;
+                    currentPiece.transform.rotation = Quaternion.Slerp(rotationBefore, rotationAfter, rotationTime);
+                    if (rotationTime >= 1)
+                    {
+                        rotating = false;
+                        currentRotationSpeed = rotationSpeed;
+                    }
                 }
             }
         }
+    }
+
+    void Rotate(string axis)
+    {
+        rotating = true;
+        rotationTime = 0;
+        rotationBefore = currentPiece.transform.rotation;
+        Vector3 axisVec = Vector3.zero;
+        switch (axis)
+        {
+            case "RotX":
+                axisVec = Vector3.right;
+                break;
+            case "RotY":
+                axisVec = Vector3.up;
+                break;
+            case "RotZ":
+                axisVec = Vector3.forward;
+                break;
+            default:
+                break;
+        }
+        rotationAfter = Quaternion.AngleAxis(rotationAngle, axisVec) * rotationBefore;
     }
 
     public IEnumerator DropPiece()

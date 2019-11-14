@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Piece : MonoBehaviour
 {
+    [Header("PIECE CONFIGURATION")]
     public PieceType type;
 
     Rigidbody rigid;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 #pragma warning disable 0649
+    [Header("CAMERA CONFIGURATION")]
     [SerializeField] float cameraSpeed = 3;
     [SerializeField] int maxAngle = 80;
     [SerializeField] int minAngle = 10;

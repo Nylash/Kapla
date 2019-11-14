@@ -5,14 +5,14 @@ using UnityEngine;
 public class PiecesDistributor : MonoBehaviour
 {
 #pragma warning disable 0649
+    [Header("PROBABILITY CONFIGURATION")]
     [SerializeField] List<Prob> TypeProp;
-    [Header("PIECES OBJECT")]
+    [Header("PIECES OBJECTS")]
     [SerializeField] List<GameObject> NeutralPieces;
     [SerializeField] List<GameObject> GummyPieces;
     [SerializeField] List<GameObject> StickyPieces;
 #pragma warning restore 0649
-
-    public List<Piece.PieceType> IDList = new List<Piece.PieceType>();
+    List<Piece.PieceType> IDList = new List<Piece.PieceType>();
 
     int totalTypeProb;
 
