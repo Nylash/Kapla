@@ -55,7 +55,7 @@ public class MovingObject : MonoBehaviour
                         currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
                 }else
                     currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
-                if (Input.GetButtonDown("Drop") && canDrop && !rotating)
+                if ((Input.GetButtonDown("Drop") || Input.GetMouseButtonDown(0)) && canDrop && !rotating)
                 {
                     StartCoroutine(DropPiece());
                 }

@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.I))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         center.transform.position = Vector3.Lerp(center.transform.position, new Vector3(0, GetMaxHigh(), 0), Time.deltaTime);
         if (!timerStopped && !defeat)
