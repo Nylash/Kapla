@@ -9,7 +9,7 @@ public class Piece : MonoBehaviour
     public PieceType type;
 
     Rigidbody rigid;
-    Collider coll;
+    MeshCollider[] colliders;
     MeshRenderer meshRender;
     Material pieceOriginalMaterial;
     bool toPlace;
@@ -17,17 +17,21 @@ public class Piece : MonoBehaviour
 
     private void Start()
     {
-        coll = GetComponent<Collider>();
-        coll.isTrigger = true;
         gameObject.layer = LayerMask.NameToLayer("ToPlace");
         rigid = GetComponent<Rigidbody>();
         rigid.useGravity = false;
         rigid.isKinematic = true;
+        colliders = GetComponents<MeshCollider>();
+        foreach (MeshCollider item in colliders)
+        {
+            if (item.convex)
+                item.isTrigger = true;
+        }
         meshRender = GetComponent<MeshRenderer>();
         pieceOriginalMaterial = meshRender.material;
         toPlace = true;
-        column = Instantiate(GameManager.instance.collumnPrefab, new Vector3(coll.bounds.center.x, coll.bounds.center.y / 2, coll.bounds.center.z), Quaternion.identity);
-        column.transform.localScale = new Vector3(coll.bounds.size.x, (1.95f * coll.bounds.center.y)/4.3f, coll.bounds.size.z);
+        column = Instantiate(GameManager.instance.collumnPrefab, new Vector3(meshRender.bounds.center.x, meshRender.bounds.center.y / 2, meshRender.bounds.center.z), Quaternion.identity);
+        column.transform.localScale = new Vector3(meshRender.bounds.size.x, (1.95f * meshRender.bounds.center.y)/4.3f, meshRender.bounds.size.z);
     }
 
     public void Drop()
@@ -36,7 +40,11 @@ public class Piece : MonoBehaviour
         GameManager.instance.movingScript.currentPiece = null;
         rigid.useGravity = true;
         rigid.isKinematic = false;
-        coll.isTrigger = false;
+        foreach (MeshCollider item in colliders)
+        {
+            if (item.convex)
+                item.isTrigger = false;
+        }
         gameObject.layer = LayerMask.NameToLayer("Placed");
         toPlace = false;
         if (meshRender.material != pieceOriginalMaterial)
@@ -47,8 +55,17 @@ public class Piece : MonoBehaviour
     {
         if (toPlace)
         {
-            column.transform.position = new Vector3(coll.bounds.center.x, transform.position.y/2, coll.bounds.center.z);
-            column.transform.localScale = new Vector3(coll.bounds.size.x, (1.95f * coll.bounds.center.y) / 4.3f, coll.bounds.size.z);
+            column.transform.position = new Vector3(meshRender.bounds.center.x, transform.position.y/2, meshRender.bounds.center.z);
+            column.transform.localScale = new Vector3(meshRender.bounds.size.x, (1.95f * meshRender.bounds.center.y) / 4.3f, meshRender.bounds.size.z);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (toPlace)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireCube(meshRender.bounds.center, meshRender.bounds.size);
         }
     }
 
