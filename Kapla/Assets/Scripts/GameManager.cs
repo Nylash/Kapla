@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public bool defeat;
     public string lastPlayer;
     public List<GameObject> AllPieces = new List<GameObject>();
+    public GameObject collumnPrefab;
 
     [HideInInspector]
     public MovingObject movingScript;
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.I))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         center.transform.position = Vector3.Lerp(center.transform.position, new Vector3(0, GetMaxHigh(), 0), Time.deltaTime);
         if (!timerStopped && !defeat)
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
         {
             GameObject currentPiece = GameObject.Instantiate(piece, center.transform.position + offsetSpawn, piece.transform.rotation);
             movingScript.currentPiece = currentPiece;
+            movingScript.currentRigidbody = currentPiece.GetComponent<Rigidbody>();
         }
     }
 

@@ -34,6 +34,24 @@ public class CameraController : MonoBehaviour
         }
         else
             center.transform.Rotate(0f, yRot, 0f, Space.World);
+        if(Input.GetMouseButton(1))
+        {
+            float xRotMouse = cameraSpeed * Input.GetAxis("Mouse Y") * Time.deltaTime;
+            float yRotMouse = cameraSpeed * Input.GetAxis("Mouse X") * Time.deltaTime;
+            if ((center.transform.localRotation.eulerAngles.x > minAngle) && (center.transform.localRotation.eulerAngles.x < maxAngle))
+            {
+                center.transform.Rotate(xRotMouse, 0f, 0f, Space.Self);
+                center.transform.Rotate(0f, yRotMouse, 0f, Space.World);
+            }
+            else if ((center.transform.localRotation.eulerAngles.x + xRotMouse > minAngle) && (center.transform.localRotation.eulerAngles.x + xRotMouse < maxAngle))
+            {
+                center.transform.Rotate(xRotMouse, 0f, 0f, Space.Self);
+                center.transform.Rotate(0f, yRotMouse, 0f, Space.World);
+            }
+            else
+                center.transform.Rotate(0f, yRotMouse, 0f, Space.World);
+        }
+        
 
         //https://gamedev.stackexchange.com/questions/136174/im-rotating-an-object-on-two-axes-so-why-does-it-keep-twisting-around-the-thir
     }

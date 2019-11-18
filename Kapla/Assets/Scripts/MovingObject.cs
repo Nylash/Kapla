@@ -13,9 +13,10 @@ public class MovingObject : MonoBehaviour
     [Header("SCRIPT INFORMATIONS")]
     public GameObject currentPiece;
     public bool canDrop;
+    public Rigidbody currentRigidbody;
 
     Camera mainCamera;
-
+    RaycastHit hit;
     bool rotating;
     protected Quaternion rotationBefore;
     protected Quaternion rotationAfter;
@@ -48,20 +49,25 @@ public class MovingObject : MonoBehaviour
                 {
                     desiredMoveDirection = right * horizontalAxis;
                 }
-                currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
-                if (Input.GetButtonDown("Drop") && canDrop)
+                if(currentRigidbody.SweepTest(desiredMoveDirection, out hit))
+                {
+                    if(hit.distance > 0.1f)
+                        currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
+                }else
+                    currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
+                if ((Input.GetButtonDown("Drop") || Input.GetMouseButtonDown(0)) && canDrop && !rotating)
                 {
                     StartCoroutine(DropPiece());
                 }
-                if (Input.GetButtonDown("RotX"))
+                if (Input.GetButtonDown("RotX") && !rotating)
                 {
                     Rotate("RotX");
                 }
-                if (Input.GetButtonDown("RotY"))
+                if (Input.GetButtonDown("RotY") && !rotating)
                 {
                     Rotate("RotY");
                 }
-                if (Input.GetButtonDown("RotZ"))
+                if (Input.GetButtonDown("RotZ") && !rotating)
                 {
                     Rotate("RotZ");
                 }
@@ -106,6 +112,7 @@ public class MovingObject : MonoBehaviour
     {
         GameObject stockPiece = currentPiece;
         currentPiece.GetComponent<Piece>().Drop();
+        currentRigidbody = null;
         GameManager.instance.ChangePlayer();
         yield return new WaitForSeconds(1);
         GameManager.instance.AllPieces.Add(stockPiece);
