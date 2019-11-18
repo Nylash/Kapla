@@ -21,10 +21,9 @@ public class Piece : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         rigid.useGravity = false;
         rigid.isKinematic = true;
-        colliders = GetComponents<MeshCollider>();
+        colliders = GetComponentsInChildren<MeshCollider>();
         foreach (MeshCollider item in colliders)
         {
-            if (item.convex)
                 item.isTrigger = true;
         }
         meshRender = GetComponent<MeshRenderer>();
@@ -42,7 +41,6 @@ public class Piece : MonoBehaviour
         rigid.isKinematic = false;
         foreach (MeshCollider item in colliders)
         {
-            if (item.convex)
                 item.isTrigger = false;
         }
         gameObject.layer = LayerMask.NameToLayer("Placed");
