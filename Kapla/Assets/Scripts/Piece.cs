@@ -9,64 +9,65 @@ public class Piece : MonoBehaviour
     public PieceType type;
 
     Rigidbody rigid;
-    Collider[] colliders;
-    MeshRenderer[] meshRenders;
+    Collider coll;
+    MeshRenderer meshRender;
     Material pieceOriginalMaterial;
     bool toPlace;
+    GameObject column;
 
     private void Start()
     {
-        colliders = GetComponentsInChildren<Collider>();
-        foreach (Collider item in colliders)
-        {
-            item.isTrigger = true;
-        }
+        coll = GetComponent<Collider>();
+        coll.isTrigger = true;
+        gameObject.layer = LayerMask.NameToLayer("ToPlace");
         rigid = GetComponent<Rigidbody>();
         rigid.useGravity = false;
         rigid.isKinematic = true;
-        meshRenders = GetComponentsInChildren<MeshRenderer>();
-        pieceOriginalMaterial = meshRenders[0].material;
+        meshRender = GetComponent<MeshRenderer>();
+        pieceOriginalMaterial = meshRender.material;
         toPlace = true;
+        column = Instantiate(GameManager.instance.collumnPrefab, new Vector3(coll.bounds.center.x, coll.bounds.center.y / 2, coll.bounds.center.z), Quaternion.identity);
+        column.transform.localScale = new Vector3(coll.bounds.size.x, (1.95f * coll.bounds.center.y)/4.3f, coll.bounds.size.z);
     }
 
     public void Drop()
     {
+        Destroy(column);
         GameManager.instance.movingScript.currentPiece = null;
         rigid.useGravity = true;
         rigid.isKinematic = false;
-        foreach (Collider item in colliders)
-        {
-            item.isTrigger = false;
-        }
+        coll.isTrigger = false;
+        gameObject.layer = LayerMask.NameToLayer("Placed");
         toPlace = false;
-        foreach (MeshRenderer item in meshRenders)
+        if (meshRender.material != pieceOriginalMaterial)
+            meshRender.material = pieceOriginalMaterial;
+    }
+
+    private void Update()
+    {
+        if (toPlace)
         {
-            if (item.material != pieceOriginalMaterial)
-                item.material = pieceOriginalMaterial;
+            column.transform.position = new Vector3(coll.bounds.center.x, transform.position.y/2, coll.bounds.center.z);
+            column.transform.localScale = new Vector3(coll.bounds.size.x, (1.95f * coll.bounds.center.y) / 4.3f, coll.bounds.size.z);
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (toPlace)
+        if (toPlace && other.gameObject.layer != LayerMask.NameToLayer("ToPlace"))
         {
             GameManager.instance.movingScript.canDrop = false;
-            foreach (MeshRenderer item in meshRenders)
-            {
-                item.material = GameManager.instance.cantDropMaterial;
-            }
+            if(meshRender.material != GameManager.instance.cantDropMaterial)
+                meshRender.material = GameManager.instance.cantDropMaterial;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (toPlace)
+        if (toPlace && other.gameObject.layer != LayerMask.NameToLayer("ToPlace"))
         {
             GameManager.instance.movingScript.canDrop = true;
-            foreach (MeshRenderer item in meshRenders)
-            {
-                item.material = pieceOriginalMaterial;
-            }
+            meshRender.material = pieceOriginalMaterial;
         }
     }
 
