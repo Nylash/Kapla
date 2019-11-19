@@ -27,8 +27,7 @@ public class Piece : MonoBehaviour
             item.isTrigger = true;
             item.gameObject.layer = LayerMask.NameToLayer("ToPlace");
         }
-        meshRender = transform.GetChild(0).GetComponent<MeshRenderer>();
-        meshRender.gameObject.layer = LayerMask.NameToLayer("ToPlace");
+        meshRender = transform.GetComponent<MeshRenderer>();
         pieceOriginalMaterial = meshRender.material;
         toPlace = true;
         column = Instantiate(GameManager.instance.collumnPrefab, new Vector3(meshRender.bounds.center.x, meshRender.bounds.center.y / 2, meshRender.bounds.center.z), Quaternion.identity);
@@ -47,7 +46,6 @@ public class Piece : MonoBehaviour
             item.gameObject.layer = LayerMask.NameToLayer("Placed");
         }
         gameObject.layer = LayerMask.NameToLayer("Placed");
-        meshRender.gameObject.layer = LayerMask.NameToLayer("Placed");
         toPlace = false;
         if (meshRender.material != pieceOriginalMaterial)
             meshRender.material = pieceOriginalMaterial;

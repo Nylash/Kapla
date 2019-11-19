@@ -161,6 +161,13 @@ MonoBehaviour:
     prob: 0
   NeutralPieces:
   - {fileID: 8917575776659571725, guid: c64389d5dde7c2a439488ba5be062127, type: 3}
+  - {fileID: 1249156154123884383, guid: 959dad36b5f22c841ab7100344e9740a, type: 3}
+  - {fileID: 5048159172292327082, guid: bc51ec3850669b64e837809b8605b4cb, type: 3}
+  - {fileID: 2754252294819450879, guid: 1e46850c4a279164c886661411eb0631, type: 3}
+  - {fileID: 1579248987361761981, guid: 8c54a826388689146a9453610fd9dedf, type: 3}
+  - {fileID: 6901193737995741289, guid: d7e50324ac62dea4d9eb8f98c1f5b234, type: 3}
+  - {fileID: 9087992154383166302, guid: a230180abc314024d96c0099bb0a7637, type: 3}
+  - {fileID: 1891855823079828950, guid: 73bb22532213a7543bab7932b31df7a4, type: 3}
   GummyPieces: []
   StickyPieces: []
 --- !u!114 &495198128
