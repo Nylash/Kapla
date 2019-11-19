@@ -24,9 +24,11 @@ public class Piece : MonoBehaviour
         colliders = GetComponentsInChildren<MeshCollider>();
         foreach (MeshCollider item in colliders)
         {
-                item.isTrigger = true;
+            item.isTrigger = true;
+            item.gameObject.layer = LayerMask.NameToLayer("ToPlace");
         }
-        meshRender = GetComponent<MeshRenderer>();
+        meshRender = transform.GetChild(0).GetComponent<MeshRenderer>();
+        meshRender.gameObject.layer = LayerMask.NameToLayer("ToPlace");
         pieceOriginalMaterial = meshRender.material;
         toPlace = true;
         column = Instantiate(GameManager.instance.collumnPrefab, new Vector3(meshRender.bounds.center.x, meshRender.bounds.center.y / 2, meshRender.bounds.center.z), Quaternion.identity);
@@ -41,9 +43,11 @@ public class Piece : MonoBehaviour
         rigid.isKinematic = false;
         foreach (MeshCollider item in colliders)
         {
-                item.isTrigger = false;
+                item.isTrigger = false; 
+            item.gameObject.layer = LayerMask.NameToLayer("Placed");
         }
         gameObject.layer = LayerMask.NameToLayer("Placed");
+        meshRender.gameObject.layer = LayerMask.NameToLayer("Placed");
         toPlace = false;
         if (meshRender.material != pieceOriginalMaterial)
             meshRender.material = pieceOriginalMaterial;
