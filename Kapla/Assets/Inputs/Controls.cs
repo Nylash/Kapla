@@ -89,6 +89,30 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""ae8cbdfe-7f72-4aed-a120-616c2077f1fc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Value"",
+                    ""id"": ""5bed0e87-5bb6-459c-82f2-77d0db03c083"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SwitchMovementSystem"",
+                    ""type"": ""Button"",
+                    ""id"": ""e1db491a-9358-457d-84bc-7e1d8af7b350"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -311,6 +335,61 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""CameraMovementMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f119806-150d-4d18-935e-9d304677bce1"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0ece020-81bb-4c85-8d29-d8eb3dfdcc2f"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18b6903b-e0fb-4f3d-be20-20885810bf17"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6480dd4e-e281-4d9e-8cad-2504e1a070d5"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""034cabed-fd1c-4e7c-afb0-8a3540b04ef6"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SwitchMovementSystem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -356,6 +435,9 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Gameplay_Drop = m_Gameplay.FindAction("Drop", throwIfNotFound: true);
         m_Gameplay_Restart = m_Gameplay.FindAction("Restart", throwIfNotFound: true);
         m_Gameplay_CameraMovementMouse = m_Gameplay.FindAction("CameraMovementMouse", throwIfNotFound: true);
+        m_Gameplay_Down = m_Gameplay.FindAction("Down", throwIfNotFound: true);
+        m_Gameplay_Up = m_Gameplay.FindAction("Up", throwIfNotFound: true);
+        m_Gameplay_SwitchMovementSystem = m_Gameplay.FindAction("SwitchMovementSystem", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -414,6 +496,9 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Drop;
     private readonly InputAction m_Gameplay_Restart;
     private readonly InputAction m_Gameplay_CameraMovementMouse;
+    private readonly InputAction m_Gameplay_Down;
+    private readonly InputAction m_Gameplay_Up;
+    private readonly InputAction m_Gameplay_SwitchMovementSystem;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -427,6 +512,9 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Drop => m_Wrapper.m_Gameplay_Drop;
         public InputAction @Restart => m_Wrapper.m_Gameplay_Restart;
         public InputAction @CameraMovementMouse => m_Wrapper.m_Gameplay_CameraMovementMouse;
+        public InputAction @Down => m_Wrapper.m_Gameplay_Down;
+        public InputAction @Up => m_Wrapper.m_Gameplay_Up;
+        public InputAction @SwitchMovementSystem => m_Wrapper.m_Gameplay_SwitchMovementSystem;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -463,6 +551,15 @@ public class @Controls : IInputActionCollection, IDisposable
                 @CameraMovementMouse.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovementMouse;
                 @CameraMovementMouse.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovementMouse;
                 @CameraMovementMouse.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovementMouse;
+                @Down.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDown;
+                @Down.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDown;
+                @Down.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDown;
+                @Up.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUp;
+                @Up.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUp;
+                @Up.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUp;
+                @SwitchMovementSystem.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchMovementSystem;
+                @SwitchMovementSystem.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchMovementSystem;
+                @SwitchMovementSystem.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchMovementSystem;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -494,6 +591,15 @@ public class @Controls : IInputActionCollection, IDisposable
                 @CameraMovementMouse.started += instance.OnCameraMovementMouse;
                 @CameraMovementMouse.performed += instance.OnCameraMovementMouse;
                 @CameraMovementMouse.canceled += instance.OnCameraMovementMouse;
+                @Down.started += instance.OnDown;
+                @Down.performed += instance.OnDown;
+                @Down.canceled += instance.OnDown;
+                @Up.started += instance.OnUp;
+                @Up.performed += instance.OnUp;
+                @Up.canceled += instance.OnUp;
+                @SwitchMovementSystem.started += instance.OnSwitchMovementSystem;
+                @SwitchMovementSystem.performed += instance.OnSwitchMovementSystem;
+                @SwitchMovementSystem.canceled += instance.OnSwitchMovementSystem;
             }
         }
     }
@@ -527,5 +633,8 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnDrop(InputAction.CallbackContext context);
         void OnRestart(InputAction.CallbackContext context);
         void OnCameraMovementMouse(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
+        void OnUp(InputAction.CallbackContext context);
+        void OnSwitchMovementSystem(InputAction.CallbackContext context);
     }
 }

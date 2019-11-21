@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public PiecesDistributor distributorScript;
     [HideInInspector]
     public static GameManager instance = null;
+    public float cameraAngle;
 
     GameObject center;
     TextMeshProUGUI playerText;

@@ -6,6 +6,7 @@ public class MovingObject : MonoBehaviour
 {
 #pragma warning disable 0649
     [Header("MOVEMENT CONFIGURATION")]
+    [SerializeField] bool altMovementSyst;
     [SerializeField] float movementSpeed=3;
     [SerializeField] int rotationAngle = 90;
     [SerializeField] float rotationSpeed = 1;
@@ -54,28 +55,47 @@ public class MovingObject : MonoBehaviour
     {
         if (!GameManager.instance.defeat && currentPiece)
         {
-            float horizontalAxis = controls.Gameplay.Move.ReadValue<Vector2>().x;
-            float verticalAxis = controls.Gameplay.Move.ReadValue<Vector2>().y;
-            Vector3 right = transform.InverseTransformDirection(mainCamera.transform.right);
-            right.Normalize();
-            Vector3 desiredMoveDirection;
-            if (currentPiece.transform.position.y > 0 || currentPiece.transform.position.y + verticalAxis > 0)
+            if (!altMovementSyst)
             {
-                desiredMoveDirection = Vector3.up * verticalAxis + right * horizontalAxis;
-            }
-            else
-            {
-                desiredMoveDirection = right * horizontalAxis;
-            }
-            if (currentRigidbody.SweepTest(desiredMoveDirection, out hit))
-            {
-                if (hit.distance > 0.1f)
+                float horizontalAxis = controls.Gameplay.Move.ReadValue<Vector2>().x;
+                float verticalAxis = controls.Gameplay.Move.ReadValue<Vector2>().y;
+                Vector3 right = transform.InverseTransformDirection(mainCamera.transform.right);
+                right.Normalize();
+                Vector3 desiredMoveDirection;
+                if (currentPiece.transform.position.y > 0 || currentPiece.transform.position.y + verticalAxis > 0)
+                {
+                    desiredMoveDirection = Vector3.up * verticalAxis + right * horizontalAxis;
+                }
+                else
+                {
+                    desiredMoveDirection = right * horizontalAxis;
+                }
+                if (currentRigidbody.SweepTest(desiredMoveDirection, out hit))
+                {
+                    if (hit.distance > 0.1f)
+                        currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
+                }
+                else
+                {
                     currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
+                }
             }
             else
             {
-                currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
+                Vector3 desiredMoveDirection = Quaternion.Euler(new Vector3(0, GameManager.instance.cameraAngle, 0)) * 
+                    new Vector3(controls.Gameplay.Move.ReadValue<Vector2>().x, controls.Gameplay.Up.ReadValue<float>() - controls.Gameplay.Down.ReadValue<float>(), controls.Gameplay.Move.ReadValue<Vector2>().y);
+
+                if (currentRigidbody.SweepTest(desiredMoveDirection, out hit))
+                {
+                    if (hit.distance > 0.1f)
+                        currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
+                }
+                else
+                {
+                    currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
+                }
             }
+            
             if (rotating)
             {
                 rotationTime += Time.deltaTime * currentRotationSpeed;
@@ -109,6 +129,12 @@ public class MovingObject : MonoBehaviour
     {
         if (!rotating && currentPiece && !GameManager.instance.defeat)
             Rotate("RotZ");
+    }
+
+    public void SwitchMovementSystem(InputAction.CallbackContext ctx)
+    {
+        if(ctx.phase == InputActionPhase.Started)
+            altMovementSyst = !altMovementSyst;
     }
 
     void Rotate(string axis)

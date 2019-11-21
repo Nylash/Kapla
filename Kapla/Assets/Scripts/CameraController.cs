@@ -66,7 +66,7 @@ public class CameraController : MonoBehaviour
             else
                 center.transform.Rotate(0f, yRotMouse, 0f, Space.World);
         }
-
+        GameManager.instance.cameraAngle = center.transform.rotation.eulerAngles.y;
         //https://gamedev.stackexchange.com/questions/136174/im-rotating-an-object-on-two-axes-so-why-does-it-keep-twisting-around-the-thir
     }
 }

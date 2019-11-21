@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09066aad7f3ba4542acf428ecc35f698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  altMovementSyst: 1
   movementSpeed: 3
   rotationAngle: 90
   rotationSpeed: 7.5
@@ -211,6 +212,7 @@ MonoBehaviour:
     type: 3}
   movingScript: {fileID: 0}
   distributorScript: {fileID: 0}
+  cameraAngle: 0
 --- !u!4 &495198130
 Transform:
   m_ObjectHideFlags: 0
@@ -339,6 +341,29 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 21b49e9d-2bb1-4407-837c-4f5cccc8fea2
     m_ActionName: Gameplay/CameraMovementMouse[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ae8cbdfe-7f72-4aed-a120-616c2077f1fc
+    m_ActionName: Gameplay/Down[/XInputControllerWindows/leftTrigger,/XInputControllerWindows/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5bed0e87-5bb6-459c-82f2-77d0db03c083
+    m_ActionName: Gameplay/Up[/XInputControllerWindows/rightTrigger,/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 495198128}
+        m_MethodName: SwitchMovementSystem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e1db491a-9358-457d-84bc-7e1d8af7b350
+    m_ActionName: Gameplay/SwitchMovementSystem[/XInputControllerWindows/select]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -1019,7 +1044,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413571515}
-  m_LocalRotation: {x: 0.16042995, y: 0.37686962, z: -0.06645226, w: 0.9098438}
+  m_LocalRotation: {x: 0.16042997, y: 0.37686962, z: -0.066452265, w: 0.9098438}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
