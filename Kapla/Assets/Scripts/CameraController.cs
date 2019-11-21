@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
@@ -12,7 +13,21 @@ public class CameraController : MonoBehaviour
 #pragma warning restore 0649
 
     GameObject center;
+    Controls controls;
 
+    private void Awake()
+    {
+        controls = new Controls();
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
     private void Start()
     {
         center = transform.parent.gameObject;
@@ -20,8 +35,8 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        float xRot = cameraSpeed * Input.GetAxis("CamVertical") * Time.deltaTime;
-        float yRot = cameraSpeed * Input.GetAxis("CamHorizontal") * Time.deltaTime;
+        float xRot = cameraSpeed * controls.Gameplay.CameraMovementPad.ReadValue<Vector2>().y * Time.deltaTime;
+        float yRot = cameraSpeed * controls.Gameplay.CameraMovementPad.ReadValue<Vector2>().x * Time.deltaTime;
         if ((center.transform.localRotation.eulerAngles.x > minAngle) && (center.transform.localRotation.eulerAngles.x < maxAngle))
         {
             center.transform.Rotate(xRot, 0f, 0f, Space.Self);
@@ -34,10 +49,10 @@ public class CameraController : MonoBehaviour
         }
         else
             center.transform.Rotate(0f, yRot, 0f, Space.World);
-        if(Input.GetMouseButton(1))
+        if(controls.Gameplay.CameraCanMove.phase == InputActionPhase.Started)
         {
-            float xRotMouse = cameraSpeed * Input.GetAxis("Mouse Y") * Time.deltaTime;
-            float yRotMouse = cameraSpeed * Input.GetAxis("Mouse X") * Time.deltaTime;
+            float xRotMouse = cameraSpeed/2 * controls.Gameplay.CameraMovementMouse.ReadValue<Vector2>().y * Time.deltaTime;
+            float yRotMouse = cameraSpeed/2 * controls.Gameplay.CameraMovementMouse.ReadValue<Vector2>().x * Time.deltaTime;
             if ((center.transform.localRotation.eulerAngles.x > minAngle) && (center.transform.localRotation.eulerAngles.x < maxAngle))
             {
                 center.transform.Rotate(xRotMouse, 0f, 0f, Space.Self);
@@ -51,7 +66,6 @@ public class CameraController : MonoBehaviour
             else
                 center.transform.Rotate(0f, yRotMouse, 0f, Space.World);
         }
-        
 
         //https://gamedev.stackexchange.com/questions/136174/im-rotating-an-object-on-two-axes-so-why-does-it-keep-twisting-around-the-thir
     }

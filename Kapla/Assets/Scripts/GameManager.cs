@@ -55,8 +55,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         center.transform.position = Vector3.Lerp(center.transform.position, new Vector3(0, GetMaxHigh(), 0), Time.deltaTime);
         if (!timerStopped && !defeat)
         {
@@ -114,5 +112,10 @@ public class GameManager : MonoBehaviour
             return max;
         }
         return 0;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
