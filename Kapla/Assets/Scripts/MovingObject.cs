@@ -24,21 +24,6 @@ public class MovingObject : MonoBehaviour
     protected Quaternion rotationAfter;
     float rotationTime = 0;
     float currentRotationSpeed;
-    Controls controls;
-
-    private void Awake()
-    {
-        controls = new Controls();
-    }
-
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
 
     private void Start()
     {
@@ -57,8 +42,8 @@ public class MovingObject : MonoBehaviour
         {
             if (!altMovementSyst)
             {
-                float horizontalAxis = controls.Gameplay.Move.ReadValue<Vector2>().x;
-                float verticalAxis = controls.Gameplay.Move.ReadValue<Vector2>().y;
+                float horizontalAxis = GameManager.instance.movementDirection.x;
+                float verticalAxis = GameManager.instance.movementDirection.y;
                 Vector3 right = transform.InverseTransformDirection(mainCamera.transform.right);
                 right.Normalize();
                 Vector3 desiredMoveDirection;
@@ -83,7 +68,7 @@ public class MovingObject : MonoBehaviour
             else
             {
                 Vector3 desiredMoveDirection = Quaternion.Euler(new Vector3(0, GameManager.instance.cameraAngle, 0)) * 
-                    new Vector3(controls.Gameplay.Move.ReadValue<Vector2>().x, controls.Gameplay.Up.ReadValue<float>() - controls.Gameplay.Down.ReadValue<float>(), controls.Gameplay.Move.ReadValue<Vector2>().y);
+                    new Vector3(GameManager.instance.movementDirection.x, GameManager.instance.up - GameManager.instance.down, GameManager.instance.movementDirection.y);
 
                 if (currentRigidbody.SweepTest(desiredMoveDirection, out hit))
                 {
@@ -131,10 +116,9 @@ public class MovingObject : MonoBehaviour
             Rotate("RotZ");
     }
 
-    public void SwitchMovementSystem(InputAction.CallbackContext ctx)
+    public void SwitchMovementSystem()
     {
-        if(ctx.phase == InputActionPhase.Started)
-            altMovementSyst = !altMovementSyst;
+        altMovementSyst = !altMovementSyst;
     }
 
     void Rotate(string axis)

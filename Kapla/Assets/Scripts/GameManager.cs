@@ -18,6 +18,13 @@ public class GameManager : MonoBehaviour
     public string lastPlayer;
     public List<GameObject> AllPieces = new List<GameObject>();
     public GameObject collumnPrefab;
+    [Header("INPUTS DATA")]
+    public Vector2 movementDirection;
+    public Vector2 cameraMovementPad;
+    public Vector2 cameraMovementMouse;
+    public float up;
+    public float down;
+    public bool cameraCanMove;
 
     [HideInInspector]
     public MovingObject movingScript;

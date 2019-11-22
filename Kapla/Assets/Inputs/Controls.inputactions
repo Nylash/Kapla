@@ -99,7 +99,7 @@
                     "id": "e1db491a-9358-457d-84bc-7e1d8af7b350",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -216,7 +216,7 @@
                 {
                     "name": "",
                     "id": "0a69a28d-a0be-4b0a-96ce-d46d77d7a9a4",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -238,7 +238,7 @@
                 {
                     "name": "",
                     "id": "7113bc5c-87ad-4fb7-93ff-18c37249f9d8",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -260,7 +260,7 @@
                 {
                     "name": "",
                     "id": "810e1998-897f-44da-84d3-8d843cf2751e",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -347,6 +347,17 @@
                 },
                 {
                     "name": "",
+                    "id": "b71bfdd2-9e9d-4149-8567-ff86f4e231bc",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "18b6903b-e0fb-4f3d-be20-20885810bf17",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
@@ -369,11 +380,33 @@
                 },
                 {
                     "name": "",
+                    "id": "8854b44a-a6d7-49e5-9fa0-0c71bae011fb",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "034cabed-fd1c-4e7c-afb0-8a3540b04ef6",
                     "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "SwitchMovementSystem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a45820bf-315a-478d-831d-cfaa7e3510dd",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "SwitchMovementSystem",
                     "isComposite": false,
                     "isPartOfComposite": false
