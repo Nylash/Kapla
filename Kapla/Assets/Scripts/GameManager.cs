@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
         {
             GameObject currentPiece = GameObject.Instantiate(piece, center.transform.position + offsetSpawn, piece.transform.rotation);
             movingScript.currentPiece = currentPiece;
-            movingScript.currentRigidbody = currentPiece.GetComponent<Rigidbody>();
+            movingScript.currentRigidbody = currentPiece.GetComponentInChildren<Rigidbody>();
         }
     }
 
