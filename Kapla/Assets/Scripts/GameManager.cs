@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [Header("SCRIPT INFORMATIONS")]
     public Material cantDropMaterial;
     public bool defeat;
-    
+    public PlayerInputs lastPlayer;
     public List<GameObject> AllPieces = new List<GameObject>();
     public GameObject collumnPrefab;
     [Header("INPUTS DATA")]
@@ -40,8 +40,11 @@ public class GameManager : MonoBehaviour
 
     float timer;
     bool timerStopped;
-    public int activePlayer;
-    public PlayerInputs lastPlayer;
+    int activePlayer;
+    GameObject camObject;
+    float originalCamZoom;
+
+
 
     void Awake()
     {
@@ -58,6 +61,8 @@ public class GameManager : MonoBehaviour
         center = GameObject.FindGameObjectWithTag("Center");
         playerText = GameObject.FindGameObjectWithTag("PlayerText").GetComponent<TextMeshProUGUI>();
         timerText = GameObject.FindGameObjectWithTag("Timer").GetComponent<TextMeshProUGUI>();
+        camObject = GameObject.FindGameObjectWithTag("MainCamera").gameObject;
+        originalCamZoom = camObject.transform.localPosition.z;
 
         InstantiateNewPiece();
         playerText.text = "P1";
@@ -68,16 +73,20 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        center.transform.position = Vector3.Lerp(center.transform.position, new Vector3(0, GetMaxHigh(), 0), Time.deltaTime);
-        if (!timerStopped && !defeat)
+        if (!defeat)
         {
-            timer -= Time.deltaTime;
-            timerText.text = ((int)timer).ToString();
-            if ((int)timer == 0)
-                StartCoroutine(movingScript.DropPiece());
+            center.transform.position = Vector3.Lerp(center.transform.position, new Vector3(0, GetMaxHigh(), 0), Time.deltaTime);
+            camObject.transform.localPosition = new Vector3(0, 0, Mathf.Lerp(camObject.transform.localPosition.z, GetMaxWidth(), Time.deltaTime));
+            if (!timerStopped)
+            {
+                timer -= Time.deltaTime;
+                timerText.text = ((int)timer).ToString();
+                if ((int)timer == 0)
+                    StartCoroutine(movingScript.DropPiece());
+            }
+            else
+                timerText.text = "";
         }
-        else
-            timerText.text = "";
     }
 
     public void InstantiateNewPiece()
@@ -117,9 +126,34 @@ public class GameManager : MonoBehaviour
                 if (item.transform.position.y > max)
                     max = item.transform.position.y;
             }
-            return max;
         }
-        return 0;
+        if (movingScript.currentPiece)
+        {
+            return (movingScript.currentPiece.transform.position.y + max) / 2;
+        }
+        return max;
+    }
+
+    float GetMaxWidth()
+    {
+        float max = 0;
+        if(AllPieces.Count != 0)
+        {
+            foreach (GameObject item in AllPieces)
+            {
+                if (item.transform.position.x > max)
+                    max = item.transform.position.x;
+                if (item.transform.position.z > max)
+                    max = item.transform.position.z;
+            }
+        }
+        return -max + originalCamZoom;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(new Vector3(0, GetMaxHigh(), 0), .1f);
     }
 
     public void Restart()
