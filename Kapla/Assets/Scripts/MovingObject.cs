@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MovingObject : MonoBehaviour
 {
 #pragma warning disable 0649
     [Header("MOVEMENT CONFIGURATION")]
+    [SerializeField] bool altMovementSyst;
     [SerializeField] float movementSpeed=3;
     [SerializeField] int rotationAngle = 90;
     [SerializeField] float rotationSpeed = 1;
@@ -25,6 +27,10 @@ public class MovingObject : MonoBehaviour
 
     private void Start()
     {
+        //temp to remove unity's debug updater which crashes with new input
+        GameObject go = GameObject.Find("[Debug Updater]");
+        if (go != null) DestroyImmediate(go);
+
         mainCamera = Camera.main;
         currentRotationSpeed = rotationSpeed;
         canDrop = true;
@@ -32,12 +38,12 @@ public class MovingObject : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.instance.defeat)
+        if (!GameManager.instance.defeat && currentPiece)
         {
-            if (currentPiece)
+            if (!altMovementSyst)
             {
-                float horizontalAxis = Input.GetAxis("Horizontal");
-                float verticalAxis = Input.GetAxis("Vertical");
+                float horizontalAxis = GameManager.instance.movementDirection.x;
+                float verticalAxis = GameManager.instance.movementDirection.y;
                 Vector3 right = transform.InverseTransformDirection(mainCamera.transform.right);
                 right.Normalize();
                 Vector3 desiredMoveDirection;
@@ -49,40 +55,70 @@ public class MovingObject : MonoBehaviour
                 {
                     desiredMoveDirection = right * horizontalAxis;
                 }
-                if(currentRigidbody.SweepTest(desiredMoveDirection, out hit))
+                if (currentRigidbody.SweepTest(desiredMoveDirection, out hit))
                 {
-                    if(hit.distance > 0.1f)
+                    if (hit.distance > 0.1f)
                         currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
-                }else
+                }
+                else
+                {
                     currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
-                if ((Input.GetButtonDown("Drop") || Input.GetMouseButtonDown(0)) && canDrop && !rotating)
-                {
-                    StartCoroutine(DropPiece());
                 }
-                if (Input.GetButtonDown("RotX") && !rotating)
+            }
+            else
+            {
+                Vector3 desiredMoveDirection = Quaternion.Euler(new Vector3(0, GameManager.instance.cameraAngle, 0)) * 
+                    new Vector3(GameManager.instance.movementDirection.x, GameManager.instance.up - GameManager.instance.down, GameManager.instance.movementDirection.y);
+
+                if (currentRigidbody.SweepTest(desiredMoveDirection, out hit))
                 {
-                    Rotate("RotX");
+                    if (hit.distance > 0.1f)
+                        currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
                 }
-                if (Input.GetButtonDown("RotY") && !rotating)
+                else
                 {
-                    Rotate("RotY");
+                    currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
                 }
-                if (Input.GetButtonDown("RotZ") && !rotating)
+            }
+            
+            if (rotating)
+            {
+                rotationTime += Time.deltaTime * currentRotationSpeed;
+                currentPiece.transform.rotation = Quaternion.Slerp(rotationBefore, rotationAfter, rotationTime);
+                if (rotationTime >= 1)
                 {
-                    Rotate("RotZ");
-                }
-                if (rotating)
-                {
-                    rotationTime += Time.deltaTime * currentRotationSpeed;
-                    currentPiece.transform.rotation = Quaternion.Slerp(rotationBefore, rotationAfter, rotationTime);
-                    if (rotationTime >= 1)
-                    {
-                        rotating = false;
-                        currentRotationSpeed = rotationSpeed;
-                    }
+                    rotating = false;
+                    currentRotationSpeed = rotationSpeed;
                 }
             }
         }
+    }
+
+    public void Drop()
+    {
+        if (currentPiece && !GameManager.instance.defeat && canDrop && !rotating)
+            StartCoroutine(DropPiece());
+    }
+
+    public void RotX()
+    {
+        if(!rotating && currentPiece && !GameManager.instance.defeat)
+            Rotate("RotX");
+    }
+    public void RotY()
+    {
+        if (!rotating && currentPiece && !GameManager.instance.defeat)
+            Rotate("RotY");
+    }
+    public void RotZ()
+    {
+        if (!rotating && currentPiece && !GameManager.instance.defeat)
+            Rotate("RotZ");
+    }
+
+    public void SwitchMovementSystem()
+    {
+        altMovementSyst = !altMovementSyst;
     }
 
     void Rotate(string axis)

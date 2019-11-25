@@ -15,9 +15,16 @@ public class GameManager : MonoBehaviour
     [Header("SCRIPT INFORMATIONS")]
     public Material cantDropMaterial;
     public bool defeat;
-    public string lastPlayer;
+    
     public List<GameObject> AllPieces = new List<GameObject>();
     public GameObject collumnPrefab;
+    [Header("INPUTS DATA")]
+    public Vector2 movementDirection;
+    public Vector2 cameraMovementPad;
+    public Vector2 cameraMovementMouse;
+    public float up;
+    public float down;
+    public bool cameraCanMove;
 
     [HideInInspector]
     public MovingObject movingScript;
@@ -25,6 +32,7 @@ public class GameManager : MonoBehaviour
     public PiecesDistributor distributorScript;
     [HideInInspector]
     public static GameManager instance = null;
+    public float cameraAngle;
 
     GameObject center;
     TextMeshProUGUI playerText;
@@ -32,6 +40,8 @@ public class GameManager : MonoBehaviour
 
     float timer;
     bool timerStopped;
+    public int activePlayer;
+    public PlayerInputs lastPlayer;
 
     void Awake()
     {
@@ -49,14 +59,15 @@ public class GameManager : MonoBehaviour
         playerText = GameObject.FindGameObjectWithTag("PlayerText").GetComponent<TextMeshProUGUI>();
         timerText = GameObject.FindGameObjectWithTag("Timer").GetComponent<TextMeshProUGUI>();
 
-        playerText.text = "P1";
         InstantiateNewPiece();
+        playerText.text = "P1";
+        activePlayer = 0;
+        PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.HisTurn;
+        PlayersManager.instance.players[activePlayer].CleanInputs();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         center.transform.position = Vector3.Lerp(center.transform.position, new Vector3(0, GetMaxHigh(), 0), Time.deltaTime);
         if (!timerStopped && !defeat)
         {
@@ -85,20 +96,15 @@ public class GameManager : MonoBehaviour
     public void ChangePlayer()
     {
         timerStopped = true;
-        switch (playerText.text)
-        {
-            case "P1":
-                playerText.text = "P2";
-                lastPlayer = "P1";
-                break;
-            case "P2":
-                playerText.text = "P1";
-                lastPlayer = "P2";
-                break;
-            default:
-                Debug.LogError("You shouldn't be here.");
-                break;
-        }
+        PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.NotHisTurn;
+        PlayersManager.instance.players[activePlayer].CleanInputs();
+        lastPlayer = PlayersManager.instance.players[activePlayer];
+        if (activePlayer == PlayersManager.instance.players.Count - 1)
+            activePlayer = 0;
+        else
+            activePlayer++;
+        PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.HisTurn;
+        playerText.text = PlayersManager.instance.players[activePlayer].ID;
     }
 
     float GetMaxHigh()
@@ -114,5 +120,14 @@ public class GameManager : MonoBehaviour
             return max;
         }
         return 0;
+    }
+
+    public void Restart()
+    {
+        foreach(PlayerInputs player in PlayersManager.instance.players)
+        {
+            player.state = PlayerInputs.PlayerState.NotHisTurn;
+        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
