@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputs : MonoBehaviour
 {
-    Controls controls;
+    public PlayerState state;
+    public string ID;
 
     public Vector2 movementDirection;
     public Vector2 cameraMovementPad;
@@ -13,6 +14,8 @@ public class PlayerInputs : MonoBehaviour
     public float up;
     public float down;
     public bool cameraCanMove;
+
+    /*Controls controls;
 
     private void Awake()
     {
@@ -51,45 +54,126 @@ public class PlayerInputs : MonoBehaviour
     private void OnDisable()
     {
         controls.Gameplay.Disable();
+    }*/
+
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
     {
-        GameManager.instance.movementDirection = movementDirection;
-        GameManager.instance.cameraMovementPad = cameraMovementPad;
-        GameManager.instance.cameraMovementMouse = cameraMovementMouse;
-        GameManager.instance.up = up;
-        GameManager.instance.down = down;
-        GameManager.instance.cameraCanMove = cameraCanMove;
+        if(state == PlayerState.HisTurn)
+        {
+            GameManager.instance.movementDirection = movementDirection;
+            GameManager.instance.cameraMovementPad = cameraMovementPad;
+            GameManager.instance.cameraMovementMouse = cameraMovementMouse;
+            GameManager.instance.up = up;
+            GameManager.instance.down = down;
+            GameManager.instance.cameraCanMove = cameraCanMove;
+        }
     }
 
-    void RotX()
+    void OnMove(InputValue value)
     {
-        GameManager.instance.movingScript.RotX();
+        if (state == PlayerState.HisTurn)
+            movementDirection = value.Get<Vector2>();
     }
 
-    void RotY()
+    void OnUp(InputValue value)
     {
-        GameManager.instance.movingScript.RotY();
+        if (state == PlayerState.HisTurn)
+            up = value.Get<float>();
     }
 
-    void RotZ()
+    void OnDown(InputValue value)
     {
-        GameManager.instance.movingScript.RotZ();
+        if (state == PlayerState.HisTurn)
+            down = value.Get<float>();
     }
 
-    void Drop()
+    void OnCameraMovementPad(InputValue value)
     {
-        GameManager.instance.movingScript.Drop();
+        if (state == PlayerState.HisTurn)
+            cameraMovementPad = value.Get<Vector2>();
     }
 
-    void Restart()
+    void OnCameraMovementMouse(InputValue value)
     {
-        GameManager.instance.Restart();
+        if (state == PlayerState.HisTurn)
+            cameraMovementMouse = value.Get<Vector2>();
     }
 
-    void SwitchMovementSystem()
+    void OnCameraCanMove(InputValue value)
     {
-        GameManager.instance.movingScript.SwitchMovementSystem();
+        if (state == PlayerState.HisTurn)
+        {
+            switch (value.Get<float>())
+            {
+                case 0:
+                    cameraCanMove = false;
+                    break;
+                case 1:
+                    cameraCanMove = true;
+                    break;
+                default:
+                    cameraCanMove = false;
+                    Debug.LogError("You shoudln't be there.");
+                    break;
+            }
+        }
+    }
+
+    void OnRotX()
+    {
+        if (state == PlayerState.HisTurn)
+            GameManager.instance.movingScript.RotX();
+    }
+
+    void OnRotY()
+    {
+        if (state == PlayerState.HisTurn)
+            GameManager.instance.movingScript.RotY();
+    }
+
+    void OnRotZ()
+    {
+        if (state == PlayerState.HisTurn)
+            GameManager.instance.movingScript.RotZ();
+    }
+
+    void OnDrop()
+    {
+        if (state == PlayerState.HisTurn)
+            GameManager.instance.movingScript.Drop();
+    }
+
+    void OnMenu()
+    {
+        if (state == PlayerState.HisTurn)
+            GameManager.instance.movingScript.SwitchMovementSystem();
+        if (PlayersManager.instance.inLobby)
+            PlayersManager.instance.LoadGame();
+    }
+
+    void OnRestart()
+    { 
+        if (state == PlayerState.HisTurn)
+            GameManager.instance.Restart();
+    }
+
+    public void CleanInputs()
+    {
+        movementDirection = Vector2.zero;
+        cameraMovementPad = Vector2.zero;
+        cameraMovementMouse = Vector2.zero;
+        up = 0;
+        down = 0;
+        cameraCanMove = false;
+    }
+
+    public enum PlayerState
+    {
+        NotHisTurn, HisTurn
     }
 }

@@ -17,7 +17,7 @@ public class DefeatScript : MonoBehaviour
         if (collision.gameObject.GetComponent<Piece>())
         {
             GameManager.instance.defeat = true;
-            defeatText.text = GameManager.instance.lastPlayer + " LOOSE";
+            defeatText.text = GameManager.instance.lastPlayer.ID + " LOOSE";
         }
     }
 }

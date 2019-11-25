@@ -75,7 +75,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""Restart"",
+                    ""name"": ""Menu"",
                     ""type"": ""Button"",
                     ""id"": ""8f4fe5ce-046c-4f35-b548-bd248a794ef5"",
                     ""expectedControlType"": """",
@@ -92,22 +92,22 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Down"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""ae8cbdfe-7f72-4aed-a120-616c2077f1fc"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Integer"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""Up"",
                     ""type"": ""Value"",
                     ""id"": ""5bed0e87-5bb6-459c-82f2-77d0db03c083"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Integer"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
-                    ""name"": ""SwitchMovementSystem"",
+                    ""name"": ""Restart"",
                     ""type"": ""Button"",
                     ""id"": ""e1db491a-9358-457d-84bc-7e1d8af7b350"",
                     ""expectedControlType"": """",
@@ -310,7 +310,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Restart"",
+                    ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -321,7 +321,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Restart"",
+                    ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -409,7 +409,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""SwitchMovementSystem"",
+                    ""action"": ""Restart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -420,7 +420,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SwitchMovementSystem"",
+                    ""action"": ""Restart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -466,11 +466,11 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Gameplay_RotY = m_Gameplay.FindAction("RotY", throwIfNotFound: true);
         m_Gameplay_RotZ = m_Gameplay.FindAction("RotZ", throwIfNotFound: true);
         m_Gameplay_Drop = m_Gameplay.FindAction("Drop", throwIfNotFound: true);
-        m_Gameplay_Restart = m_Gameplay.FindAction("Restart", throwIfNotFound: true);
+        m_Gameplay_Menu = m_Gameplay.FindAction("Menu", throwIfNotFound: true);
         m_Gameplay_CameraMovementMouse = m_Gameplay.FindAction("CameraMovementMouse", throwIfNotFound: true);
         m_Gameplay_Down = m_Gameplay.FindAction("Down", throwIfNotFound: true);
         m_Gameplay_Up = m_Gameplay.FindAction("Up", throwIfNotFound: true);
-        m_Gameplay_SwitchMovementSystem = m_Gameplay.FindAction("SwitchMovementSystem", throwIfNotFound: true);
+        m_Gameplay_Restart = m_Gameplay.FindAction("Restart", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -527,11 +527,11 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_RotY;
     private readonly InputAction m_Gameplay_RotZ;
     private readonly InputAction m_Gameplay_Drop;
-    private readonly InputAction m_Gameplay_Restart;
+    private readonly InputAction m_Gameplay_Menu;
     private readonly InputAction m_Gameplay_CameraMovementMouse;
     private readonly InputAction m_Gameplay_Down;
     private readonly InputAction m_Gameplay_Up;
-    private readonly InputAction m_Gameplay_SwitchMovementSystem;
+    private readonly InputAction m_Gameplay_Restart;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -543,11 +543,11 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @RotY => m_Wrapper.m_Gameplay_RotY;
         public InputAction @RotZ => m_Wrapper.m_Gameplay_RotZ;
         public InputAction @Drop => m_Wrapper.m_Gameplay_Drop;
-        public InputAction @Restart => m_Wrapper.m_Gameplay_Restart;
+        public InputAction @Menu => m_Wrapper.m_Gameplay_Menu;
         public InputAction @CameraMovementMouse => m_Wrapper.m_Gameplay_CameraMovementMouse;
         public InputAction @Down => m_Wrapper.m_Gameplay_Down;
         public InputAction @Up => m_Wrapper.m_Gameplay_Up;
-        public InputAction @SwitchMovementSystem => m_Wrapper.m_Gameplay_SwitchMovementSystem;
+        public InputAction @Restart => m_Wrapper.m_Gameplay_Restart;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -578,9 +578,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Drop.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDrop;
                 @Drop.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDrop;
                 @Drop.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDrop;
-                @Restart.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
-                @Restart.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
-                @Restart.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
+                @Menu.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMenu;
                 @CameraMovementMouse.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovementMouse;
                 @CameraMovementMouse.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovementMouse;
                 @CameraMovementMouse.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovementMouse;
@@ -590,9 +590,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Up.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUp;
                 @Up.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUp;
                 @Up.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUp;
-                @SwitchMovementSystem.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchMovementSystem;
-                @SwitchMovementSystem.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchMovementSystem;
-                @SwitchMovementSystem.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchMovementSystem;
+                @Restart.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
+                @Restart.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
+                @Restart.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -618,9 +618,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Drop.started += instance.OnDrop;
                 @Drop.performed += instance.OnDrop;
                 @Drop.canceled += instance.OnDrop;
-                @Restart.started += instance.OnRestart;
-                @Restart.performed += instance.OnRestart;
-                @Restart.canceled += instance.OnRestart;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
                 @CameraMovementMouse.started += instance.OnCameraMovementMouse;
                 @CameraMovementMouse.performed += instance.OnCameraMovementMouse;
                 @CameraMovementMouse.canceled += instance.OnCameraMovementMouse;
@@ -630,9 +630,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Up.started += instance.OnUp;
                 @Up.performed += instance.OnUp;
                 @Up.canceled += instance.OnUp;
-                @SwitchMovementSystem.started += instance.OnSwitchMovementSystem;
-                @SwitchMovementSystem.performed += instance.OnSwitchMovementSystem;
-                @SwitchMovementSystem.canceled += instance.OnSwitchMovementSystem;
+                @Restart.started += instance.OnRestart;
+                @Restart.performed += instance.OnRestart;
+                @Restart.canceled += instance.OnRestart;
             }
         }
     }
@@ -664,10 +664,10 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnRotY(InputAction.CallbackContext context);
         void OnRotZ(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
-        void OnRestart(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
         void OnCameraMovementMouse(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
         void OnUp(InputAction.CallbackContext context);
-        void OnSwitchMovementSystem(InputAction.CallbackContext context);
+        void OnRestart(InputAction.CallbackContext context);
     }
 }

@@ -62,7 +62,7 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "Restart",
+                    "name": "Menu",
                     "type": "Button",
                     "id": "8f4fe5ce-046c-4f35-b548-bd248a794ef5",
                     "expectedControlType": "",
@@ -79,22 +79,22 @@
                 },
                 {
                     "name": "Down",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "ae8cbdfe-7f72-4aed-a120-616c2077f1fc",
-                    "expectedControlType": "",
+                    "expectedControlType": "Integer",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
                 },
                 {
                     "name": "Up",
                     "type": "Value",
                     "id": "5bed0e87-5bb6-459c-82f2-77d0db03c083",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Integer",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "SwitchMovementSystem",
+                    "name": "Restart",
                     "type": "Button",
                     "id": "e1db491a-9358-457d-84bc-7e1d8af7b350",
                     "expectedControlType": "",
@@ -297,7 +297,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Restart",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -308,7 +308,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Restart",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -396,7 +396,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "SwitchMovementSystem",
+                    "action": "Restart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -407,7 +407,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwitchMovementSystem",
+                    "action": "Restart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

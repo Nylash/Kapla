@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cba95d2135155d40887c94ebeb84a39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
+  ID: 
   movementDirection: {x: 0, y: 0}
   cameraMovementPad: {x: 0, y: 0}
   cameraMovementMouse: {x: 0, y: 0}
@@ -73,7 +75,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
