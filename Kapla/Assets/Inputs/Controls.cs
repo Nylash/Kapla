@@ -94,7 +94,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": ""Down"",
                     ""type"": ""Value"",
                     ""id"": ""ae8cbdfe-7f72-4aed-a120-616c2077f1fc"",
-                    ""expectedControlType"": ""Integer"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)""
                 },
@@ -102,7 +102,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": ""Up"",
                     ""type"": ""Value"",
                     ""id"": ""5bed0e87-5bb6-459c-82f2-77d0db03c083"",
-                    ""expectedControlType"": ""Integer"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)""
                 },
@@ -338,17 +338,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3f119806-150d-4d18-935e-9d304677bce1"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Down"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""a0ece020-81bb-4c85-8d29-d8eb3dfdcc2f"",
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
@@ -366,17 +355,6 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Down"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""18b6903b-e0fb-4f3d-be20-20885810bf17"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Up"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },

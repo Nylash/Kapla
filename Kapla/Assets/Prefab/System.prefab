@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetSpawn: {x: 0, y: 7, z: 0}
-  timeBeforeAutoDrop: 16
+  timeBeforeAutoDrop: 31
   cantDropMaterial: {fileID: 0}
   defeat: 0
   lastPlayer: {fileID: 0}

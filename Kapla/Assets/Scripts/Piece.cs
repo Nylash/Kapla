@@ -7,6 +7,7 @@ public class Piece : MonoBehaviour
 {
     [Header("PIECE CONFIGURATION")]
     public PieceType type;
+    public float refPosY = 0;
 
     Rigidbody rigid;
     MeshCollider[] colliders;
@@ -32,6 +33,7 @@ public class Piece : MonoBehaviour
         toPlace = true;
         column = Instantiate(GameManager.instance.collumnPrefab, new Vector3(meshRender.bounds.center.x, meshRender.bounds.center.y / 2, meshRender.bounds.center.z), Quaternion.identity);
         column.transform.localScale = new Vector3(meshRender.bounds.size.x, (1.95f * meshRender.bounds.center.y)/4.3f, meshRender.bounds.size.z);
+        column.GetComponent<GuideScript>().currentPiece = this;
     }
 
     public void Drop()
@@ -55,7 +57,7 @@ public class Piece : MonoBehaviour
     {
         if (toPlace)
         {
-            column.transform.position = new Vector3(meshRender.bounds.center.x, transform.position.y/2, meshRender.bounds.center.z);
+            column.transform.position = new Vector3(meshRender.bounds.center.x, (meshRender.bounds.center.y + refPosY)/2, meshRender.bounds.center.z);
             column.transform.localScale = new Vector3(meshRender.bounds.size.x, (1.95f * meshRender.bounds.center.y) / 4.3f, meshRender.bounds.size.z);
         }
     }
@@ -66,6 +68,7 @@ public class Piece : MonoBehaviour
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireCube(meshRender.bounds.center, meshRender.bounds.size);
+            Gizmos.DrawWireSphere(new Vector3(meshRender.bounds.center.x, (meshRender.bounds.center.y + refPosY) / 2, meshRender.bounds.center.z), .2f);
         }
     }
 
