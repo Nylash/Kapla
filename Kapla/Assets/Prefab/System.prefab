@@ -257,7 +257,7 @@ MonoBehaviour:
   defeat: 0
   lastPlayer: {fileID: 0}
   AllPieces: []
-  collumnPrefab: {fileID: 5661327082734402979, guid: a526f1ff5bd05b74fb1537e34ae24d89,
+  guidePrefab: {fileID: 5661327082734402979, guid: a526f1ff5bd05b74fb1537e34ae24d89,
     type: 3}
   movementDirection: {x: 0, y: 0}
   cameraMovementPad: {x: 0, y: 0}

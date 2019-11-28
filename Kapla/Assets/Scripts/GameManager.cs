@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public bool defeat;
     public PlayerInputs lastPlayer;
     public List<GameObject> AllPieces = new List<GameObject>();
-    public GameObject collumnPrefab;
+    public GameObject guidePrefab;
     [Header("INPUTS DATA")]
     public Vector2 movementDirection;
     public Vector2 cameraMovementPad;

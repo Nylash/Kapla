@@ -7,14 +7,13 @@ public class Piece : MonoBehaviour
 {
     [Header("PIECE CONFIGURATION")]
     public PieceType type;
-    public float refPosY = 0;
 
     Rigidbody rigid;
     MeshCollider[] colliders;
     MeshRenderer meshRender;
     Material pieceOriginalMaterial;
     bool toPlace;
-    GameObject column;
+    GameObject guide;
 
     private void Start()
     {
@@ -31,14 +30,13 @@ public class Piece : MonoBehaviour
         meshRender = GetComponentInChildren<MeshRenderer>();
         pieceOriginalMaterial = meshRender.material;
         toPlace = true;
-        column = Instantiate(GameManager.instance.collumnPrefab, new Vector3(meshRender.bounds.center.x, meshRender.bounds.center.y / 2, meshRender.bounds.center.z), Quaternion.identity);
-        column.transform.localScale = new Vector3(meshRender.bounds.size.x, (1.95f * meshRender.bounds.center.y)/4.3f, meshRender.bounds.size.z);
-        column.GetComponent<GuideScript>().currentPiece = this;
+        guide = Instantiate(GameManager.instance.guidePrefab, new Vector3(meshRender.bounds.center.x, meshRender.bounds.center.y / 2, meshRender.bounds.center.z), Quaternion.identity);
+        guide.transform.localScale = new Vector3(meshRender.bounds.size.x, (1.95f * meshRender.bounds.center.y)/4.3f, meshRender.bounds.size.z);
     }
 
     public void Drop()
     {
-        Destroy(column);
+        Destroy(guide);
         GameManager.instance.movingScript.currentPiece = null;
         rigid.useGravity = true;
         rigid.isKinematic = false;
@@ -57,8 +55,8 @@ public class Piece : MonoBehaviour
     {
         if (toPlace)
         {
-            column.transform.position = new Vector3(meshRender.bounds.center.x, (meshRender.bounds.center.y + refPosY)/2, meshRender.bounds.center.z);
-            column.transform.localScale = new Vector3(meshRender.bounds.size.x, (1.95f * meshRender.bounds.center.y) / 4.3f, meshRender.bounds.size.z);
+            guide.transform.position = new Vector3(meshRender.bounds.center.x, meshRender.bounds.center.y/2, meshRender.bounds.center.z);
+            guide.transform.localScale = new Vector3(meshRender.bounds.size.x, (1.95f * meshRender.bounds.center.y) / 4.3f, meshRender.bounds.size.z);
         }
     }
 
@@ -68,7 +66,7 @@ public class Piece : MonoBehaviour
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireCube(meshRender.bounds.center, meshRender.bounds.size);
-            Gizmos.DrawWireSphere(new Vector3(meshRender.bounds.center.x, (meshRender.bounds.center.y + refPosY) / 2, meshRender.bounds.center.z), .2f);
+            Gizmos.DrawWireSphere(new Vector3(meshRender.bounds.center.x, meshRender.bounds.center.y / 2, meshRender.bounds.center.z), .2f);
         }
     }
 
