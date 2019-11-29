@@ -460,5 +460,15 @@ PrefabInstance:
       propertyPath: cantDropMaterial
       value: 
       objectReference: {fileID: 2100000, guid: ac0acc087e12bb847805547b5ac8aef4, type: 2}
+    - target: {fileID: 2502875166994726158, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6038499676069366190, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe, type: 3}
