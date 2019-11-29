@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using EZCameraShake;
 
 public class GameManager : MonoBehaviour
 {
@@ -96,6 +97,7 @@ public class GameManager : MonoBehaviour
         GameObject piece = distributorScript.GetRandomPiece();
         if (piece)
         {
+            CameraShaker.Instance.ShakeOnce(4f, 4f, .1f, 1f);
             GameObject currentPiece = GameObject.Instantiate(piece, center.transform.position + offsetSpawn, piece.transform.rotation);
             movingScript.currentPiece = currentPiece;
             movingScript.currentRigidbody = currentPiece.GetComponentInChildren<Rigidbody>();
