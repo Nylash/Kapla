@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
 #pragma warning disable 0649
     [Header("GAME CONFIGURATION")]
+    [SerializeField] GameObject managerPrefab;
     [SerializeField] Vector3 offsetSpawn = new Vector3(0,4,0);
     [SerializeField] int timeBeforeAutoDrop = 16;
 #pragma warning restore 0649
@@ -52,6 +53,11 @@ public class GameManager : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
+        if(PlayersManager.instance == null)
+        {
+            GameObject manager = Instantiate(managerPrefab);
+            manager.GetComponent<PlayersManager>().DebugMode();
+        }
     }
 
     private void Start()

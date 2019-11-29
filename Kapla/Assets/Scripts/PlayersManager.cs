@@ -32,7 +32,8 @@ public class PlayersManager : MonoBehaviour
     {
         players.Add(player.GetComponent<PlayerInputs>());
         players[players.Count - 1].ID = "P" + players.Count;
-        GameObject.Find("Tmp").GetComponent<Text>().text += players[players.Count - 1].ID + " ";
+        if(inLobby)
+            GameObject.Find("Tmp").GetComponent<Text>().text += players[players.Count - 1].ID + " ";
     }
 
     public void LoadGame()
@@ -40,5 +41,12 @@ public class PlayersManager : MonoBehaviour
         GetComponent<PlayerInputManager>().DisableJoining();
         inLobby = false;
         SceneManager.LoadScene("Ben");
+    }
+
+    public void DebugMode()
+    {
+        inLobby = false;
+        GetComponent<PlayerInputManager>().JoinPlayer();
+        GetComponent<PlayerInputManager>().DisableJoining();
     }
 }

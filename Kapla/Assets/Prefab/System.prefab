@@ -251,6 +251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4987d70324ea615499111f90e5918091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  managerPrefab: {fileID: 1056181730569458543, guid: 01d3c8737787a5043b8bab250eba7036,
+    type: 3}
   offsetSpawn: {x: 0, y: 7, z: 0}
   timeBeforeAutoDrop: 31
   cantDropMaterial: {fileID: 0}
@@ -328,7 +330,6 @@ MonoBehaviour:
   nb_noConstruction_EasyToPlace: 1
   nb_construction_HardToPlace: 1
   nb_noConstruction_HardToPlace: 1
-  currentPack: []
 --- !u!1 &2502875167625597477
 GameObject:
   m_ObjectHideFlags: 0
