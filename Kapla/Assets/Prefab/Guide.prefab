@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5661327082734402990}
   - component: {fileID: 5661327082734402989}
   - component: {fileID: 5661327082734402988}
+  - component: {fileID: -7044250425748591856}
   m_Layer: 0
   m_Name: Guide
   m_TagString: Untagged
@@ -58,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ec10078ae7838764aad9d93670552f06, type: 2}
+  - {fileID: 2100000, guid: 8266cf14153d8574881920663716135f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
