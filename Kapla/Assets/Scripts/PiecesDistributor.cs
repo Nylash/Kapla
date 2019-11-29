@@ -23,6 +23,7 @@ public class PiecesDistributor : MonoBehaviour
     List<GameObject> copy_noConstruction_HardToPlace = new List<GameObject>();
 
     List<GameObject> currentPack = new List<GameObject>();
+    bool firstPackDone;
 
     private void Awake()
     {
@@ -80,13 +81,19 @@ public class PiecesDistributor : MonoBehaviour
             noConstruction_HardToPlace.Remove(piece);
             currentPack.Add(piece);
         }
-        construction_EasyToPlace.Clear();
-        noConstruction_EasyToPlace.Clear();
-        construction_HardToPlace.Clear();
-        noConstruction_HardToPlace.Clear();
-        construction_EasyToPlace.AddRange(copy_construction_EasyToPlace);
-        noConstruction_EasyToPlace.AddRange(copy_noConstruction_EasyToPlace);
-        construction_HardToPlace.AddRange(copy_construction_HardToPlace);
-        noConstruction_HardToPlace.AddRange(copy_noConstruction_HardToPlace);
+        if (firstPackDone)
+        {
+            construction_EasyToPlace.Clear();
+            noConstruction_EasyToPlace.Clear();
+            construction_HardToPlace.Clear();
+            noConstruction_HardToPlace.Clear();
+            construction_EasyToPlace.AddRange(copy_construction_EasyToPlace);
+            noConstruction_EasyToPlace.AddRange(copy_noConstruction_EasyToPlace);
+            construction_HardToPlace.AddRange(copy_construction_HardToPlace);
+            noConstruction_HardToPlace.AddRange(copy_noConstruction_HardToPlace);
+            firstPackDone = false;
+        }
+        else
+            firstPackDone = true;
     }
 }
