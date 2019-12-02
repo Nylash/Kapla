@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject managerPrefab;
     [SerializeField] Vector3 offsetSpawn = new Vector3(0,4,0);
     [SerializeField] int timeBeforeAutoDrop = 16;
+    [Header("SHAKE SCREEN CONFIGURATION")]
+    [SerializeField] float magnitude;
+    [SerializeField] float roughness;
+    [SerializeField] float fadeIn;
+    [SerializeField] float fadeOut;
 #pragma warning restore 0649
 
     [Header("SCRIPT INFORMATIONS")]
@@ -22,6 +27,7 @@ public class GameManager : MonoBehaviour
     public GameObject guidePrefab;
     public bool dropping;
     public bool halfDropping;
+    public bool shaking;
     [Header("INPUTS DATA")]
     public Vector2 movementDirection;
     public Vector2 cameraMovementPad;
@@ -107,7 +113,6 @@ public class GameManager : MonoBehaviour
         GameObject piece = distributorScript.GetRandomPiece();
         if (piece)
         {
-            CameraShaker.Instance.ShakeOnce(4f, 4f, .1f, 1f);
             GameObject currentPiece = GameObject.Instantiate(piece, center.transform.position + offsetSpawn, piece.transform.rotation);
             movingScript.currentPiece = currentPiece;
             movingScript.currentRigidbody = currentPiece.GetComponentInChildren<Rigidbody>();
@@ -176,5 +181,18 @@ public class GameManager : MonoBehaviour
             player.state = PlayerInputs.PlayerState.NotHisTurn;
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public IEnumerator Shake()
+    {
+        if (!shaking)
+        {
+            shaking = true;
+            CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeIn, fadeOut);
+            yield return new WaitForSeconds(fadeIn + fadeOut);
+            shaking = false;
+        }
+        else
+            yield break;
     }
 }

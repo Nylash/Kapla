@@ -303,6 +303,10 @@ MonoBehaviour:
     type: 3}
   offsetSpawn: {x: 0, y: 7, z: 0}
   timeBeforeAutoDrop: 31
+  magnitude: 2
+  roughness: 2
+  fadeIn: 0.25
+  fadeOut: 0.25
   cantDropMaterial: {fileID: 2100000, guid: 8a5b3a55536057047bb976af05ed97c6, type: 2}
   defeat: 0
   lastPlayer: {fileID: 0}
@@ -311,6 +315,7 @@ MonoBehaviour:
     type: 3}
   dropping: 0
   halfDropping: 0
+  shaking: 0
   movementDirection: {x: 0, y: 0}
   cameraMovementPad: {x: 0, y: 0}
   cameraMovementMouse: {x: 0, y: 0}

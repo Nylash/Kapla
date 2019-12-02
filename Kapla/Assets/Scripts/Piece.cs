@@ -70,6 +70,11 @@ public class Piece : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        StartCoroutine(GameManager.instance.Shake());
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (toPlace && other.gameObject.layer != LayerMask.NameToLayer("ToPlace"))
