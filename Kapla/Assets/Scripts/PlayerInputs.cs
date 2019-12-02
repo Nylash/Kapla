@@ -66,11 +66,14 @@ public class PlayerInputs : MonoBehaviour
         if(state == PlayerState.HisTurn)
         {
             GameManager.instance.movementDirection = movementDirection;
-            GameManager.instance.cameraMovementPad = cameraMovementPad;
-            GameManager.instance.cameraMovementMouse = cameraMovementMouse;
             GameManager.instance.up = up;
             GameManager.instance.down = down;
-            GameManager.instance.cameraCanMove = cameraCanMove;
+            if (!GameManager.instance.dropping)
+            {
+                GameManager.instance.cameraMovementPad = cameraMovementPad;
+                GameManager.instance.cameraMovementMouse = cameraMovementMouse;
+                GameManager.instance.cameraCanMove = cameraCanMove;
+            }
         }
     }
 

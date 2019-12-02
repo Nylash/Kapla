@@ -146,6 +146,7 @@ public class MovingObject : MonoBehaviour
 
     public IEnumerator DropPiece()
     {
+        GameManager.instance.dropping = true;
         canDrop = true;
         GameObject stockPiece = currentPiece;
         currentPiece.GetComponent<Piece>().Drop();

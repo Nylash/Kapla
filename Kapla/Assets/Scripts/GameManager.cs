@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public PlayerInputs lastPlayer;
     public List<GameObject> AllPieces = new List<GameObject>();
     public GameObject guidePrefab;
+    public bool dropping;
+    public bool halfDropping;
     [Header("INPUTS DATA")]
     public Vector2 movementDirection;
     public Vector2 cameraMovementPad;
@@ -93,6 +95,8 @@ public class GameManager : MonoBehaviour
             }
             else
                 timerText.text = "";
+            if (halfDropping)
+                center.transform.localEulerAngles = Vector3.Lerp(center.transform.localEulerAngles, new Vector3(20, center.transform.localEulerAngles.y, 0), Time.deltaTime);
         }
     }
 
@@ -108,6 +112,7 @@ public class GameManager : MonoBehaviour
             movingScript.currentPiece = currentPiece;
             movingScript.currentRigidbody = currentPiece.GetComponentInChildren<Rigidbody>();
         }
+        dropping = false;
     }
 
     public void ChangePlayer()
