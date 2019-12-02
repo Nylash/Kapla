@@ -11,7 +11,7 @@ public class Piece : MonoBehaviour
     Rigidbody rigid;
     MeshCollider[] colliders;
     MeshRenderer meshRender;
-    Material pieceOriginalMaterial;
+    public Material[] pieceOriginalMaterials;
     bool toPlace;
     GameObject guide;
 
@@ -28,7 +28,7 @@ public class Piece : MonoBehaviour
             item.gameObject.layer = LayerMask.NameToLayer("ToPlace");
         }
         meshRender = GetComponentInChildren<MeshRenderer>();
-        pieceOriginalMaterial = meshRender.material;
+        pieceOriginalMaterials = meshRender.materials;
         toPlace = true;
         guide = Instantiate(GameManager.instance.guidePrefab, new Vector3(meshRender.bounds.center.x, meshRender.bounds.center.y / 2, meshRender.bounds.center.z), Quaternion.identity);
         guide.transform.localScale = new Vector3(meshRender.bounds.size.x, (1.95f * meshRender.bounds.center.y)/4.3f, meshRender.bounds.size.z);
@@ -47,8 +47,8 @@ public class Piece : MonoBehaviour
         }
         gameObject.layer = LayerMask.NameToLayer("Placed");
         toPlace = false;
-        if (meshRender.material != pieceOriginalMaterial)
-            meshRender.material = pieceOriginalMaterial;
+        if (meshRender.materials[0] == GameManager.instance.cantDropMaterial)
+            meshRender.materials = pieceOriginalMaterials;
     }
 
     private void Update()
@@ -75,8 +75,15 @@ public class Piece : MonoBehaviour
         if (toPlace && other.gameObject.layer != LayerMask.NameToLayer("ToPlace"))
         {
             GameManager.instance.movingScript.canDrop = false;
-            if(meshRender.material != GameManager.instance.cantDropMaterial)
-                meshRender.material = GameManager.instance.cantDropMaterial;
+            if(meshRender.materials[0] != GameManager.instance.cantDropMaterial)
+            {
+                Material[] tmp = meshRender.materials;
+                for (int i = 0; i < meshRender.materials.Length; i++)
+                {
+                    tmp[i] = GameManager.instance.cantDropMaterial;
+                }
+                meshRender.materials = tmp;
+            }   
         }
     }
 
@@ -85,7 +92,7 @@ public class Piece : MonoBehaviour
         if (toPlace && other.gameObject.layer != LayerMask.NameToLayer("ToPlace"))
         {
             GameManager.instance.movingScript.canDrop = true;
-            meshRender.material = pieceOriginalMaterial;
+            meshRender.materials = pieceOriginalMaterials;
         }
     }
 
