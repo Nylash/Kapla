@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8498365757397954392}
   - component: {fileID: 302409954217317237}
   - component: {fileID: 5279001823481573651}
+  - component: {fileID: 3536624518838799049}
   m_Layer: 0
   m_Name: Dice
   m_TagString: Untagged
@@ -80,6 +81,35 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3536624518838799049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899369215008027190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051a82d46ad8fe840a3f425c14a328e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialsRemplacingFirst:
+  - {fileID: 2100000, guid: 1a71144181ed7a04d8985d041cc21614, type: 2}
+  - {fileID: 2100000, guid: ec067e9819901dc4d8062dc34a161660, type: 2}
+  - {fileID: 2100000, guid: 53be1b054052b6a47a7ea6dd6373889c, type: 2}
+  - {fileID: 2100000, guid: 77624354639b05a4897de008da72dca5, type: 2}
+  - {fileID: 2100000, guid: 14038d33aeb8f3c4da7f89f6c2ed884f, type: 2}
+  materialsRemplacingSecond:
+  - {fileID: 2100000, guid: 951c2c7e0b5c43441a8bdf383235fe05, type: 2}
+  - {fileID: 2100000, guid: 267bd6ca4fa16144593bcc4c63fba224, type: 2}
+  - {fileID: 2100000, guid: 5e8dab894ef1ced4f83f3462612c1dfc, type: 2}
+  - {fileID: 2100000, guid: e93534c038cb7544f963d33f77caa2df, type: 2}
+  materialsRemplacingThird: []
+  materialsRemplacingFourth: []
+  materialsRemplacingFifth:
+  - {fileID: 2100000, guid: 5e8dab894ef1ced4f83f3462612c1dfc, type: 2}
+  materialsRemplacingSixth: []
+  materialsRemplacingSeventh: []
 --- !u!1 &2475736951073847737
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  pieceOriginalMaterials: []
 --- !u!1 &8067715424849753929
 GameObject:
   m_ObjectHideFlags: 0
