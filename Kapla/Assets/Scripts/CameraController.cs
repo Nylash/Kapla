@@ -39,8 +39,8 @@ public class CameraController : MonoBehaviour
                 center.transform.Rotate(0f, yRot, 0f, Space.World);
             if (GameManager.instance.cameraCanMove)
             {
-                float xRotMouse = cameraSpeed / 4 * GameManager.instance.cameraMovementMouse.y * Time.deltaTime;
-                float yRotMouse = cameraSpeed / 4 * GameManager.instance.cameraMovementMouse.x * Time.deltaTime;
+                float xRotMouse = cameraSpeed / 8 * GameManager.instance.cameraMovementMouse.y * Time.deltaTime;
+                float yRotMouse = cameraSpeed / 8 * GameManager.instance.cameraMovementMouse.x * Time.deltaTime;
                 if ((center.transform.localRotation.eulerAngles.x > minAngle) && (center.transform.localRotation.eulerAngles.x < maxAngle))
                 {
                     center.transform.Rotate(xRotMouse, 0f, 0f, Space.Self);
@@ -55,6 +55,15 @@ public class CameraController : MonoBehaviour
                     center.transform.Rotate(0f, yRotMouse, 0f, Space.World);
             }
             GameManager.instance.cameraAngle = center.transform.rotation.eulerAngles.y;
+
+            if (xRot == 0 && !GameManager.instance.cameraCanMove)
+            {
+                if(center.transform.localEulerAngles.x < minAngle)
+                    center.transform.localEulerAngles = Vector3.Lerp(center.transform.localEulerAngles, new Vector3(minAngle, center.transform.localEulerAngles.y, 0), Time.deltaTime);
+                if(center.transform.localEulerAngles.x > maxAngle)
+                    center.transform.localEulerAngles = Vector3.Lerp(center.transform.localEulerAngles, new Vector3(maxAngle, center.transform.localEulerAngles.y, 0), Time.deltaTime);
+            }
+
             //https://gamedev.stackexchange.com/questions/136174/im-rotating-an-object-on-two-axes-so-why-does-it-keep-twisting-around-the-thir
         }
     }

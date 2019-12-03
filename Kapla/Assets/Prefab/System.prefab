@@ -214,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSpeed: 100
   maxAngle: 80
-  minAngle: 10
+  minAngle: 15
 --- !u!81 &2502875166994726152
 AudioListener:
   m_ObjectHideFlags: 0
