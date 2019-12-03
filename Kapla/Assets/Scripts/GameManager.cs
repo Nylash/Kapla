@@ -195,4 +195,17 @@ public class GameManager : MonoBehaviour
         else
             yield break;
     }
+
+    public IEnumerator BigShake()
+    {
+        if (!shaking)
+        {
+            shaking = true;
+            CameraShaker.Instance.ShakeOnce(magnitude*4, roughness*4, fadeIn, fadeOut);
+            yield return new WaitForSeconds(fadeIn + fadeOut);
+            shaking = false;
+        }
+        else
+            yield break;
+    }
 }

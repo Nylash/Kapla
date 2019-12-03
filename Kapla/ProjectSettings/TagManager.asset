@@ -8,6 +8,7 @@ TagManager:
   - DefeatText
   - PlayerText
   - Timer
+  - DeadZone
   layers:
   - Default
   - TransparentFX

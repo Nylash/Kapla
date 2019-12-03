@@ -72,7 +72,8 @@ public class Piece : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        StartCoroutine(GameManager.instance.Shake());
+        if(!collision.gameObject.CompareTag("DeadZone"))
+            StartCoroutine(GameManager.instance.Shake());
     }
 
     private void OnTriggerStay(Collider other)

@@ -16,6 +16,7 @@ public class DefeatScript : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Piece>())
         {
+            StartCoroutine(GameManager.instance.BigShake());
             GameManager.instance.defeat = true;
             defeatText.text = GameManager.instance.lastPlayer.ID + " LOOSE";
         }
