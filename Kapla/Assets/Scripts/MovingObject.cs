@@ -74,8 +74,8 @@ public class MovingObject : MonoBehaviour
             }
             else
             {
-                Vector3 desiredMoveDirection = Quaternion.Euler(new Vector3(0, GameManager.instance.cameraAngle, 0)) * 
-                    new Vector3(GameManager.instance.movementDirection.x, GameManager.instance.up - GameManager.instance.down, GameManager.instance.movementDirection.y);
+                Vector3 desiredMoveDirection = Quaternion.Euler(new Vector3(0, GameManager.instance.cameraAngle, 0)) *
+                                    new Vector3(GameManager.instance.movementDirection.x, GameManager.instance.up - GameManager.instance.down, GameManager.instance.movementDirection.y);
 
                 if (new Vector3(GameManager.instance.movementDirection.x, 0, GameManager.instance.movementDirection.y) != Vector3.zero)
                 {
@@ -91,13 +91,13 @@ public class MovingObject : MonoBehaviour
 
                 if (currentRigidbody.SweepTest(desiredMoveDirection, out hit))
                 {
-                    if (hit.distance > 0.1f)
+                    if (hit.distance > 0.05f)
                         currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
                 }
                 else
                 {
                     currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
-                }
+                    }
             }
             if (rotating)
             {

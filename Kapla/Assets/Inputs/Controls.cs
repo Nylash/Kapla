@@ -62,7 +62,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": ""RotZ"",
                     ""type"": ""Button"",
                     ""id"": ""e8994ac9-c8b3-4a5a-80f6-92f1531030e4"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
                 },

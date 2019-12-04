@@ -139,10 +139,10 @@ public class PlayerInputs : MonoBehaviour
             GameManager.instance.movingScript.RotY();
     }
 
-    void OnRotZ()
+    void OnRotZ(InputValue value)
     {
         if (state == PlayerState.HisTurn)
-            GameManager.instance.movingScript.RotZ();
+          GameManager.instance.movingScript.RotZ();
     }
 
     void OnDrop()
@@ -161,7 +161,7 @@ public class PlayerInputs : MonoBehaviour
 
     void OnRestart()
     { 
-        if (state == PlayerState.HisTurn)
+        if (state == PlayerState.HisTurn || GameManager.instance.defeat)
             GameManager.instance.Restart();
     }
 

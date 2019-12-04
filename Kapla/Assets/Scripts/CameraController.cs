@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
+        center.transform.eulerAngles = new Vector3(center.transform.eulerAngles.x, center.transform.eulerAngles.y, 0);
         if (!GameManager.instance.dropping)
         {
             float xRot = cameraSpeed * GameManager.instance.cameraMovementPad.y * Time.deltaTime;
