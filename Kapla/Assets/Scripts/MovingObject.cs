@@ -10,6 +10,7 @@ public class MovingObject : MonoBehaviour
     [SerializeField] float movementSpeed=3;
     [SerializeField] int rotationAngle = 90;
     [SerializeField] float rotationSpeed = 1;
+    [SerializeField] GameObject directionGuidePrefab;
 #pragma warning restore 0649
 
     [Header("SCRIPT INFORMATIONS")]
@@ -24,6 +25,9 @@ public class MovingObject : MonoBehaviour
     protected Quaternion rotationAfter;
     float rotationTime = 0;
     float currentRotationSpeed;
+    MeshRenderer guideRenderer;
+    GameObject directionGuide;
+    GameObject guideObject;
 
     private void Start()
     {
@@ -34,6 +38,9 @@ public class MovingObject : MonoBehaviour
         mainCamera = Camera.main;
         currentRotationSpeed = rotationSpeed;
         canDrop = true;
+        directionGuide = Instantiate(directionGuidePrefab);
+        guideRenderer = directionGuide.GetComponent<MeshRenderer>();
+        guideObject = GameObject.FindGameObjectWithTag("Guide");
     }
 
     private void Update()
@@ -70,6 +77,18 @@ public class MovingObject : MonoBehaviour
                 Vector3 desiredMoveDirection = Quaternion.Euler(new Vector3(0, GameManager.instance.cameraAngle, 0)) * 
                     new Vector3(GameManager.instance.movementDirection.x, GameManager.instance.up - GameManager.instance.down, GameManager.instance.movementDirection.y);
 
+                if (new Vector3(GameManager.instance.movementDirection.x, 0, GameManager.instance.movementDirection.y) != Vector3.zero)
+                {
+                    guideObject.transform.position = currentPiece.transform.position;
+                    guideObject.transform.Translate(Quaternion.Euler(new Vector3(0, GameManager.instance.cameraAngle, 0)) *
+                    new Vector3(GameManager.instance.movementDirection.x, 0, GameManager.instance.movementDirection.y));
+                    directionGuide.transform.position = currentPiece.transform.position;
+                    directionGuide.transform.LookAt(guideObject.transform.position);
+                    guideRenderer.enabled = true;
+                }
+                else
+                    guideRenderer.enabled = false;
+
                 if (currentRigidbody.SweepTest(desiredMoveDirection, out hit))
                 {
                     if (hit.distance > 0.1f)
@@ -80,7 +99,6 @@ public class MovingObject : MonoBehaviour
                     currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
                 }
             }
-            
             if (rotating)
             {
                 rotationTime += Time.deltaTime * currentRotationSpeed;
@@ -146,6 +164,7 @@ public class MovingObject : MonoBehaviour
 
     public IEnumerator DropPiece()
     {
+        guideRenderer.enabled = false;
         GameManager.instance.dropping = true;
         canDrop = true;
         GameObject stockPiece = currentPiece;

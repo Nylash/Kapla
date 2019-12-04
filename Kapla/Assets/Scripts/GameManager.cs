@@ -168,12 +168,6 @@ public class GameManager : MonoBehaviour
         return -max + originalCamZoom;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(new Vector3(0, GetMaxHigh(), 0), .1f);
-    }
-
     public void Restart()
     {
         foreach(PlayerInputs player in PlayersManager.instance.players)

@@ -458,6 +458,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d00a9d8d3d0a445a19843962fa3d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &896059398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 896059399}
+  m_Layer: 0
+  m_Name: GuideObject
+  m_TagString: Guide
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &896059399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896059398}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.234018, y: 2.8442426, z: -5.2800035}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1350014380
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,36 +584,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6038499676069366190, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502875167453138891, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe,
-        type: 3}
-      propertyPath: cantDropMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: ac0acc087e12bb847805547b5ac8aef4, type: 2}
-    - target: {fileID: 2502875166994726158, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502875166994726153, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe,
-        type: 3}
-      propertyPath: far clip plane
-      value: 5000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502875166994726153, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe,
-        type: 3}
-      propertyPath: near clip plane
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502875166994726153, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe,
-        type: 3}
-      propertyPath: m_OcclusionCulling
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe, type: 3}
