@@ -14,6 +14,7 @@ public class Piece : MonoBehaviour
     public Material[] pieceOriginalMaterials;
     bool toPlace;
     GameObject guide;
+    int shakeScreenCounter = 3;
 
     private void Start()
     {
@@ -47,8 +48,7 @@ public class Piece : MonoBehaviour
         }
         gameObject.layer = LayerMask.NameToLayer("Placed");
         toPlace = false;
-        if (meshRender.materials[0] == GameManager.instance.cantDropMaterial)
-            meshRender.materials = pieceOriginalMaterials;
+        meshRender.materials = pieceOriginalMaterials;
     }
 
     private void Update()
@@ -72,8 +72,14 @@ public class Piece : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(!collision.gameObject.CompareTag("DeadZone"))
-            StartCoroutine(GameManager.instance.Shake());
+        if (!collision.gameObject.CompareTag("DeadZone"))
+        {
+            if(shakeScreenCounter != 0)
+            {
+                shakeScreenCounter--;
+                StartCoroutine(GameManager.instance.Shake());
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)

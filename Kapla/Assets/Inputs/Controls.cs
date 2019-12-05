@@ -80,7 +80,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""id"": ""8f4fe5ce-046c-4f35-b548-bd248a794ef5"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": """"
                 },
                 {
                     ""name"": ""CameraMovementMouse"",
@@ -91,20 +91,20 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Down"",
-                    ""type"": ""Value"",
+                    ""name"": ""DownHold"",
+                    ""type"": ""Button"",
                     ""id"": ""ae8cbdfe-7f72-4aed-a120-616c2077f1fc"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press(behavior=2)""
+                    ""interactions"": ""Hold""
                 },
                 {
-                    ""name"": ""Up"",
-                    ""type"": ""Value"",
+                    ""name"": ""UpHold"",
+                    ""type"": ""Button"",
                     ""id"": ""5bed0e87-5bb6-459c-82f2-77d0db03c083"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press(behavior=2)""
+                    ""interactions"": ""Hold""
                 },
                 {
                     ""name"": ""Restart"",
@@ -113,6 +113,86 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""UpPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""bdb97411-4c74-4eab-b832-d3f5039ff6d8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""UpRelease"",
+                    ""type"": ""Button"",
+                    ""id"": ""176d9702-ad43-44e2-8713-a5e6008a8742"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
+                },
+                {
+                    ""name"": ""DownPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""61800c2d-b2b2-4025-bb37-bbd0c8ac017a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""DownRelease"",
+                    ""type"": ""Button"",
+                    ""id"": ""85e46f80-23ed-43cb-b2b2-f141602fc6b0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Value"",
+                    ""id"": ""5e89b684-dab6-417a-95c9-bc46cc022b31"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Value"",
+                    ""id"": ""dda463a3-24f9-4e26-a9b0-93c89c39c171"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""UpTrigger"",
+                    ""type"": ""Value"",
+                    ""id"": ""fb6082d0-fe0c-47c3-95f5-36babffd07cb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""UpTriggerRelease"",
+                    ""type"": ""Value"",
+                    ""id"": ""4a34a6d7-9a85-46ea-8bf9-3b38ada32ec5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
+                },
+                {
+                    ""name"": ""DownTrigger"",
+                    ""type"": ""Value"",
+                    ""id"": ""9e7b68c5-ccf4-4e21-8a54-7284d637a1d9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DownTriggerRelease"",
+                    ""type"": ""Value"",
+                    ""id"": ""85541e23-4c86-4743-9bbd-3cfa3df1b627"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
                 }
             ],
             ""bindings"": [
@@ -343,7 +423,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Down"",
+                    ""action"": ""DownHold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -354,7 +434,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Down"",
+                    ""action"": ""DownHold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -365,7 +445,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Up"",
+                    ""action"": ""UpHold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -376,7 +456,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Up"",
+                    ""action"": ""UpHold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -399,6 +479,182 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1de2f827-62f9-4a85-8e25-4376007b6358"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""UpPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""802ba398-d48e-4cfd-acd5-47d93fd91aac"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""UpPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04838a15-992d-42c0-a0d0-578cdb8d937f"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""UpRelease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0db49c29-c49d-4449-9604-1f2fdf2b58d9"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""UpRelease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""189f1d4c-3eca-4f0d-91d3-758a2ba34c70"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""DownPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92ff4082-9038-40e3-9377-e0ca8b7e94c4"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DownPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""695ebd6a-62eb-444c-8655-99503681f98e"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""DownRelease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d4c9767a-8044-49ca-a8bd-ec82294f8e37"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DownRelease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4df976a-f06e-453d-af3e-1e6c2e7163d0"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57044230-13bd-43ac-b569-b27ff4ca1f3f"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ddba9332-a47d-48b9-b00b-bc29c09c3252"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""37297187-636c-4878-87da-d3a2390989bc"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5557813c-652c-49fb-ad2b-5704d8b50d3b"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""UpTrigger"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a68d9b27-8f5b-4db0-9e7b-1be7a3f92135"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpTriggerRelease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d288fe1b-ba9a-4ac9-8874-a0c110e422c2"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DownTrigger"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""abc06a74-4220-4607-acd5-420be1fc62ef"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DownTriggerRelease"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -446,9 +702,19 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Gameplay_Drop = m_Gameplay.FindAction("Drop", throwIfNotFound: true);
         m_Gameplay_Menu = m_Gameplay.FindAction("Menu", throwIfNotFound: true);
         m_Gameplay_CameraMovementMouse = m_Gameplay.FindAction("CameraMovementMouse", throwIfNotFound: true);
+        m_Gameplay_DownHold = m_Gameplay.FindAction("DownHold", throwIfNotFound: true);
+        m_Gameplay_UpHold = m_Gameplay.FindAction("UpHold", throwIfNotFound: true);
+        m_Gameplay_Restart = m_Gameplay.FindAction("Restart", throwIfNotFound: true);
+        m_Gameplay_UpPress = m_Gameplay.FindAction("UpPress", throwIfNotFound: true);
+        m_Gameplay_UpRelease = m_Gameplay.FindAction("UpRelease", throwIfNotFound: true);
+        m_Gameplay_DownPress = m_Gameplay.FindAction("DownPress", throwIfNotFound: true);
+        m_Gameplay_DownRelease = m_Gameplay.FindAction("DownRelease", throwIfNotFound: true);
         m_Gameplay_Down = m_Gameplay.FindAction("Down", throwIfNotFound: true);
         m_Gameplay_Up = m_Gameplay.FindAction("Up", throwIfNotFound: true);
-        m_Gameplay_Restart = m_Gameplay.FindAction("Restart", throwIfNotFound: true);
+        m_Gameplay_UpTrigger = m_Gameplay.FindAction("UpTrigger", throwIfNotFound: true);
+        m_Gameplay_UpTriggerRelease = m_Gameplay.FindAction("UpTriggerRelease", throwIfNotFound: true);
+        m_Gameplay_DownTrigger = m_Gameplay.FindAction("DownTrigger", throwIfNotFound: true);
+        m_Gameplay_DownTriggerRelease = m_Gameplay.FindAction("DownTriggerRelease", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -507,9 +773,19 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Drop;
     private readonly InputAction m_Gameplay_Menu;
     private readonly InputAction m_Gameplay_CameraMovementMouse;
+    private readonly InputAction m_Gameplay_DownHold;
+    private readonly InputAction m_Gameplay_UpHold;
+    private readonly InputAction m_Gameplay_Restart;
+    private readonly InputAction m_Gameplay_UpPress;
+    private readonly InputAction m_Gameplay_UpRelease;
+    private readonly InputAction m_Gameplay_DownPress;
+    private readonly InputAction m_Gameplay_DownRelease;
     private readonly InputAction m_Gameplay_Down;
     private readonly InputAction m_Gameplay_Up;
-    private readonly InputAction m_Gameplay_Restart;
+    private readonly InputAction m_Gameplay_UpTrigger;
+    private readonly InputAction m_Gameplay_UpTriggerRelease;
+    private readonly InputAction m_Gameplay_DownTrigger;
+    private readonly InputAction m_Gameplay_DownTriggerRelease;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -523,9 +799,19 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Drop => m_Wrapper.m_Gameplay_Drop;
         public InputAction @Menu => m_Wrapper.m_Gameplay_Menu;
         public InputAction @CameraMovementMouse => m_Wrapper.m_Gameplay_CameraMovementMouse;
+        public InputAction @DownHold => m_Wrapper.m_Gameplay_DownHold;
+        public InputAction @UpHold => m_Wrapper.m_Gameplay_UpHold;
+        public InputAction @Restart => m_Wrapper.m_Gameplay_Restart;
+        public InputAction @UpPress => m_Wrapper.m_Gameplay_UpPress;
+        public InputAction @UpRelease => m_Wrapper.m_Gameplay_UpRelease;
+        public InputAction @DownPress => m_Wrapper.m_Gameplay_DownPress;
+        public InputAction @DownRelease => m_Wrapper.m_Gameplay_DownRelease;
         public InputAction @Down => m_Wrapper.m_Gameplay_Down;
         public InputAction @Up => m_Wrapper.m_Gameplay_Up;
-        public InputAction @Restart => m_Wrapper.m_Gameplay_Restart;
+        public InputAction @UpTrigger => m_Wrapper.m_Gameplay_UpTrigger;
+        public InputAction @UpTriggerRelease => m_Wrapper.m_Gameplay_UpTriggerRelease;
+        public InputAction @DownTrigger => m_Wrapper.m_Gameplay_DownTrigger;
+        public InputAction @DownTriggerRelease => m_Wrapper.m_Gameplay_DownTriggerRelease;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -562,15 +848,45 @@ public class @Controls : IInputActionCollection, IDisposable
                 @CameraMovementMouse.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovementMouse;
                 @CameraMovementMouse.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovementMouse;
                 @CameraMovementMouse.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovementMouse;
+                @DownHold.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownHold;
+                @DownHold.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownHold;
+                @DownHold.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownHold;
+                @UpHold.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpHold;
+                @UpHold.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpHold;
+                @UpHold.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpHold;
+                @Restart.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
+                @Restart.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
+                @Restart.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
+                @UpPress.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpPress;
+                @UpPress.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpPress;
+                @UpPress.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpPress;
+                @UpRelease.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpRelease;
+                @UpRelease.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpRelease;
+                @UpRelease.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpRelease;
+                @DownPress.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownPress;
+                @DownPress.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownPress;
+                @DownPress.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownPress;
+                @DownRelease.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownRelease;
+                @DownRelease.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownRelease;
+                @DownRelease.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownRelease;
                 @Down.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDown;
                 @Down.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDown;
                 @Down.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDown;
                 @Up.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUp;
                 @Up.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUp;
                 @Up.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUp;
-                @Restart.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
-                @Restart.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
-                @Restart.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
+                @UpTrigger.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpTrigger;
+                @UpTrigger.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpTrigger;
+                @UpTrigger.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpTrigger;
+                @UpTriggerRelease.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpTriggerRelease;
+                @UpTriggerRelease.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpTriggerRelease;
+                @UpTriggerRelease.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpTriggerRelease;
+                @DownTrigger.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownTrigger;
+                @DownTrigger.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownTrigger;
+                @DownTrigger.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownTrigger;
+                @DownTriggerRelease.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownTriggerRelease;
+                @DownTriggerRelease.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownTriggerRelease;
+                @DownTriggerRelease.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDownTriggerRelease;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -602,15 +918,45 @@ public class @Controls : IInputActionCollection, IDisposable
                 @CameraMovementMouse.started += instance.OnCameraMovementMouse;
                 @CameraMovementMouse.performed += instance.OnCameraMovementMouse;
                 @CameraMovementMouse.canceled += instance.OnCameraMovementMouse;
+                @DownHold.started += instance.OnDownHold;
+                @DownHold.performed += instance.OnDownHold;
+                @DownHold.canceled += instance.OnDownHold;
+                @UpHold.started += instance.OnUpHold;
+                @UpHold.performed += instance.OnUpHold;
+                @UpHold.canceled += instance.OnUpHold;
+                @Restart.started += instance.OnRestart;
+                @Restart.performed += instance.OnRestart;
+                @Restart.canceled += instance.OnRestart;
+                @UpPress.started += instance.OnUpPress;
+                @UpPress.performed += instance.OnUpPress;
+                @UpPress.canceled += instance.OnUpPress;
+                @UpRelease.started += instance.OnUpRelease;
+                @UpRelease.performed += instance.OnUpRelease;
+                @UpRelease.canceled += instance.OnUpRelease;
+                @DownPress.started += instance.OnDownPress;
+                @DownPress.performed += instance.OnDownPress;
+                @DownPress.canceled += instance.OnDownPress;
+                @DownRelease.started += instance.OnDownRelease;
+                @DownRelease.performed += instance.OnDownRelease;
+                @DownRelease.canceled += instance.OnDownRelease;
                 @Down.started += instance.OnDown;
                 @Down.performed += instance.OnDown;
                 @Down.canceled += instance.OnDown;
                 @Up.started += instance.OnUp;
                 @Up.performed += instance.OnUp;
                 @Up.canceled += instance.OnUp;
-                @Restart.started += instance.OnRestart;
-                @Restart.performed += instance.OnRestart;
-                @Restart.canceled += instance.OnRestart;
+                @UpTrigger.started += instance.OnUpTrigger;
+                @UpTrigger.performed += instance.OnUpTrigger;
+                @UpTrigger.canceled += instance.OnUpTrigger;
+                @UpTriggerRelease.started += instance.OnUpTriggerRelease;
+                @UpTriggerRelease.performed += instance.OnUpTriggerRelease;
+                @UpTriggerRelease.canceled += instance.OnUpTriggerRelease;
+                @DownTrigger.started += instance.OnDownTrigger;
+                @DownTrigger.performed += instance.OnDownTrigger;
+                @DownTrigger.canceled += instance.OnDownTrigger;
+                @DownTriggerRelease.started += instance.OnDownTriggerRelease;
+                @DownTriggerRelease.performed += instance.OnDownTriggerRelease;
+                @DownTriggerRelease.canceled += instance.OnDownTriggerRelease;
             }
         }
     }
@@ -644,8 +990,18 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnDrop(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
         void OnCameraMovementMouse(InputAction.CallbackContext context);
+        void OnDownHold(InputAction.CallbackContext context);
+        void OnUpHold(InputAction.CallbackContext context);
+        void OnRestart(InputAction.CallbackContext context);
+        void OnUpPress(InputAction.CallbackContext context);
+        void OnUpRelease(InputAction.CallbackContext context);
+        void OnDownPress(InputAction.CallbackContext context);
+        void OnDownRelease(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
         void OnUp(InputAction.CallbackContext context);
-        void OnRestart(InputAction.CallbackContext context);
+        void OnUpTrigger(InputAction.CallbackContext context);
+        void OnUpTriggerRelease(InputAction.CallbackContext context);
+        void OnDownTrigger(InputAction.CallbackContext context);
+        void OnDownTriggerRelease(InputAction.CallbackContext context);
     }
 }

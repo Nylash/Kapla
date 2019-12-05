@@ -67,7 +67,7 @@
                     "id": "8f4fe5ce-046c-4f35-b548-bd248a794ef5",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": ""
                 },
                 {
                     "name": "CameraMovementMouse",
@@ -78,20 +78,20 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Down",
-                    "type": "Value",
+                    "name": "DownHold",
+                    "type": "Button",
                     "id": "ae8cbdfe-7f72-4aed-a120-616c2077f1fc",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)"
+                    "interactions": "Hold"
                 },
                 {
-                    "name": "Up",
-                    "type": "Value",
+                    "name": "UpHold",
+                    "type": "Button",
                     "id": "5bed0e87-5bb6-459c-82f2-77d0db03c083",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)"
+                    "interactions": "Hold"
                 },
                 {
                     "name": "Restart",
@@ -100,6 +100,86 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "UpPress",
+                    "type": "Button",
+                    "id": "bdb97411-4c74-4eab-b832-d3f5039ff6d8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "UpRelease",
+                    "type": "Button",
+                    "id": "176d9702-ad43-44e2-8713-a5e6008a8742",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)"
+                },
+                {
+                    "name": "DownPress",
+                    "type": "Button",
+                    "id": "61800c2d-b2b2-4025-bb37-bbd0c8ac017a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "DownRelease",
+                    "type": "Button",
+                    "id": "85e46f80-23ed-43cb-b2b2-f141602fc6b0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)"
+                },
+                {
+                    "name": "Down",
+                    "type": "Value",
+                    "id": "5e89b684-dab6-417a-95c9-bc46cc022b31",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "Up",
+                    "type": "Value",
+                    "id": "dda463a3-24f9-4e26-a9b0-93c89c39c171",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "UpTrigger",
+                    "type": "Value",
+                    "id": "fb6082d0-fe0c-47c3-95f5-36babffd07cb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "UpTriggerRelease",
+                    "type": "Value",
+                    "id": "4a34a6d7-9a85-46ea-8bf9-3b38ada32ec5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)"
+                },
+                {
+                    "name": "DownTrigger",
+                    "type": "Value",
+                    "id": "9e7b68c5-ccf4-4e21-8a54-7284d637a1d9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DownTriggerRelease",
+                    "type": "Value",
+                    "id": "85541e23-4c86-4743-9bbd-3cfa3df1b627",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)"
                 }
             ],
             "bindings": [
@@ -330,7 +410,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Down",
+                    "action": "DownHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -341,7 +421,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Down",
+                    "action": "DownHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -352,7 +432,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Up",
+                    "action": "UpHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -363,7 +443,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Up",
+                    "action": "UpHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -386,6 +466,182 @@
                     "processors": "",
                     "groups": "",
                     "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1de2f827-62f9-4a85-8e25-4376007b6358",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "UpPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "802ba398-d48e-4cfd-acd5-47d93fd91aac",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "UpPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04838a15-992d-42c0-a0d0-578cdb8d937f",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "UpRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0db49c29-c49d-4449-9604-1f2fdf2b58d9",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "UpRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "189f1d4c-3eca-4f0d-91d3-758a2ba34c70",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "DownPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92ff4082-9038-40e3-9377-e0ca8b7e94c4",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "DownPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "695ebd6a-62eb-444c-8655-99503681f98e",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "DownRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d4c9767a-8044-49ca-a8bd-ec82294f8e37",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "DownRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c4df976a-f06e-453d-af3e-1e6c2e7163d0",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "57044230-13bd-43ac-b569-b27ff4ca1f3f",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ddba9332-a47d-48b9-b00b-bc29c09c3252",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "37297187-636c-4878-87da-d3a2390989bc",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5557813c-652c-49fb-ad2b-5704d8b50d3b",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "UpTrigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a68d9b27-8f5b-4db0-9e7b-1be7a3f92135",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UpTriggerRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d288fe1b-ba9a-4ac9-8874-a0c110e422c2",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "DownTrigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "abc06a74-4220-4607-acd5-420be1fc62ef",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DownTriggerRelease",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

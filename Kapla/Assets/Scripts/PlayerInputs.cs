@@ -83,16 +83,117 @@ public class PlayerInputs : MonoBehaviour
             movementDirection = value.Get<Vector2>();
     }
 
+    void OnUpTrigger(InputValue value)
+    {
+        if (state == PlayerState.HisTurn)
+        {
+            up = value.Get<float>();
+        }
+    }
+
+    void OnUpTriggerRelease()
+    {
+        if (state == PlayerState.HisTurn)
+        {
+            up = 0;
+        }
+    }
+
+    void OnDownTrigger(InputValue value)
+    {
+        if (state == PlayerState.HisTurn)
+        {
+            down = value.Get<float>();
+        }
+    }
+
+    void OnDownTriggerRelease()
+    {
+        if (state == PlayerState.HisTurn)
+        {
+            down = 0;
+        }
+    }
+
     void OnUp(InputValue value)
     {
         if (state == PlayerState.HisTurn)
-            up = value.Get<float>();
+        {
+            if (!GameManager.instance.movingScript.altMovementSyst)
+                up = value.Get<float>();
+        }
+    }
+
+    void OnUpHold()
+    {
+        if (state == PlayerState.HisTurn)
+        {
+            if (GameManager.instance.movingScript.altMovementSyst)
+                InvokeRepeating("Up", 0, .1f);
+        }
+    }
+
+    void OnUpPress()
+    {
+        if (state == PlayerState.HisTurn)
+        {
+            if (GameManager.instance.movingScript.altMovementSyst)
+                GameManager.instance.movingScript.Up(); 
+        }
+    }
+
+    void OnUpRelease()
+    {
+        if (state == PlayerState.HisTurn)
+        {
+            if (GameManager.instance.movingScript.altMovementSyst)
+                CancelInvoke("Up");
+        }
+    }
+
+    void Up()
+    {
+        GameManager.instance.movingScript.Up();
+    }
+
+    void Down()
+    {
+        GameManager.instance.movingScript.Down();
     }
 
     void OnDown(InputValue value)
     {
         if (state == PlayerState.HisTurn)
-            down = value.Get<float>();
+        {
+            if (!GameManager.instance.movingScript.altMovementSyst)
+                down = value.Get<float>();
+        }
+    }
+
+    void OnDownHold()
+    {
+        if (state == PlayerState.HisTurn)
+        {
+            if (GameManager.instance.movingScript.altMovementSyst)
+                InvokeRepeating("Down", 0, .1f);
+        }
+    }
+    void OnDownPress()
+    {
+        if (state == PlayerState.HisTurn)
+        {
+            if (GameManager.instance.movingScript.altMovementSyst)
+                GameManager.instance.movingScript.Down();
+        }    
+    }
+
+    void OnDownRelease()
+    {
+        if (state == PlayerState.HisTurn)
+        {
+            if (GameManager.instance.movingScript.altMovementSyst)
+                CancelInvoke("Down");
+        }
     }
 
     void OnCameraMovementPad(InputValue value)
