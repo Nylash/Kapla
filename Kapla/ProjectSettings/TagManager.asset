@@ -10,6 +10,7 @@ TagManager:
   - Timer
   - DeadZone
   - Guide
+  - PlayerTurn
   layers:
   - Default
   - TransparentFX

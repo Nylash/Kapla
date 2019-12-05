@@ -200,8 +200,9 @@ public class MovingObject : MonoBehaviour
         GameObject stockPiece = currentPiece;
         currentPiece.GetComponent<Piece>().Drop();
         currentRigidbody = null;
-        GameManager.instance.ChangePlayer();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
+        StartCoroutine(GameManager.instance.ChangePlayer());
+        yield return new WaitForSeconds(1.5f);
         GameManager.instance.AllPieces.Add(stockPiece);
         GameManager.instance.InstantiateNewPiece();
     }

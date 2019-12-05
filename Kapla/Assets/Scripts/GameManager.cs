@@ -45,16 +45,17 @@ public class GameManager : MonoBehaviour
     public float cameraAngle;
 
     GameObject center;
-    TextMeshProUGUI playerText;
-    TextMeshProUGUI timerText;
-
     float timer;
     bool timerStopped;
     int activePlayer;
     GameObject camObject;
     float originalCamZoom;
+    bool gameStarted;
 
-
+    TextMeshProUGUI playerText;
+    TextMeshProUGUI timerText;
+    TextMeshProUGUI playerTurn;
+    Animator bannerTurnAnimator;
 
     void Awake()
     {
@@ -77,18 +78,15 @@ public class GameManager : MonoBehaviour
         playerText = GameObject.FindGameObjectWithTag("PlayerText").GetComponent<TextMeshProUGUI>();
         timerText = GameObject.FindGameObjectWithTag("Timer").GetComponent<TextMeshProUGUI>();
         camObject = GameObject.FindGameObjectWithTag("MainCamera").gameObject;
+        bannerTurnAnimator = GameObject.FindGameObjectWithTag("PlayerTurn").GetComponent<Animator>();
+        playerTurn = GameObject.FindGameObjectWithTag("PlayerTurn").GetComponentInChildren<TextMeshProUGUI>();
         originalCamZoom = camObject.transform.localPosition.z;
-
-        InstantiateNewPiece();
-        playerText.text = "P1";
-        activePlayer = 0;
-        PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.HisTurn;
-        PlayersManager.instance.players[activePlayer].CleanInputs();
+        StartCoroutine(StartGame());
     }
 
     private void Update()
     {
-        if (!defeat)
+        if (!defeat && gameStarted)
         {
             center.transform.position = Vector3.Lerp(center.transform.position, new Vector3(0, GetMaxHigh(), 0), Time.deltaTime);
             camObject.transform.localPosition = new Vector3(0, 0, Mathf.Lerp(camObject.transform.localPosition.z, GetMaxWidth(), Time.deltaTime));
@@ -120,7 +118,21 @@ public class GameManager : MonoBehaviour
         dropping = false;
     }
 
-    public void ChangePlayer()
+    IEnumerator StartGame()
+    {
+        timerStopped = true;
+        playerText.text = "P1";
+        activePlayer = 0;
+        PlayersManager.instance.players[activePlayer].CleanInputs();
+        playerTurn.text = PlayersManager.instance.players[activePlayer].ID + " it's your turn !";
+        bannerTurnAnimator.SetTrigger("Launch");
+        yield return new WaitForSeconds(1.5f);
+        gameStarted = true;
+        PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.HisTurn;
+        InstantiateNewPiece();
+    }
+
+    public IEnumerator ChangePlayer()
     {
         timerStopped = true;
         PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.NotHisTurn;
@@ -130,8 +142,11 @@ public class GameManager : MonoBehaviour
             activePlayer = 0;
         else
             activePlayer++;
-        PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.HisTurn;
         playerText.text = PlayersManager.instance.players[activePlayer].ID;
+        playerTurn.text = PlayersManager.instance.players[activePlayer].ID + " it's your turn !";
+        bannerTurnAnimator.SetTrigger("Launch");
+        yield return new WaitForSeconds(1.5f);
+        PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.HisTurn;
     }
 
     float GetMaxHigh()

@@ -40,7 +40,7 @@ public class PlayersManager : MonoBehaviour
     {
         GetComponent<PlayerInputManager>().DisableJoining();
         inLobby = false;
-        SceneManager.LoadScene("Ben");
+        SceneManager.LoadScene("Room");
     }
 
     public void DebugMode()

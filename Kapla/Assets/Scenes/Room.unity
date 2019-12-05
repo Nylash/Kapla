@@ -489,6 +489,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d00a9d8d3d0a445a19843962fa3d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1755406866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4941334693233309343, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe,
+    type: 3}
+  m_PrefabInstance: {fileID: 2502875167109468282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1755406871
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755406866}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7641d5c9aad4cb1498ad32e6f382bba2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2502875167109468282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -555,6 +580,39 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827636679607826517, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010867470, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010867470, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe, type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010867470, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe, type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010867470, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe, type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010867470, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe, type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010867470, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010867470, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 1526726655
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe, type: 3}
