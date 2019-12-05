@@ -148,13 +148,13 @@ public class MovingObject : MonoBehaviour
         switch (axis)
         {
             case "RotX":
-                axisVec = Vector3.right;
+                axisVec = currentPiece.transform.right;
                 break;
             case "RotY":
-                axisVec = Vector3.up;
+                axisVec = currentPiece.transform.up;
                 break;
             case "RotZ":
-                axisVec = Vector3.forward;
+                axisVec = currentPiece.transform.forward;
                 break;
             default:
                 break;
