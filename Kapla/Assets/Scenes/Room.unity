@@ -219,8 +219,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7410495306749166404, guid: 8c2971f1964e4ec458c4ba1e575d6dff,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846301476270386749, guid: 8c2971f1964e4ec458c4ba1e575d6dff,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c2971f1964e4ec458c4ba1e575d6dff, type: 3}
+--- !u!1 &504238728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2846301476270386749, guid: 8c2971f1964e4ec458c4ba1e575d6dff,
+    type: 3}
+  m_PrefabInstance: {fileID: 504238727}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &504238729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7410495306749166404, guid: 8c2971f1964e4ec458c4ba1e575d6dff,
+    type: 3}
+  m_PrefabInstance: {fileID: 504238727}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &504238730
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504238728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 60, y: 1.0413475, z: 60}
+  m_Center: {x: 0, y: -30.424486, z: 0}
+--- !u!65 &504238731
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504238729}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30.000004, y: 0.99999994, z: 30.000004}
+  m_Center: {x: 0, y: -0.28706595, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,12 +552,12 @@ PrefabInstance:
     - target: {fileID: 450926826393389679, guid: ed1888b15bf4dcc4d959ae4e53590c29,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 9.64
       objectReference: {fileID: 0}
     - target: {fileID: 450926826393389679, guid: ed1888b15bf4dcc4d959ae4e53590c29,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.04
       objectReference: {fileID: 0}
     - target: {fileID: 450926826393389679, guid: ed1888b15bf4dcc4d959ae4e53590c29,
         type: 3}
@@ -561,6 +609,11 @@ PrefabInstance:
       propertyPath: CollisionModule.plane0
       value: 
       objectReference: {fileID: 862994557}
+    - target: {fileID: 450926826393389676, guid: ed1888b15bf4dcc4d959ae4e53590c29,
+        type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed1888b15bf4dcc4d959ae4e53590c29, type: 3}
 --- !u!1001 &1145000185
