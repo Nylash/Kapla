@@ -191,3 +191,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  arrowGuideOffset: 0
+  pieceOriginalMaterials: []

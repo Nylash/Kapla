@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
             GameObject currentPiece = GameObject.Instantiate(piece, center.transform.position + offsetSpawn, piece.transform.rotation);
             movingScript.currentPiece = currentPiece;
             movingScript.currentRigidbody = currentPiece.GetComponentInChildren<Rigidbody>();
-            movingScript.arrowGuideObject.transform.localPosition = new Vector3(currentPiece.GetComponent<Piece>().arrowGuideOffset, 0, 0);
+            movingScript.arrowGuideObject.transform.localPosition = new Vector3(0, 0, currentPiece.GetComponent<Piece>().arrowGuideOffset);
         }
         dropping = false;
     }
@@ -220,7 +220,7 @@ public class GameManager : MonoBehaviour
         if (!shaking)
         {
             shaking = true;
-            CameraShaker.Instance.ShakeOnce(magnitude*4, roughness*4, fadeIn, fadeOut);
+            CameraShaker.Instance.ShakeOnce(magnitude*4, roughness*2, fadeIn*2, fadeOut*2);
             yield return new WaitForSeconds(fadeIn + fadeOut);
             shaking = false;
         }

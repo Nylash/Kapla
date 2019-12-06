@@ -574,6 +574,16 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 110
       objectReference: {fileID: 0}
+    - target: {fileID: 2502875168486596504, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2502875168486596504, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7239141776918283626, guid: a86561f1c9e3a1e4fb9fb5a3eff4e4fe,
         type: 3}
       propertyPath: m_AnchorMin.y

@@ -63,7 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  refPosY: 0
+  arrowGuideOffset: 1
+  pieceOriginalMaterials: []
 --- !u!1 &3586476936803106086
 GameObject:
   m_ObjectHideFlags: 0

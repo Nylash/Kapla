@@ -112,6 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  arrowGuideOffset: 1.25
+  pieceOriginalMaterials: []
 --- !u!1 &4297578806331851838
 GameObject:
   m_ObjectHideFlags: 0
