@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 #pragma warning disable 0649
     [Header("GAME CONFIGURATION")]
     [SerializeField] GameObject managerPrefab;
+    [SerializeField] public GameObject dropFX;
     [SerializeField] Vector3 offsetSpawn = new Vector3(0,4,0);
     [SerializeField] int timeBeforeAutoDrop = 16;
     [Header("SHAKE SCREEN CONFIGURATION")]

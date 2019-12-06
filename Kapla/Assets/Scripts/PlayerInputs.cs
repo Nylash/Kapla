@@ -115,87 +115,6 @@ public class PlayerInputs : MonoBehaviour
         }
     }
 
-    void OnUp(InputValue value)
-    {
-        if (state == PlayerState.HisTurn)
-        {
-            if (!GameManager.instance.movingScript.altMovementSyst)
-                up = value.Get<float>();
-        }
-    }
-
-    void OnUpHold()
-    {
-        if (state == PlayerState.HisTurn)
-        {
-            if (GameManager.instance.movingScript.altMovementSyst)
-                InvokeRepeating("Up", 0, .1f);
-        }
-    }
-
-    void OnUpPress()
-    {
-        if (state == PlayerState.HisTurn)
-        {
-            if (GameManager.instance.movingScript.altMovementSyst)
-                GameManager.instance.movingScript.Up(); 
-        }
-    }
-
-    void OnUpRelease()
-    {
-        if (state == PlayerState.HisTurn)
-        {
-            if (GameManager.instance.movingScript.altMovementSyst)
-                CancelInvoke("Up");
-        }
-    }
-
-    void Up()
-    {
-        GameManager.instance.movingScript.Up();
-    }
-
-    void Down()
-    {
-        GameManager.instance.movingScript.Down();
-    }
-
-    void OnDown(InputValue value)
-    {
-        if (state == PlayerState.HisTurn)
-        {
-            if (!GameManager.instance.movingScript.altMovementSyst)
-                down = value.Get<float>();
-        }
-    }
-
-    void OnDownHold()
-    {
-        if (state == PlayerState.HisTurn)
-        {
-            if (GameManager.instance.movingScript.altMovementSyst)
-                InvokeRepeating("Down", 0, .1f);
-        }
-    }
-    void OnDownPress()
-    {
-        if (state == PlayerState.HisTurn)
-        {
-            if (GameManager.instance.movingScript.altMovementSyst)
-                GameManager.instance.movingScript.Down();
-        }    
-    }
-
-    void OnDownRelease()
-    {
-        if (state == PlayerState.HisTurn)
-        {
-            if (GameManager.instance.movingScript.altMovementSyst)
-                CancelInvoke("Down");
-        }
-    }
-
     void OnCameraMovementPad(InputValue value)
     {
         if (state == PlayerState.HisTurn)
@@ -254,8 +173,6 @@ public class PlayerInputs : MonoBehaviour
 
     void OnMenu()
     {
-        if (state == PlayerState.HisTurn)
-            GameManager.instance.movingScript.SwitchMovementSystem();
         if (PlayersManager.instance.inLobby)
             PlayersManager.instance.LoadGame();
     }

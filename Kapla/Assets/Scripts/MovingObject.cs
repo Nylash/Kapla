@@ -6,7 +6,6 @@ public class MovingObject : MonoBehaviour
 {
 #pragma warning disable 0649
     [Header("MOVEMENT CONFIGURATION")]
-    [SerializeField] public bool altMovementSyst;
     [SerializeField] float movementSpeed=3;
     [SerializeField] int rotationAngle = 90;
     [SerializeField] float rotationSpeed = 1;
@@ -18,9 +17,7 @@ public class MovingObject : MonoBehaviour
     public bool canDrop;
     public Rigidbody currentRigidbody;
 
-    Camera mainCamera;
     RaycastHit hit;
-    RaycastHit hitShoulder;
     bool rotating;
     protected Quaternion rotationBefore;
     protected Quaternion rotationAfter;
@@ -36,7 +33,6 @@ public class MovingObject : MonoBehaviour
         GameObject go = GameObject.Find("[Debug Updater]");
         if (go != null) DestroyImmediate(go);
 
-        mainCamera = Camera.main;
         currentRotationSpeed = rotationSpeed;
         canDrop = true;
         directionGuide = Instantiate(directionGuidePrefab);
@@ -110,38 +106,6 @@ public class MovingObject : MonoBehaviour
         }
     }
 
-    public void Down()
-    {
-        if (!GameManager.instance.defeat && currentPiece)
-        {
-            if (currentRigidbody.SweepTest(-Vector3.up * .5f, out hitShoulder))
-            {
-                if (hitShoulder.distance > .55f)
-                    currentPiece.transform.Translate(-Vector3.up * .5f, Space.World);
-                else if (hitShoulder.distance > .1f)
-                    currentPiece.transform.Translate(-Vector3.up * (hitShoulder.distance - .05f), Space.World);
-            }
-            else
-                currentPiece.transform.Translate(-Vector3.up * .5f, Space.World);
-        }
-    }
-
-    public void Up()
-    {
-        if (!GameManager.instance.defeat && currentPiece)
-        {
-            if (currentRigidbody.SweepTest(Vector3.up * .5f, out hitShoulder))
-            {
-                if (hitShoulder.distance > .55f)
-                    currentPiece.transform.Translate(Vector3.up * .5f, Space.World);
-                else if(hitShoulder.distance > .1f)
-                    currentPiece.transform.Translate(Vector3.up * (hitShoulder.distance - .05f), Space.World);
-            }
-            else
-                currentPiece.transform.Translate(Vector3.up * .5f, Space.World);
-        }
-    }
-
     public void Drop()
     {
         if (currentPiece && !GameManager.instance.defeat && canDrop && !rotating)
@@ -162,11 +126,6 @@ public class MovingObject : MonoBehaviour
     {
         if (!rotating && currentPiece && !GameManager.instance.defeat)
             Rotate("RotZ");
-    }
-
-    public void SwitchMovementSystem()
-    {
-        altMovementSyst = !altMovementSyst;
     }
 
     void Rotate(string axis)

@@ -15,6 +15,7 @@ public class Piece : MonoBehaviour
     bool toPlace;
     GameObject guide;
     int shakeScreenCounter = 3;
+    bool fxDone;
 
     private void Start()
     {
@@ -78,6 +79,11 @@ public class Piece : MonoBehaviour
             {
                 shakeScreenCounter--;
                 StartCoroutine(GameManager.instance.Shake());
+            }
+            if (!fxDone)
+            {
+                Instantiate(GameManager.instance.dropFX, new Vector3(transform.position.x, collision.GetContact(0).point.y, transform.position.z), GameManager.instance.dropFX.transform.rotation);
+                fxDone = true;
             }
         }
     }
