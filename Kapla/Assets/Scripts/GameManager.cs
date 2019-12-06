@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour
             GameObject currentPiece = GameObject.Instantiate(piece, center.transform.position + offsetSpawn, piece.transform.rotation);
             movingScript.currentPiece = currentPiece;
             movingScript.currentRigidbody = currentPiece.GetComponentInChildren<Rigidbody>();
+            movingScript.arrowGuideObject.transform.localPosition = new Vector3(currentPiece.GetComponent<Piece>().arrowGuideOffset, 0, 0);
         }
         dropping = false;
     }

@@ -16,6 +16,7 @@ public class MovingObject : MonoBehaviour
     public GameObject currentPiece;
     public bool canDrop;
     public Rigidbody currentRigidbody;
+    public GameObject arrowGuideObject;
 
     RaycastHit hit;
     bool rotating;
@@ -25,7 +26,7 @@ public class MovingObject : MonoBehaviour
     float currentRotationSpeed;
     MeshRenderer guideRenderer;
     GameObject directionGuide;
-    GameObject guideObject;
+    GameObject guideObjectEmpty;
 
     private void Start()
     {
@@ -36,8 +37,9 @@ public class MovingObject : MonoBehaviour
         currentRotationSpeed = rotationSpeed;
         canDrop = true;
         directionGuide = Instantiate(directionGuidePrefab);
-        guideRenderer = directionGuide.GetComponent<MeshRenderer>();
-        guideObject = GameObject.FindGameObjectWithTag("Guide");
+        guideRenderer = directionGuide.GetComponentInChildren<MeshRenderer>();
+        arrowGuideObject = directionGuide.transform.GetChild(0).gameObject;
+        guideObjectEmpty = GameObject.FindGameObjectWithTag("Guide");
     }
 
     private void Update()
@@ -74,11 +76,11 @@ public class MovingObject : MonoBehaviour
 
             if (new Vector3(GameManager.instance.movementDirection.x, 0, GameManager.instance.movementDirection.y) != Vector3.zero)
             {
-                guideObject.transform.position = currentPiece.transform.position;
-                guideObject.transform.Translate(Quaternion.Euler(new Vector3(0, GameManager.instance.cameraAngle, 0)) *
+                guideObjectEmpty.transform.position = currentPiece.transform.position;
+                guideObjectEmpty.transform.Translate(Quaternion.Euler(new Vector3(0, GameManager.instance.cameraAngle, 0)) *
                 new Vector3(GameManager.instance.movementDirection.x, 0, GameManager.instance.movementDirection.y));
                 directionGuide.transform.position = currentPiece.transform.position;
-                directionGuide.transform.LookAt(guideObject.transform.position);
+                directionGuide.transform.LookAt(guideObjectEmpty.transform.position);
                 guideRenderer.enabled = true;
             }
             else

@@ -7,6 +7,7 @@ public class Piece : MonoBehaviour
 {
     [Header("PIECE CONFIGURATION")]
     public PieceType type;
+    public float arrowGuideOffset;
 
     Rigidbody rigid;
     MeshCollider[] colliders;
