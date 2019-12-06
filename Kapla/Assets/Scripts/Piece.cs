@@ -71,6 +71,7 @@ public class Piece : MonoBehaviour
 
     IEnumerator NewTurn()
     {
+        GameManager.instance.dropping = false;
         yield return new WaitForSeconds(.2f);
         StartCoroutine(GameManager.instance.ChangePlayer());
         yield return new WaitForSeconds(1.5f);

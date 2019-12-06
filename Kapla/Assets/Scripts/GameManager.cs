@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     public List<GameObject> AllPieces = new List<GameObject>();
     public GameObject guidePrefab;
     public bool dropping;
-    public bool halfDropping;
     public bool shaking;
     [Header("INPUTS DATA")]
     public Vector2 movementDirection;
@@ -101,9 +100,11 @@ public class GameManager : MonoBehaviour
             }
             else
                 timerText.text = "";
-            if (halfDropping)
+            if (dropping)
                 center.transform.localEulerAngles = Vector3.Lerp(center.transform.localEulerAngles, new Vector3(20, center.transform.localEulerAngles.y, 0), Time.deltaTime);
         }
+        if(defeat)
+            center.transform.position = Vector3.Lerp(center.transform.position, new Vector3(0, GetMaxHigh(), 0), Time.deltaTime);
     }
 
     public void InstantiateNewPiece()
@@ -118,7 +119,6 @@ public class GameManager : MonoBehaviour
             movingScript.currentRigidbody = currentPiece.GetComponentInChildren<Rigidbody>();
             movingScript.arrowGuideObject.transform.localPosition = new Vector3(0, 0, currentPiece.GetComponent<Piece>().arrowGuideOffset);
         }
-        dropping = false;
     }
 
     IEnumerator StartGame()
@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
                     max = item.transform.position.y;
             }
         }
-        if (movingScript.currentPiece)
+        if (movingScript.currentPiece && !defeat)
         {
             return (movingScript.currentPiece.transform.position.y + max) / 2;
         }
