@@ -5,11 +5,13 @@ using TMPro;
 
 public class DefeatScript : MonoBehaviour
 {
+    Animator defeatAnimator;
     TextMeshProUGUI defeatText;
 
     private void Start()
     {
-        defeatText = GameObject.FindGameObjectWithTag("DefeatText").GetComponent<TextMeshProUGUI>();
+        defeatAnimator = GameObject.FindGameObjectWithTag("DefeatCanvas").GetComponent<Animator>();
+        defeatText = GameObject.FindGameObjectWithTag("DefeatCanvas").GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -18,7 +20,8 @@ public class DefeatScript : MonoBehaviour
         {
             StartCoroutine(GameManager.instance.BigShake());
             GameManager.instance.defeat = true;
-            defeatText.text = GameManager.instance.lastPlayer.ID + " LOOSE";
+            defeatAnimator.SetTrigger("Launch");
+            defeatText.text = GameManager.instance.lastPlayer.ID + " LOOSE !";
         }
     }
 }

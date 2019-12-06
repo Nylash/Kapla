@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
                 timer -= Time.deltaTime;
                 timerText.text = ((int)timer).ToString();
                 if ((int)timer == 0)
-                    StartCoroutine(movingScript.DropPiece());
+                    movingScript.DropPiece();
             }
             else
                 timerText.text = "";
@@ -134,19 +134,26 @@ public class GameManager : MonoBehaviour
         InstantiateNewPiece();
     }
 
-    public IEnumerator ChangePlayer()
+    public void SetLastPlayer()
     {
         timerStopped = true;
         PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.NotHisTurn;
         PlayersManager.instance.players[activePlayer].CleanInputs();
         lastPlayer = PlayersManager.instance.players[activePlayer];
-        if (activePlayer == PlayersManager.instance.players.Count - 1)
-            activePlayer = 0;
-        else
-            activePlayer++;
-        playerText.text = PlayersManager.instance.players[activePlayer].ID;
-        playerTurn.text = PlayersManager.instance.players[activePlayer].ID + " it's your turn !";
-        bannerTurnAnimator.SetTrigger("Launch");
+    }
+
+    public IEnumerator ChangePlayer()
+    {
+        if (!defeat)
+        {
+            if (activePlayer == PlayersManager.instance.players.Count - 1)
+                activePlayer = 0;
+            else
+                activePlayer++;
+            playerText.text = PlayersManager.instance.players[activePlayer].ID;
+            playerTurn.text = PlayersManager.instance.players[activePlayer].ID + " it's your turn !";
+            bannerTurnAnimator.SetTrigger("Launch");
+        }
         yield return new WaitForSeconds(1.5f);
         PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.HisTurn;
     }

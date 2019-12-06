@@ -39,18 +39,14 @@ public class Piece : MonoBehaviour
 
     public void Drop()
     {
+        toPlace = false;
         Destroy(guide);
-        GameManager.instance.movingScript.currentPiece = null;
         rigid.useGravity = true;
         rigid.isKinematic = false;
         foreach (MeshCollider item in colliders)
-        {
-                item.isTrigger = false; 
-            item.gameObject.layer = LayerMask.NameToLayer("Placed");
-        }
-        gameObject.layer = LayerMask.NameToLayer("Placed");
-        toPlace = false;
+            item.isTrigger = false;
         meshRender.materials = pieceOriginalMaterials;
+        GameManager.instance.SetLastPlayer();
     }
 
     private void Update()
@@ -72,6 +68,15 @@ public class Piece : MonoBehaviour
         }
     }
 
+    IEnumerator NewTurn()
+    {
+        yield return new WaitForSeconds(.2f);
+        StartCoroutine(GameManager.instance.ChangePlayer());
+        yield return new WaitForSeconds(1.5f);
+        GameManager.instance.AllPieces.Add(gameObject);
+        GameManager.instance.InstantiateNewPiece();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.CompareTag("DeadZone"))
@@ -83,9 +88,15 @@ public class Piece : MonoBehaviour
             }
             if (!fxDone)
             {
-                
                 Instantiate(GameManager.instance.dropFX,new Vector3(transform.position.x, collision.GetContact(0).point.y, transform.position.z), GameManager.instance.dropFX.transform.rotation);
                 fxDone = true;
+            }
+            if(gameObject.layer == 9)
+            {
+                foreach (MeshCollider item in colliders)
+                    item.gameObject.layer = LayerMask.NameToLayer("Placed");
+                gameObject.layer = LayerMask.NameToLayer("Placed");
+                StartCoroutine(NewTurn());
             }
         }
         else

@@ -109,7 +109,7 @@ public class MovingObject : MonoBehaviour
     public void Drop()
     {
         if (currentPiece && !GameManager.instance.defeat && canDrop && !rotating)
-            StartCoroutine(DropPiece());
+            DropPiece();
     }
 
     public void RotX()
@@ -151,18 +151,13 @@ public class MovingObject : MonoBehaviour
         rotationAfter = Quaternion.AngleAxis(rotationAngle, axisVec) * rotationBefore;
     }
 
-    public IEnumerator DropPiece()
+    public void DropPiece()
     {
         guideRenderer.enabled = false;
         GameManager.instance.dropping = true;
         canDrop = true;
-        GameObject stockPiece = currentPiece;
         currentPiece.GetComponent<Piece>().Drop();
         currentRigidbody = null;
-        yield return new WaitForSeconds(1.5f);
-        StartCoroutine(GameManager.instance.ChangePlayer());
-        yield return new WaitForSeconds(1.5f);
-        GameManager.instance.AllPieces.Add(stockPiece);
-        GameManager.instance.InstantiateNewPiece();
+        currentPiece = null;
     }
 }

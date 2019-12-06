@@ -5,12 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Center
-  - DefeatText
   - PlayerText
   - Timer
   - DeadZone
   - Guide
   - PlayerTurn
+  - DefeatCanvas
   layers:
   - Default
   - TransparentFX
