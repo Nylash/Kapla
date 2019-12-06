@@ -16,6 +16,7 @@ public class Piece : MonoBehaviour
     GameObject guide;
     int shakeScreenCounter = 3;
     bool fxDone;
+    bool deathFXDone;
 
     private void Start()
     {
@@ -82,8 +83,17 @@ public class Piece : MonoBehaviour
             }
             if (!fxDone)
             {
-                Instantiate(GameManager.instance.dropFX, new Vector3(transform.position.x, collision.GetContact(0).point.y, transform.position.z), GameManager.instance.dropFX.transform.rotation);
+                
+                Instantiate(GameManager.instance.dropFX,new Vector3(transform.position.x, collision.GetContact(0).point.y, transform.position.z), GameManager.instance.dropFX.transform.rotation);
                 fxDone = true;
+            }
+        }
+        else
+        {
+            if (!deathFXDone)
+            {
+                Instantiate(GameManager.instance.deathFX, collision.GetContact(0).point+new Vector3(0,.5f,0), GameManager.instance.deathFX.transform.rotation);
+                deathFXDone = true;
             }
         }
     }
