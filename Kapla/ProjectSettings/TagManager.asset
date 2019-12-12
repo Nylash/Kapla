@@ -11,6 +11,7 @@ TagManager:
   - Guide
   - PlayerTurn
   - DefeatCanvas
+  - BombTrigger
   layers:
   - Default
   - TransparentFX
