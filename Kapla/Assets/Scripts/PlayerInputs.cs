@@ -178,9 +178,13 @@ public class PlayerInputs : MonoBehaviour
     }
 
     void OnRestart()
-    { 
-        if (state == PlayerState.HisTurn || GameManager.instance.defeat)
-            GameManager.instance.Restart();
+    {
+        if (!PlayersManager.instance.inLobby)
+        {
+            if (state == PlayerState.HisTurn || GameManager.instance.defeat)
+                GameManager.instance.Restart();
+        }
+        
     }
 
     public void CleanInputs()
