@@ -88,13 +88,13 @@ public class MovingObject : MonoBehaviour
 
             if (currentRigidbody.SweepTest(desiredMoveDirection, out hit))
             {
-                if (hit.distance > 0.1f)
+                if (hit.distance > 0.1f || hit.collider.gameObject.layer == LayerMask.NameToLayer("ToPlace"))
                     currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
             }
             else
             {
                 currentPiece.transform.Translate(desiredMoveDirection * movementSpeed * Time.deltaTime, Space.World);
-                }
+            }
             if (rotating)
             {
                 rotationTime += Time.deltaTime * currentRotationSpeed;

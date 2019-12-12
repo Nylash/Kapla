@@ -7,6 +7,8 @@ public class Piece : MonoBehaviour
     [Header("PIECE CONFIGURATION")]
     public float arrowGuideOffset;
     public bool isTrain;
+    public bool isBomb;
+    public GameObject anchorBomb;
 
     Rigidbody rigid;
     MeshCollider[] colliders;
@@ -120,10 +122,20 @@ public class Piece : MonoBehaviour
             if(gameObject.layer == LayerMask.NameToLayer("ToPlace"))
             {
                 gameObject.layer = LayerMask.NameToLayer("Placed");
+                if (isBomb)
+                {
+                    GameObject anchor = Instantiate(anchorBomb,transform.position + transform.up,transform.rotation);
+                    anchor.GetComponent<AnchorBomb>().bomb = gameObject;
+                    transform.GetChild(1).transform.gameObject.GetComponent<SpringJoint>().connectedBody = anchor.GetComponent<Rigidbody>();
+                    transform.GetChild(1).transform.gameObject.SetActive(true);
+                    transform.GetChild(2).transform.gameObject.SetActive(false);
+                }
                 if (!isTrain)
                 {
                     foreach (MeshCollider item in colliders)
                         item.gameObject.layer = LayerMask.NameToLayer("Placed");
+                    if (isBomb)
+                        transform.GetChild(1).gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 }
                 else
                 {

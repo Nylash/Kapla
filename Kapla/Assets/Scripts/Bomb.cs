@@ -8,32 +8,26 @@ public class Bomb : MonoBehaviour
     public float power = 10.0f;
     public float radius = 10.0f;
     public float upforce = 1.0f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public List<Rigidbody> rigidList = new List<Rigidbody>();
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "BombTrigger")
         {
-            Debug.Log("ALAOUGBA");
+            print("fdp");
             Detonate();
         }
     }
 
     void Detonate()
     {
-        Vector3 explosionPosition = bomb.transform.position;
+        /*Vector3 explosionPosition = bomb.transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPosition, radius);
+        foreach (Collider item in colliders)
+        {
+            if (!rigidList.Contains(item.transform.parent.gameObject.GetComponent<Rigidbody>()))
+                rigidList.Add(item.transform.parent.gameObject.GetComponent<Rigidbody>());
+        }
         foreach (Collider hit in colliders)
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
@@ -41,7 +35,7 @@ public class Bomb : MonoBehaviour
             {
                 rb.AddExplosionForce(power, explosionPosition, radius, upforce, ForceMode.Impulse);
             }
-        }
+        }*/
     }
 
 }

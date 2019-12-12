@@ -12,6 +12,7 @@ TagManager:
   - PlayerTurn
   - DefeatCanvas
   - BombTrigger
+  - Train
   layers:
   - Default
   - TransparentFX
