@@ -740,9 +740,8 @@ MonoBehaviour:
   noConstruction_HardToPlace:
   - {fileID: 7422661631312770088, guid: f3cc3ef70050d1848a2ab73fbff81772, type: 3}
   - {fileID: 5308677716100005233, guid: c6b07c79107b1a345a2dd8d8c57d4794, type: 3}
-  - {fileID: 1395970932768510912, guid: 387f19fb8402d2a4689bfe7e66ca4830, type: 3}
-  - {fileID: 3472912551771983707, guid: 81aa47b56056f7742aebf16a53a83211, type: 3}
   - {fileID: 1992065035903190601, guid: 227122f06205c184db9046267e210364, type: 3}
+  - {fileID: 3472912551771983707, guid: 81aa47b56056f7742aebf16a53a83211, type: 3}
   packSize: 6
   nb_construction_EasyToPlace: 3
   nb_noConstruction_EasyToPlace: 1
