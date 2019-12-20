@@ -24,11 +24,12 @@ public class GameManager : MonoBehaviour
     [Header("SCRIPT INFORMATIONS")]
     public Material cantDropMaterial;
     public bool defeat;
-    public PlayerInputs lastPlayer;
+    public string lastPlayer;
     public List<GameObject> AllPieces = new List<GameObject>();
     public GameObject guidePrefab;
     public bool dropping;
     public bool shaking;
+    public bool oneController;
     [Header("INPUTS DATA")]
     public Vector2 movementDirection;
     public Vector2 cameraMovementPad;
@@ -64,10 +65,15 @@ public class GameManager : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
-        if(PlayersManager.instance == null)
+        if (OneControllerManager.instance != null)
+            oneController = true;
+        else if (PlayersManager.instance != null)
+            oneController = false;
+        else
         {
             GameObject manager = Instantiate(managerPrefab);
-            manager.GetComponent<PlayersManager>().DebugMode();
+            manager.GetComponent<OneControllerManager>().DebugMode();
+            oneController = true;
         }
     }
 
@@ -129,37 +135,70 @@ public class GameManager : MonoBehaviour
         timerStopped = true;
         playerText.text = "P1";
         activePlayer = 0;
-        PlayersManager.instance.players[activePlayer].CleanInputs();
-        playerTurn.text = PlayersManager.instance.players[activePlayer].ID + " it's your turn !";
+        if (!oneController)
+        {
+            PlayersManager.instance.players[activePlayer].CleanInputs();
+            playerTurn.text = PlayersManager.instance.players[activePlayer].ID + " it's your turn !";
+        }
+        else
+        {
+            playerTurn.text = OneControllerManager.instance.players[activePlayer] + " it's your turn !";
+        }
         bannerTurnAnimator.SetTrigger("Launch");
         yield return new WaitForSeconds(1.5f);
         gameStarted = true;
-        PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.HisTurn;
+        if(!oneController)
+            PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.HisTurn;
+        else
+            OneControllerManager.instance.canPlay = true;
         InstantiateNewPiece();
     }
 
     public void SetLastPlayer()
     {
         timerStopped = true;
-        PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.NotHisTurn;
-        PlayersManager.instance.players[activePlayer].CleanInputs();
-        lastPlayer = PlayersManager.instance.players[activePlayer];
+        if (!oneController)
+        {
+            PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.NotHisTurn;
+            PlayersManager.instance.players[activePlayer].CleanInputs();
+            lastPlayer = PlayersManager.instance.players[activePlayer].ID;
+        }
+        else
+        {
+            lastPlayer = OneControllerManager.instance.players[activePlayer];
+            OneControllerManager.instance.canPlay = false;
+        }
     }
 
     public IEnumerator ChangePlayer()
     {
         if (!defeat)
         {
-            if (activePlayer == PlayersManager.instance.players.Count - 1)
-                activePlayer = 0;
+            if (!oneController)
+            {
+                if (activePlayer == PlayersManager.instance.players.Count - 1)
+                    activePlayer = 0;
+                else
+                    activePlayer++;
+                playerText.text = PlayersManager.instance.players[activePlayer].ID;
+                playerTurn.text = PlayersManager.instance.players[activePlayer].ID + " it's your turn !";
+            }
             else
-                activePlayer++;
-            playerText.text = PlayersManager.instance.players[activePlayer].ID;
-            playerTurn.text = PlayersManager.instance.players[activePlayer].ID + " it's your turn !";
+            {
+                if (activePlayer == OneControllerManager.instance.players.Count - 1)
+                    activePlayer = 0;
+                else
+                    activePlayer++;
+                playerText.text = OneControllerManager.instance.players[activePlayer];
+                playerTurn.text = OneControllerManager.instance.players[activePlayer] + " it's your turn !";
+            }
             bannerTurnAnimator.SetTrigger("Launch");
         }
         yield return new WaitForSeconds(1.5f);
-        PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.HisTurn;
+        if (!oneController)
+            PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.HisTurn;
+        else
+            OneControllerManager.instance.canPlay = true;
     }
 
     float GetMaxHigh()
@@ -198,10 +237,13 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        foreach(PlayerInputs player in PlayersManager.instance.players)
+        if (!oneController)
         {
-            player.state = PlayerInputs.PlayerState.NotHisTurn;
+            foreach (PlayerInputs player in PlayersManager.instance.players)
+                player.state = PlayerInputs.PlayerState.NotHisTurn;
         }
+        else
+            OneControllerManager.instance.canPlay = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

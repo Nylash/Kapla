@@ -42,11 +42,4 @@ public class PlayersManager : MonoBehaviour
         inLobby = false;
         SceneManager.LoadScene("Room");
     }
-
-    public void DebugMode()
-    {
-        inLobby = false;
-        GetComponent<PlayerInputManager>().JoinPlayer();
-        GetComponent<PlayerInputManager>().DisableJoining();
-    }
 }

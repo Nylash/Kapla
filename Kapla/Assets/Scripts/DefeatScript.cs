@@ -21,7 +21,7 @@ public class DefeatScript : MonoBehaviour
             StartCoroutine(GameManager.instance.BigShake());
             GameManager.instance.defeat = true;
             defeatAnimator.SetTrigger("Launch");
-            defeatText.text = GameManager.instance.lastPlayer.ID + " LOOSE !";
+            defeatText.text = GameManager.instance.lastPlayer + " LOOSE !";
         }
     }
 }
