@@ -344,12 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arenaPrefabs:
-  - {fileID: 8874441660973735409, guid: 3b45670666dfdfe4aaddf0c2547ffc55, type: 3}
   - {fileID: 6346026372790427146, guid: 874ecfa9a2ddf33489e11a56fc81425c, type: 3}
-  - {fileID: 8946137841497396051, guid: b2da60249b62ae746ab5fcbe66cc8430, type: 3}
-  - {fileID: 2000361010250980650, guid: 4bffe1fab2519d04bb1a7807f53f805d, type: 3}
-  - {fileID: 6246140117377260093, guid: a8bb2cc72e1e95545b774a92ac19b394, type: 3}
-  - {fileID: 3514361834569965058, guid: 462776b0fd89a214e9f3442cc7a97b5e, type: 3}
 --- !u!4 &1285115726
 Transform:
   m_ObjectHideFlags: 0
