@@ -19,6 +19,10 @@ public class EventSystemScript : MonoBehaviour
 
     private void Awake()
     {
+        //temp to remove unity's debug updater which crashes with new input
+        GameObject go = GameObject.Find("[Debug Updater]");
+        if (go != null) DestroyImmediate(go);
+
         lastSelection = EventSystem.current.firstSelectedGameObject;
         if (lastSelection.CompareTag("ButtonOne"))
         {

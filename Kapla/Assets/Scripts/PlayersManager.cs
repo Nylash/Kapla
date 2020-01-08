@@ -59,5 +59,6 @@ public class PlayersManager : MonoBehaviour
         }
         inLobby = false;
         SceneManager.LoadScene("Room");
+        DJ.instance.PlayMusic(DJ.MusicKeyWork.Game);
     }
 }
