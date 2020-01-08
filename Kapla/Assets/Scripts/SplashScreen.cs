@@ -1,8 +1,11 @@
 ﻿using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SplashScreen : MonoBehaviour
 {
+    bool splashScreenDone;
+
     private void Start()
     {
         //temp to remove unity's debug updater which crashes with new input
@@ -10,8 +13,30 @@ public class SplashScreen : MonoBehaviour
         if (go != null) DestroyImmediate(go);
     }
 
-        void LoadLobby()
+    private void Update()
     {
-        SceneManager.LoadScene("Lobby");
+        if (splashScreenDone)
+        {
+            if (Gamepad.current != null && Keyboard.current != null)
+            {
+                if (Keyboard.current.enterKey.ReadValue() > .8f || Gamepad.current.startButton.ReadValue() > .8f)
+                    SceneManager.LoadScene("Lobby");
+            }
+            else if (Gamepad.current == null)
+            {
+                if (Keyboard.current.enterKey.ReadValue() > .8f)
+                    SceneManager.LoadScene("Lobby");
+            }
+            else
+            {
+                if (Gamepad.current.startButton.ReadValue() > .8f)
+                    SceneManager.LoadScene("Lobby");
+            }
+        }
+    }
+
+    void SplashScreenDone()
+    {
+        splashScreenDone = true;
     }
 }

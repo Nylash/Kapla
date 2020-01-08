@@ -13,6 +13,9 @@ TagManager:
   - DefeatCanvas
   - BombTrigger
   - Train
+  - ButtonOne
+  - ButtonSeveral
+  - PlayersNumberSelection
   layers:
   - Default
   - TransparentFX

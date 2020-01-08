@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerInputs : MonoBehaviour
 {
@@ -14,11 +15,6 @@ public class PlayerInputs : MonoBehaviour
     float up;
     float down;
     bool cameraCanMove;
-
-    private void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
 
     private void Update()
     {
@@ -130,10 +126,16 @@ public class PlayerInputs : MonoBehaviour
             GameManager.instance.movingScript.Drop();
     }
 
-    void OnMenu()
+    void OnValidateChoice()
+    {
+        if (PlayersManager.instance.inLobby && PlayersManager.instance.players.Count >= 2)
+            PlayersManager.instance.LoadGame();
+    }
+
+    void OnBack()
     {
         if (PlayersManager.instance.inLobby)
-            PlayersManager.instance.LoadGame();
+            SceneManager.LoadScene("Lobby");      
     }
 
     void OnRestart()

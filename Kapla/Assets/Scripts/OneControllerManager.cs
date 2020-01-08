@@ -51,7 +51,8 @@ public class OneControllerManager : MonoBehaviour
         controls.Gameplay.RotZ.started += ctx => RotZ();
         controls.Gameplay.Drop.started += ctx => Drop();
         controls.Gameplay.Restart.started += ctx => Restart();
-        controls.Gameplay.Menu.started += ctx => Menu();
+        controls.Gameplay.ValidateChoice.started += ctx => ValidateChoice();
+        controls.Gameplay.Back.started += ctx => Back();
     }
 
     private void Start()
@@ -59,8 +60,6 @@ public class OneControllerManager : MonoBehaviour
         //temp to remove unity's debug updater which crashes with new input
         GameObject go = GameObject.Find("[Debug Updater]");
         if (go != null) DestroyImmediate(go);
-
-        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
@@ -103,10 +102,13 @@ public class OneControllerManager : MonoBehaviour
             GameManager.instance.movingScript.Drop();
     }
 
-    void Menu()
+    void ValidateChoice()
     {
         if (OneControllerManager.instance.inLobby)
+        {
+            FillPlayersList(GameObject.FindObjectOfType<PlayersNumberSelection>().currentPlayersNumber);
             OneControllerManager.instance.LoadGame();
+        }
     }
 
     void Restart()
@@ -118,7 +120,22 @@ public class OneControllerManager : MonoBehaviour
     void LoadGame()
     {
         inLobby = false;
+        DontDestroyOnLoad(gameObject);
         SceneManager.LoadScene("Room");
+    }
+
+    void Back()
+    {
+        if (OneControllerManager.instance.inLobby)
+            SceneManager.LoadScene("Lobby");
+    }
+
+    void FillPlayersList(int number)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            players.Add("P" + (i + 1));
+        }
     }
 
     private void OnEnable()
