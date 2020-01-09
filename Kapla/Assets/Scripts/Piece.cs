@@ -20,6 +20,7 @@ public class Piece : MonoBehaviour
     int shakeScreenCounter = 3;
     bool fxDone;
     bool deathFXDone;
+    bool soundGroundDone;
 
     private void Start()
     {
@@ -171,6 +172,31 @@ public class Piece : MonoBehaviour
         }
         else
         {
+            if (!soundGroundDone)
+            {
+                soundGroundDone = true;
+                switch (fallSound)
+                {
+                    case PieceSound.Basic:
+                        DJ.instance.PlaySound(DJ.SoundsKeyWord.Ground);
+                        break;
+                    case PieceSound.Piano:
+                        DJ.instance.PlaySound(DJ.SoundsKeyWord.Piano);
+                        break;
+                    case PieceSound.Xylophone:
+                        DJ.instance.PlaySound(DJ.SoundsKeyWord.Xylophone);
+                        break;
+                    case PieceSound.Ball:
+                        DJ.instance.PlaySound(DJ.SoundsKeyWord.Ball);
+                        break;
+                    case PieceSound.Jelly:
+                        DJ.instance.PlaySound(DJ.SoundsKeyWord.Jelly);
+                        break;
+                    default:
+                        Debug.LogError("You can't be here.");
+                        break;
+                }
+            }
             if (!deathFXDone)
             {
                 DJ.instance.PlaySound(DJ.SoundsKeyWord.Confettis);

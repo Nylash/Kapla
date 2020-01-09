@@ -70,6 +70,7 @@ public class PlayersNumberSelection : MonoBehaviour
 
     void IncreasePlayersNumber()
     {
+        DJ.instance.PlaySound(DJ.SoundsKeyWord.Change);
         updatingValue = true;
         switch (currentPlayersNumber)
         {
@@ -89,6 +90,7 @@ public class PlayersNumberSelection : MonoBehaviour
 
     void DecreasePlayersNumber()
     {
+        DJ.instance.PlaySound(DJ.SoundsKeyWord.Change);
         updatingValue = true;
         switch (currentPlayersNumber)
         {

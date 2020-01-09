@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public bool dropping;
     public bool shaking;
     public bool oneController;
+    public int activePlayer;
     [Header("INPUTS DATA")]
     public Vector2 movementDirection;
     public Vector2 cameraMovementPad;
@@ -52,7 +53,6 @@ public class GameManager : MonoBehaviour
     GameObject center;
     float timer;
     bool timerStopped;
-    int activePlayer;
     GameObject camObject;
     float originalCamZoom;
     bool gameStarted;

@@ -18,7 +18,6 @@ public class DefeatScript : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Piece>() || collision.gameObject.GetComponentInParent<Piece>())
         {
-            DJ.instance.PlaySound(DJ.SoundsKeyWord.Ground);
             if (GameManager.instance.oneController)
             {
                 if(OneControllerManager.instance.players.Count == 2)
@@ -27,6 +26,27 @@ public class DefeatScript : MonoBehaviour
                     GameManager.instance.defeat = true;
                     defeatAnimator.SetTrigger("Launch");
                     defeatText.text = GameManager.instance.newPlayer + " WIN !";
+                }
+                else
+                {
+                    if (!GameManager.instance.freezeElim)
+                    {
+                        if (GameManager.instance.activePlayer == 0)
+                        {
+                            print(OneControllerManager.instance.players[OneControllerManager.instance.players.Count - 1] + " was removed");
+                            OneControllerManager.instance.players.RemoveAt(OneControllerManager.instance.players.Count - 1);
+                        }
+                        else
+                        {
+                            print(OneControllerManager.instance.players[GameManager.instance.activePlayer - 1] + " was removed");
+                            OneControllerManager.instance.players.RemoveAt(GameManager.instance.activePlayer - 1);
+                            GameManager.instance.activePlayer--;
+                        }
+                    }
+                    else
+                    {
+                        print("FREEEEEEEEEEEEZE");
+                    }
                 }
             }
             else
