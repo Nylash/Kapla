@@ -146,6 +146,7 @@ MonoBehaviour:
   isTrain: 0
   isBomb: 0
   anchorBomb: {fileID: 0}
+  fallSound: 3
 --- !u!1 &8968987788201143713
 GameObject:
   m_ObjectHideFlags: 0

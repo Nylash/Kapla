@@ -59,31 +59,43 @@ public class DJ : MonoBehaviour
     [SerializeField] float xylophone_minVolume;
     [SerializeField] float xylophone_maxVolume;
     [Header("Bomb")]
-    [SerializeField] AudioClip bomb_clip;
+    [SerializeField] List<AudioClip> bomb_clips = new List<AudioClip>();
     [SerializeField] float bomb_minPitch;
     [SerializeField] float bomb_maxPitch;
     [SerializeField] float bomb_minVolume;
     [SerializeField] float bomb_maxVolume;
+    [Header("Ball")]
+    [SerializeField] List<AudioClip> ball_clips = new List<AudioClip>();
+    [SerializeField] float ball_minPitch;
+    [SerializeField] float ball_maxPitch;
+    [SerializeField] float ball_minVolume;
+    [SerializeField] float ball_maxVolume;
+    [Header("Jelly")]
+    [SerializeField] List<AudioClip> jelly_clips = new List<AudioClip>();
+    [SerializeField] float jelly_minPitch;
+    [SerializeField] float jelly_maxPitch;
+    [SerializeField] float jelly_minVolume;
+    [SerializeField] float jelly_maxVolume;
     #endregion
     #region UI SOUNDS VARIABLES
     [Header("Player turn")]
     [Header("UI SOUNDS")]
-    [SerializeField] AudioClip turn_clip;
+    [SerializeField] List<AudioClip> turn_clips = new List<AudioClip>();
     [SerializeField] float turn_volume;
     [Header("Time warning")]
-    [SerializeField] AudioClip warning_clip;
+    [SerializeField] List<AudioClip> warning_clips = new List<AudioClip>();
     [SerializeField] float warning_volume;
     [Header("Menu validation")]
-    [SerializeField] AudioClip validation_clip;
+    [SerializeField] List<AudioClip> validation_clips = new List<AudioClip>();
     [SerializeField] float validation_volume;
     [Header("Menu change")]
-    [SerializeField] AudioClip change_clip;
+    [SerializeField] List<AudioClip> change_clips = new List<AudioClip>();
     [SerializeField] float change_volume;
     [Header("Menu pause")]
-    [SerializeField] AudioClip pause_clip;
+    [SerializeField] List<AudioClip> pause_clips = new List<AudioClip>();
     [SerializeField] float pause_volume;
     [Header("Victory")]
-    [SerializeField] AudioClip victory_clip;
+    [SerializeField] List<AudioClip> victory_clips = new List<AudioClip>();
     [SerializeField] float victory_volume;
     #endregion
     [Header("MUSICS")]
@@ -175,8 +187,22 @@ public class DJ : MonoBehaviour
                 AudioSource bombSrc = SelectGameAudioSource();
                 bombSrc.pitch = Random.Range(bomb_minPitch, bomb_maxPitch);
                 bombSrc.volume = Random.Range(bomb_minVolume, bomb_maxVolume);
-                bombSrc.clip = bomb_clip;
+                bombSrc.clip = bomb_clips[Random.Range(0, bomb_clips.Count)];
                 bombSrc.Play();
+                break;
+            case SoundsKeyWord.Ball:
+                AudioSource ballSrc = SelectGameAudioSource();
+                ballSrc.pitch = Random.Range(ball_minPitch, ball_maxPitch);
+                ballSrc.volume = Random.Range(ball_minVolume, ball_maxVolume);
+                ballSrc.clip = ball_clips[Random.Range(0, xylophone_clips.Count)];
+                ballSrc.Play();
+                break;
+            case SoundsKeyWord.Jelly:
+                AudioSource jellySrc = SelectGameAudioSource();
+                jellySrc.pitch = Random.Range(jelly_minPitch, jelly_maxPitch);
+                jellySrc.volume = Random.Range(jelly_minVolume, jelly_maxVolume);
+                jellySrc.clip = jelly_clips[Random.Range(0, xylophone_clips.Count)];
+                jellySrc.Play();
                 break;
             #endregion
             #region UI SOUNDS
@@ -184,42 +210,42 @@ public class DJ : MonoBehaviour
                 AudioSource turnSrc = SelectUIAudioSource();
                 turnSrc.pitch = 1;
                 turnSrc.volume = turn_volume;
-                turnSrc.clip = turn_clip;
+                turnSrc.clip = turn_clips[Random.Range(0,turn_clips.Count)];
                 turnSrc.Play();
                 break;
             case SoundsKeyWord.Warning:
                 AudioSource warningSrc = SelectUIAudioSource();
                 warningSrc.pitch = 1;
                 warningSrc.volume = warning_volume;
-                warningSrc.clip = warning_clip;
+                warningSrc.clip = warning_clips[Random.Range(0, warning_clips.Count)];
                 warningSrc.Play();
                 break;
             case SoundsKeyWord.Validation:
                 AudioSource validationSrc = SelectUIAudioSource();
                 validationSrc.pitch = 1;
                 validationSrc.volume = validation_volume;
-                validationSrc.clip = validation_clip;
+                validationSrc.clip = validation_clips[Random.Range(0, validation_clips.Count)];
                 validationSrc.Play();
                 break;
             case SoundsKeyWord.Change:
                 AudioSource changeSrc = SelectUIAudioSource();
                 changeSrc.pitch = 1;
                 changeSrc.volume = change_volume;
-                changeSrc.clip = change_clip;
+                changeSrc.clip = change_clips[Random.Range(0, change_clips.Count)];
                 changeSrc.Play();
                 break;
             case SoundsKeyWord.Pause:
                 AudioSource pauseSrc = SelectUIAudioSource();
                 pauseSrc.pitch = 1;
                 pauseSrc.volume = pause_volume;
-                pauseSrc.clip = pause_clip;
+                pauseSrc.clip = pause_clips[Random.Range(0, pause_clips.Count)];
                 pauseSrc.Play();
                 break;
             case SoundsKeyWord.Victory:
                 AudioSource victorySrc = SelectUIAudioSource();
                 victorySrc.pitch = 1;
                 victorySrc.volume = victory_volume;
-                victorySrc.clip = victory_clip;
+                victorySrc.clip = victory_clips[Random.Range(0, victory_clips.Count)];
                 victorySrc.Play();
                 break;
             #endregion
@@ -247,6 +273,11 @@ public class DJ : MonoBehaviour
         musicSource.Play();
     }
 
+    public void ValidationSound()
+    {
+        PlaySound(SoundsKeyWord.Validation);
+    }
+
     AudioSource SelectGameAudioSource()
     {
         foreach (AudioSource item in audioSourcesGame)
@@ -271,7 +302,7 @@ public class DJ : MonoBehaviour
     
     public enum SoundsKeyWord
     {
-        Drop, Rotation, Fall, Impossible, Ground, Confettis, Piano, Xylophone, Bomb, Turn, Warning, Validation, Change, Pause, Victory
+        Drop, Rotation, Fall, Impossible, Ground, Confettis, Piano, Xylophone, Bomb, Ball, Jelly, Turn, Warning, Validation, Change, Pause, Victory
     }
 
     public enum MusicKeyWork

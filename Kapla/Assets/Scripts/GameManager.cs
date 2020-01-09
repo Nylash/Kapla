@@ -108,6 +108,8 @@ public class GameManager : MonoBehaviour
                 timerText.text = ((int)timer).ToString();
                 if ((int)timer == 0)
                     movingScript.DropPiece();
+                if ((int)timer == 6)
+                    DJ.instance.PlaySound(DJ.SoundsKeyWord.Warning);
             }
             else
                 timerText.text = "";
@@ -207,6 +209,7 @@ public class GameManager : MonoBehaviour
                 playerTurn.text = OneControllerManager.instance.players[activePlayer] + " it's your turn !";
             }
             bannerTurnAnimator.SetTrigger("Launch");
+            DJ.instance.PlaySound(DJ.SoundsKeyWord.Turn);
             freezeElim = false;
         }
         yield return new WaitForSeconds(1.5f);

@@ -18,6 +18,7 @@ public class DefeatScript : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Piece>() || collision.gameObject.GetComponentInParent<Piece>())
         {
+            DJ.instance.PlaySound(DJ.SoundsKeyWord.Ground);
             if (GameManager.instance.oneController)
             {
                 if(OneControllerManager.instance.players.Count == 2)

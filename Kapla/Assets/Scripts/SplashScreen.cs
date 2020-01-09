@@ -20,17 +20,26 @@ public class SplashScreen : MonoBehaviour
             if (Gamepad.current != null && Keyboard.current != null)
             {
                 if (Keyboard.current.enterKey.ReadValue() > .8f || Gamepad.current.startButton.ReadValue() > .8f)
+                {
+                    DJ.instance.PlaySound(DJ.SoundsKeyWord.Validation);
                     SceneManager.LoadScene("Lobby");
+                }
             }
             else if (Gamepad.current == null)
             {
                 if (Keyboard.current.enterKey.ReadValue() > .8f)
+                {
+                    DJ.instance.PlaySound(DJ.SoundsKeyWord.Validation);
                     SceneManager.LoadScene("Lobby");
+                }
             }
             else
             {
                 if (Gamepad.current.startButton.ReadValue() > .8f)
+                {
+                    DJ.instance.PlaySound(DJ.SoundsKeyWord.Validation);
                     SceneManager.LoadScene("Lobby");
+                }
             }
         }
     }

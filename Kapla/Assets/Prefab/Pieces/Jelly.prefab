@@ -190,3 +190,4 @@ MonoBehaviour:
   isTrain: 0
   isBomb: 0
   anchorBomb: {fileID: 0}
+  fallSound: 4

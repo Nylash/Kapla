@@ -119,6 +119,7 @@ public class OneControllerManager : MonoBehaviour
 
     void LoadGame()
     {
+        DJ.instance.PlaySound(DJ.SoundsKeyWord.Validation);
         inLobby = false;
         DontDestroyOnLoad(gameObject);
         SceneManager.LoadScene("Room");

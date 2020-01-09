@@ -160,6 +160,7 @@ public class MovingObject : MonoBehaviour
         GameManager.instance.dropping = true;
         canDrop = true;
         currentPiece.GetComponent<Piece>().Drop();
+        DJ.instance.PlaySound(DJ.SoundsKeyWord.Drop);
         currentRigidbody = null;
         currentPiece = null;
     }

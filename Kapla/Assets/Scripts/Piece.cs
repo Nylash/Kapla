@@ -9,6 +9,7 @@ public class Piece : MonoBehaviour
     public bool isTrain;
     public bool isBomb;
     public GameObject anchorBomb;
+    public PieceSound fallSound;
 
     Rigidbody rigid;
     MeshCollider[] colliders;
@@ -145,15 +146,45 @@ public class Piece : MonoBehaviour
                         item.gameObject.layer = LayerMask.NameToLayer("Placed");
                 }
                 StartCoroutine(NewTurn());
+                switch (fallSound)
+                {
+                    case PieceSound.Basic:
+                        DJ.instance.PlaySound(DJ.SoundsKeyWord.Fall);
+                        break;
+                    case PieceSound.Piano:
+                        DJ.instance.PlaySound(DJ.SoundsKeyWord.Piano);
+                        break;
+                    case PieceSound.Xylophone:
+                        DJ.instance.PlaySound(DJ.SoundsKeyWord.Xylophone);
+                        break;
+                    case PieceSound.Ball:
+                        DJ.instance.PlaySound(DJ.SoundsKeyWord.Ball);
+                        break;
+                    case PieceSound.Jelly:
+                        DJ.instance.PlaySound(DJ.SoundsKeyWord.Jelly);
+                        break;
+                    default:
+                        Debug.LogError("You can't be here.");
+                        break;
+                }
             }
         }
         else
         {
             if (!deathFXDone)
             {
+                DJ.instance.PlaySound(DJ.SoundsKeyWord.Confettis);
                 Instantiate(GameManager.instance.deathFX, collision.GetContact(0).point+new Vector3(0,.5f,0), GameManager.instance.deathFX.transform.rotation);
                 deathFXDone = true;
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (toPlace && other.gameObject.layer != LayerMask.NameToLayer("ToPlace"))
+        {
+            DJ.instance.PlaySound(DJ.SoundsKeyWord.Impossible);
         }
     }
 
@@ -181,5 +212,10 @@ public class Piece : MonoBehaviour
             GameManager.instance.movingScript.canDrop = true;
             meshRender.materials = pieceOriginalMaterials;
         }
+    }
+
+    public enum PieceSound
+    {
+        Basic, Piano, Xylophone, Ball, Jelly
     }
 }

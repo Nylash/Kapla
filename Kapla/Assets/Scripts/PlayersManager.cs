@@ -51,6 +51,7 @@ public class PlayersManager : MonoBehaviour
 
     public void LoadGame()
     {
+        DJ.instance.PlaySound(DJ.SoundsKeyWord.Validation);
         GetComponent<PlayerInputManager>().DisableJoining();
         DontDestroyOnLoad(gameObject);
         foreach (PlayerInputs item in players)
