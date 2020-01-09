@@ -23,19 +23,19 @@ public class DJ : MonoBehaviour
     [SerializeField] float rotation_minVolume;
     [SerializeField] float rotation_maxVolume;
     [Header("Piece fall")]
-    [SerializeField] AudioClip fall_clip;
+    [SerializeField] List<AudioClip> fall_clips = new List<AudioClip>();
     [SerializeField] float fall_minPitch;
     [SerializeField] float fall_maxPitch;
     [SerializeField] float fall_minVolume;
     [SerializeField] float fall_maxVolume;
     [Header("Piece movement impossible")]
-    [SerializeField] AudioClip imp_clip;
+    [SerializeField] List<AudioClip> imp_clips = new List<AudioClip>();
     [SerializeField] float imp_minPitch;
     [SerializeField] float imp_maxPitch;
     [SerializeField] float imp_minVolume;
     [SerializeField] float imp_maxVolume;
     [Header("Piece ground")]
-    [SerializeField] AudioClip ground_clip;
+    [SerializeField] List<AudioClip> ground_clips = new List<AudioClip>();
     [SerializeField] float ground_minPitch;
     [SerializeField] float ground_maxPitch;
     [SerializeField] float ground_minVolume;
@@ -47,13 +47,13 @@ public class DJ : MonoBehaviour
     [SerializeField] float confettis_minVolume;
     [SerializeField] float confettis_maxVolume;
     [Header("Piano")]
-    [SerializeField] AudioClip piano_clip;
+    [SerializeField] List<AudioClip> piano_clips = new List<AudioClip>();
     [SerializeField] float piano_minPitch;
     [SerializeField] float piano_maxPitch;
     [SerializeField] float piano_minVolume;
     [SerializeField] float piano_maxVolume;
     [Header("Xylophone")]
-    [SerializeField] AudioClip xylophone_clip;
+    [SerializeField] List<AudioClip> xylophone_clips = new List<AudioClip>();
     [SerializeField] float xylophone_minPitch;
     [SerializeField] float xylophone_maxPitch;
     [SerializeField] float xylophone_minVolume;
@@ -133,21 +133,21 @@ public class DJ : MonoBehaviour
                 AudioSource fallSrc = SelectGameAudioSource();
                 fallSrc.pitch = Random.Range(fall_minPitch, fall_maxPitch);
                 fallSrc.volume = Random.Range(fall_minVolume, fall_maxVolume);
-                fallSrc.clip = fall_clip;
+                fallSrc.clip = fall_clips[Random.Range(0, fall_clips.Count)];
                 fallSrc.Play();
                 break;
             case SoundsKeyWord.Impossible:
                 AudioSource impSrc = SelectGameAudioSource();
                 impSrc.pitch = Random.Range(imp_minPitch, imp_maxPitch);
                 impSrc.volume = Random.Range(imp_minVolume, imp_maxVolume);
-                impSrc.clip = imp_clip;
+                impSrc.clip = imp_clips[Random.Range(0, imp_clips.Count)];
                 impSrc.Play();
                 break;
             case SoundsKeyWord.Ground:
                 AudioSource groundSrc = SelectGameAudioSource();
                 groundSrc.pitch = Random.Range(ground_minPitch, ground_maxPitch);
                 groundSrc.volume = Random.Range(ground_minVolume, ground_maxVolume);
-                groundSrc.clip = ground_clip;
+                groundSrc.clip = ground_clips[Random.Range(0, ground_clips.Count)];
                 groundSrc.Play();
                 break;
             case SoundsKeyWord.Confettis:
@@ -161,14 +161,14 @@ public class DJ : MonoBehaviour
                 AudioSource pianoSrc = SelectGameAudioSource();
                 pianoSrc.pitch = Random.Range(piano_minPitch, piano_maxPitch);
                 pianoSrc.volume = Random.Range(piano_minVolume, piano_maxVolume);
-                pianoSrc.clip = piano_clip;
+                pianoSrc.clip = piano_clips[Random.Range(0, piano_clips.Count)];
                 pianoSrc.Play();
                 break;
             case SoundsKeyWord.Xylophone:
                 AudioSource xyloSrc = SelectGameAudioSource();
                 xyloSrc.pitch = Random.Range(xylophone_minPitch, xylophone_maxPitch);
                 xyloSrc.volume = Random.Range(xylophone_minVolume, xylophone_maxVolume);
-                xyloSrc.clip = xylophone_clip;
+                xyloSrc.clip = xylophone_clips[Random.Range(0, xylophone_clips.Count)];
                 xyloSrc.Play();
                 break;
             case SoundsKeyWord.Bomb:

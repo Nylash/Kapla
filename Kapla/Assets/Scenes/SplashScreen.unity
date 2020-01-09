@@ -188,6 +188,281 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: rotation_clips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: fall_clips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: imp_clips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: ground_clips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: piano_clips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: xylophone_clips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: rotation_minPitch
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: rotation_clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 48efdfcbed6c0b548a4ef91fd98a429b, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: rotation_clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 48d57f1efbb5d0e48a12e6361985543e, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: rotation_clips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3c143207030027a46877a5fd5afd1b68, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: rotation_maxPitch
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: rotation_minVolume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: rotation_maxVolume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: fall_minVolume
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: fall_maxVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: imp_maxVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: ground_maxVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: confettis_maxVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: piano_maxVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: xylophone_maxVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: bomb_maxVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: fall_minPitch
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: fall_maxPitch
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: imp_minPitch
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: imp_maxPitch
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: imp_minVolume
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: ground_minVolume
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: confettis_minVolume
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: piano_minVolume
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: bomb_minVolume
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: xylophone_minVolume
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: xylophone_maxPitch
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: piano_maxPitch
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: confettis_maxPitch
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: ground_maxPitch
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: ground_minPitch
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: confettis_minPitch
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: piano_minPitch
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: xylophone_minPitch
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: bomb_minPitch
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: bomb_maxPitch
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: fall_clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: cace5f03ccd3eb24f9c1f03d56265ee3, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: fall_clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 12660d1e3eac08c4cb3c92f1d4207c75, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: fall_clips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a08c168810461546bbda56c50043f2d, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: imp_clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 089976b8988c632448a8c87c85caf827, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: imp_clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7362f2608647416418faee96b8c3cb5e, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: ground_clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: cace5f03ccd3eb24f9c1f03d56265ee3, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: ground_clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 12660d1e3eac08c4cb3c92f1d4207c75, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: ground_clips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a08c168810461546bbda56c50043f2d, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: piano_clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 26221fa65e9f9b942add4c3b0dd1a92a, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: piano_clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: d87cd6c5b4c012344a269d5a19f710b1, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: xylophone_clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3b173c1f2173dc745b445f7c9b787897, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: xylophone_clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 752b0dd2d0d6f4f4094e49c9b581b36b, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: bomb_clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f75a1b295f51cb54590c8d01cc4404c4, type: 3}
+    - target: {fileID: 3068032105517292359, guid: 43d4f815eab90c64cbe8e688982c15a8,
+        type: 3}
+      propertyPath: warning_clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e93c25b9dc7a902408851a798d96fbc9, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43d4f815eab90c64cbe8e688982c15a8, type: 3}
 --- !u!1 &290458429

@@ -132,6 +132,7 @@ public class MovingObject : MonoBehaviour
 
     void Rotate(string axis)
     {
+        DJ.instance.PlaySound(DJ.SoundsKeyWord.Rotation);
         rotating = true;
         rotationTime = 0;
         rotationBefore = currentPiece.transform.rotation;
