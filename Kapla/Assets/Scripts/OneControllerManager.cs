@@ -153,5 +153,6 @@ public class OneControllerManager : MonoBehaviour
         inLobby = false;
         players.Add("P1");
         players.Add("P2");
+        //players.Add("P3");
     }
 }

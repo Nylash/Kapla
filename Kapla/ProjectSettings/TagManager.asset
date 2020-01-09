@@ -12,10 +12,10 @@ TagManager:
   - PlayerTurn
   - DefeatCanvas
   - BombTrigger
-  - Train
   - ButtonOne
   - ButtonSeveral
   - PlayersNumberSelection
+  - Piece
   layers:
   - Default
   - TransparentFX

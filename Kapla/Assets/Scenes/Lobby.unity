@@ -801,6 +801,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OneControllerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4121471688780710914, guid: f3b73d226cbc87c4bb3dfea509485b15,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4121471688780710924, guid: f3b73d226cbc87c4bb3dfea509485b15,
         type: 3}
       propertyPath: m_LocalPosition.x

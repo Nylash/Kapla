@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 #pragma warning disable 0649
     [Header("GAME CONFIGURATION")]
     [SerializeField] GameObject managerPrefab;
+    [SerializeField] GameObject DjPrefab;
     [SerializeField] public GameObject dropFX;
     [SerializeField] public GameObject deathFX;
     [SerializeField] Vector3 offsetSpawn = new Vector3(0,4,0);
@@ -24,7 +25,9 @@ public class GameManager : MonoBehaviour
     [Header("SCRIPT INFORMATIONS")]
     public Material cantDropMaterial;
     public bool defeat;
+    public bool freezeElim;
     public string lastPlayer;
+    public string newPlayer;
     public List<GameObject> AllPieces = new List<GameObject>();
     public GameObject guidePrefab;
     public bool dropping;
@@ -75,6 +78,8 @@ public class GameManager : MonoBehaviour
             manager.GetComponent<OneControllerManager>().DebugMode();
             oneController = true;
         }
+        if (DJ.instance == null)
+            Instantiate(DjPrefab);
     }
 
     private void Start()
@@ -162,11 +167,19 @@ public class GameManager : MonoBehaviour
             PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.NotHisTurn;
             PlayersManager.instance.players[activePlayer].CleanInputs();
             lastPlayer = PlayersManager.instance.players[activePlayer].ID;
+            if (activePlayer == PlayersManager.instance.players.Count - 1)
+                newPlayer = PlayersManager.instance.players[0].ID;
+            else
+                newPlayer = PlayersManager.instance.players[activePlayer+1].ID;
         }
         else
         {
             lastPlayer = OneControllerManager.instance.players[activePlayer];
             OneControllerManager.instance.canPlay = false;
+            if (activePlayer == OneControllerManager.instance.players.Count - 1)
+                newPlayer = OneControllerManager.instance.players[0];
+            else
+                newPlayer = OneControllerManager.instance.players[activePlayer + 1];
         }
     }
 
@@ -174,6 +187,7 @@ public class GameManager : MonoBehaviour
     {
         if (!defeat)
         {
+            freezeElim = true;
             if (!oneController)
             {
                 if (activePlayer == PlayersManager.instance.players.Count - 1)
@@ -193,6 +207,7 @@ public class GameManager : MonoBehaviour
                 playerTurn.text = OneControllerManager.instance.players[activePlayer] + " it's your turn !";
             }
             bannerTurnAnimator.SetTrigger("Launch");
+            freezeElim = false;
         }
         yield return new WaitForSeconds(1.5f);
         if (!oneController)

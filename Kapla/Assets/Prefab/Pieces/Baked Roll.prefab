@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 3888487232742632342}
   m_Layer: 0
   m_Name: Baked Roll
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,6 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efc66325c603304098ad43aac8080b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   arrowGuideOffset: 1.5
-  pieceOriginalMaterials: []
+  isTrain: 0
+  isBomb: 0
+  anchorBomb: {fileID: 0}

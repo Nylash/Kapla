@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 6190046663555170180}
   m_Layer: 0
   m_Name: Lego
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efc66325c603304098ad43aac8080b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   arrowGuideOffset: 0.25
-  pieceOriginalMaterials: []
+  isTrain: 0
+  isBomb: 0
+  anchorBomb: {fileID: 0}

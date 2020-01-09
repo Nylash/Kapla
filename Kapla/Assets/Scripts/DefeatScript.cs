@@ -16,12 +16,29 @@ public class DefeatScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Piece>())
+        if (collision.gameObject.GetComponent<Piece>() || collision.gameObject.GetComponentInParent<Piece>())
         {
-            StartCoroutine(GameManager.instance.BigShake());
-            GameManager.instance.defeat = true;
-            defeatAnimator.SetTrigger("Launch");
-            defeatText.text = GameManager.instance.lastPlayer + " LOOSE !";
+            if (GameManager.instance.oneController)
+            {
+                if(OneControllerManager.instance.players.Count == 2)
+                {
+                    StartCoroutine(GameManager.instance.BigShake());
+                    GameManager.instance.defeat = true;
+                    defeatAnimator.SetTrigger("Launch");
+                    defeatText.text = GameManager.instance.newPlayer + " WIN !";
+                }
+            }
+            else
+            {
+                if(PlayersManager.instance.players.Count == 2)
+                {
+                    StartCoroutine(GameManager.instance.BigShake());
+                    GameManager.instance.defeat = true;
+                    defeatAnimator.SetTrigger("Launch");
+                    defeatText.text = GameManager.instance.newPlayer + " WIN !";
+                }
+            }
+            
         }
     }
 }
