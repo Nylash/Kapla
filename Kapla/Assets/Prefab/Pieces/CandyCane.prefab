@@ -74,6 +74,7 @@ MonoBehaviour:
   isTrain: 0
   isBomb: 0
   anchorBomb: {fileID: 0}
+  fallSound: 0
 --- !u!1 &2884146136809553723
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,7 +87,7 @@ GameObject:
   - component: {fileID: 9042110937278832997}
   m_Layer: 0
   m_Name: CCcoll 6
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,7 +132,7 @@ GameObject:
   - component: {fileID: 9042110937278832993}
   m_Layer: 0
   m_Name: CCcoll 2
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,7 +177,7 @@ GameObject:
   - component: {fileID: 9042110937278832998}
   m_Layer: 0
   m_Name: CCcoll 9
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,7 +222,7 @@ GameObject:
   - component: {fileID: 9042110937278832926}
   m_Layer: 0
   m_Name: CCcoll 1
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -266,7 +267,7 @@ GameObject:
   - component: {fileID: 9042110937278832996}
   m_Layer: 0
   m_Name: CCcoll 7
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -311,7 +312,7 @@ GameObject:
   - component: {fileID: 9042110937278832999}
   m_Layer: 0
   m_Name: CCcoll 8
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -356,7 +357,7 @@ GameObject:
   - component: {fileID: 9042110937278832992}
   m_Layer: 0
   m_Name: CCcoll 3
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -402,7 +403,7 @@ GameObject:
   - component: {fileID: 6227847597342820685}
   m_Layer: 0
   m_Name: CandyCane
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -481,7 +482,7 @@ GameObject:
   - component: {fileID: 9042110937278832994}
   m_Layer: 0
   m_Name: CCcoll 5
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -526,7 +527,7 @@ GameObject:
   - component: {fileID: 9042110937278832995}
   m_Layer: 0
   m_Name: CCcoll 4
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

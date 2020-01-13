@@ -66,6 +66,7 @@ MonoBehaviour:
   isTrain: 0
   isBomb: 0
   anchorBomb: {fileID: 0}
+  fallSound: 0
 --- !u!1 &3586476936803106086
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +79,7 @@ GameObject:
   - component: {fileID: 8991702994887452588}
   m_Layer: 0
   m_Name: Acoll 1
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +125,7 @@ GameObject:
   - component: {fileID: 296085616097921102}
   m_Layer: 0
   m_Name: Armoire
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

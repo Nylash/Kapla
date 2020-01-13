@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1398443743}
   m_Layer: 0
   m_Name: Bombcoll 11
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,6 +137,7 @@ MonoBehaviour:
   isBomb: 1
   anchorBomb: {fileID: 156573020554036985, guid: 6c38533ada0e49040af2d2d91b9a094d,
     type: 3}
+  fallSound: 0
 --- !u!1 &1747604954989864689
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +150,7 @@ GameObject:
   - component: {fileID: 5979287558751535085}
   m_Layer: 0
   m_Name: Bombcoll 1
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,7 +195,7 @@ GameObject:
   - component: {fileID: 7342602861930997977}
   m_Layer: 0
   m_Name: Bombcoll 5
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,7 +241,7 @@ GameObject:
   - component: {fileID: 7838742062990845531}
   m_Layer: 0
   m_Name: Bombe
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -319,7 +320,7 @@ GameObject:
   - component: {fileID: 1125534713891934952}
   m_Layer: 0
   m_Name: Bombcoll 2
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -364,7 +365,7 @@ GameObject:
   - component: {fileID: 1892878675161164690}
   m_Layer: 0
   m_Name: Bombcoll 4
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -575,7 +576,7 @@ GameObject:
   - component: {fileID: 7244396982750329991}
   m_Layer: 0
   m_Name: Bombcoll 3
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -622,7 +623,7 @@ GameObject:
   - component: {fileID: 4175500390712268967}
   m_Layer: 0
   m_Name: Bombe 2 (1)
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

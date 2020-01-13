@@ -194,14 +194,14 @@ public class DJ : MonoBehaviour
                 AudioSource ballSrc = SelectGameAudioSource();
                 ballSrc.pitch = Random.Range(ball_minPitch, ball_maxPitch);
                 ballSrc.volume = Random.Range(ball_minVolume, ball_maxVolume);
-                ballSrc.clip = ball_clips[Random.Range(0, xylophone_clips.Count)];
+                ballSrc.clip = ball_clips[Random.Range(0, ball_clips.Count)];
                 ballSrc.Play();
                 break;
             case SoundsKeyWord.Jelly:
                 AudioSource jellySrc = SelectGameAudioSource();
                 jellySrc.pitch = Random.Range(jelly_minPitch, jelly_maxPitch);
                 jellySrc.volume = Random.Range(jelly_minVolume, jelly_maxVolume);
-                jellySrc.clip = jelly_clips[Random.Range(0, xylophone_clips.Count)];
+                jellySrc.clip = jelly_clips[Random.Range(0, jelly_clips.Count)];
                 jellySrc.Play();
                 break;
             #endregion
@@ -286,7 +286,7 @@ public class DJ : MonoBehaviour
                 return item;
         }
         Debug.LogError("We need more AudioSource for game sounds.");
-        return null;
+        return audioSourcesGame[0];
     }
 
     AudioSource SelectUIAudioSource()
@@ -297,7 +297,7 @@ public class DJ : MonoBehaviour
                 return item;
         }
         Debug.LogError("We need more AudioSource for UI sounds.");
-        return null;
+        return audioSourcesUI[0];
     }
     
     public enum SoundsKeyWord

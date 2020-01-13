@@ -97,14 +97,47 @@ public class Piece : MonoBehaviour
         }
     }
 
-    IEnumerator NewTurn()
+    IEnumerator NewTurn(bool addToPieces)
     {
         GameManager.instance.dropping = false;
-        yield return new WaitForSeconds(.2f);
+        if (addToPieces)
+        {
+            GameManager.instance.AllPieces.Add(gameObject);
+            yield return new WaitForSeconds(.2f);
+        }   
+        else
+            yield return new WaitForSeconds(1);
         StartCoroutine(GameManager.instance.ChangePlayer());
         yield return new WaitForSeconds(1.5f);
-        GameManager.instance.AllPieces.Add(gameObject);
         GameManager.instance.InstantiateNewPiece();
+    }
+
+    public void PieceFallen()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Placed");
+        if (isBomb)
+        {
+            GameObject anchor = Instantiate(anchorBomb, transform.position + transform.up, transform.rotation);
+            anchor.GetComponent<AnchorBomb>().bomb = gameObject;
+            transform.GetChild(1).transform.gameObject.GetComponent<SpringJoint>().connectedBody = anchor.GetComponent<Rigidbody>();
+            transform.GetChild(1).transform.gameObject.SetActive(true);
+            transform.GetChild(2).transform.gameObject.SetActive(false);
+        }
+        if (!isTrain)
+        {
+            foreach (MeshCollider item in colliders)
+                item.gameObject.layer = LayerMask.NameToLayer("Placed");
+            if (isBomb)
+                transform.GetChild(1).gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        }
+        else
+        {
+            foreach (Rigidbody item in GetComponentsInChildren<Rigidbody>())
+                item.gameObject.layer = LayerMask.NameToLayer("Placed");
+            foreach (MeshCollider item in GetComponentsInChildren<MeshCollider>())
+                item.gameObject.layer = LayerMask.NameToLayer("Placed");
+        }
+        StartCoroutine(NewTurn(false));
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -146,7 +179,7 @@ public class Piece : MonoBehaviour
                     foreach (MeshCollider item in GetComponentsInChildren<MeshCollider>())
                         item.gameObject.layer = LayerMask.NameToLayer("Placed");
                 }
-                StartCoroutine(NewTurn());
+                StartCoroutine(NewTurn(true));
                 switch (fallSound)
                 {
                     case PieceSound.Basic:

@@ -14,6 +14,8 @@ public class PlayersManager : MonoBehaviour
     public List<PlayerInputs> players = new List<PlayerInputs>();
     public bool inLobby = true;
 
+    List<PlayerInputs> stockedPlayers = new List<PlayerInputs>();
+
     void Awake()
     {
         if (instance == null)
@@ -49,6 +51,13 @@ public class PlayersManager : MonoBehaviour
             loadObject.SetActive(true);
     }
 
+    public void Restart()
+    {
+        players.Clear();
+        players.AddRange(stockedPlayers);
+        GameManager.instance.Restart();
+    }
+
     public void LoadGame()
     {
         DJ.instance.PlaySound(DJ.SoundsKeyWord.Validation);
@@ -59,6 +68,7 @@ public class PlayersManager : MonoBehaviour
             DontDestroyOnLoad(item);
         }
         inLobby = false;
+        stockedPlayers.AddRange(players);
         SceneManager.LoadScene("Room");
         DJ.instance.PlayMusic(DJ.MusicKeyWork.Game);
     }

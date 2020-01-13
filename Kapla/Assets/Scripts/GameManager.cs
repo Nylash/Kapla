@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
     [Header("SCRIPT INFORMATIONS")]
     public Material cantDropMaterial;
     public bool defeat;
-    public bool freezeElim;
     public string lastPlayer;
     public string newPlayer;
     public List<GameObject> AllPieces = new List<GameObject>();
@@ -189,7 +188,6 @@ public class GameManager : MonoBehaviour
     {
         if (!defeat)
         {
-            freezeElim = true;
             if (!oneController)
             {
                 if (activePlayer == PlayersManager.instance.players.Count - 1)
@@ -210,7 +208,6 @@ public class GameManager : MonoBehaviour
             }
             bannerTurnAnimator.SetTrigger("Launch");
             DJ.instance.PlaySound(DJ.SoundsKeyWord.Turn);
-            freezeElim = false;
         }
         yield return new WaitForSeconds(1.5f);
         if (!oneController)

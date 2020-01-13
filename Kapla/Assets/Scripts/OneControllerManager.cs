@@ -16,6 +16,7 @@ public class OneControllerManager : MonoBehaviour
     float up;
     float down;
     bool cameraCanMove;
+    List<string> stockPlayers = new List<string>();
 
     Controls controls;
 
@@ -107,6 +108,7 @@ public class OneControllerManager : MonoBehaviour
         if (OneControllerManager.instance.inLobby)
         {
             FillPlayersList(GameObject.FindObjectOfType<PlayersNumberSelection>().currentPlayersNumber);
+            stockPlayers.AddRange(players);
             OneControllerManager.instance.LoadGame();
         }
     }
@@ -114,7 +116,12 @@ public class OneControllerManager : MonoBehaviour
     void Restart()
     {
         if (canPlay)
+        {
+            players.Clear();
+            players.AddRange(stockPlayers);
             GameManager.instance.Restart();
+        }
+            
     }
 
     void LoadGame()
@@ -154,6 +161,8 @@ public class OneControllerManager : MonoBehaviour
         inLobby = false;
         players.Add("P1");
         players.Add("P2");
-        //players.Add("P3");
+        players.Add("P3");
+        stockPlayers.AddRange(players);
+        DontDestroyOnLoad(gameObject);
     }
 }
