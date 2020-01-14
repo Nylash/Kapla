@@ -115,20 +115,10 @@ public class Piece : MonoBehaviour
     public void PieceFallen()
     {
         gameObject.layer = LayerMask.NameToLayer("Placed");
-        if (isBomb)
-        {
-            GameObject anchor = Instantiate(anchorBomb, transform.position + transform.up, transform.rotation);
-            anchor.GetComponent<AnchorBomb>().bomb = gameObject;
-            transform.GetChild(1).transform.gameObject.GetComponent<SpringJoint>().connectedBody = anchor.GetComponent<Rigidbody>();
-            transform.GetChild(1).transform.gameObject.SetActive(true);
-            transform.GetChild(2).transform.gameObject.SetActive(false);
-        }
         if (!isTrain)
         {
             foreach (MeshCollider item in colliders)
                 item.gameObject.layer = LayerMask.NameToLayer("Placed");
-            if (isBomb)
-                transform.GetChild(1).gameObject.GetComponent<Rigidbody>().isKinematic = false;
         }
         else
         {
@@ -157,20 +147,10 @@ public class Piece : MonoBehaviour
             if(gameObject.layer == LayerMask.NameToLayer("ToPlace"))
             {
                 gameObject.layer = LayerMask.NameToLayer("Placed");
-                if (isBomb)
-                {
-                    GameObject anchor = Instantiate(anchorBomb,transform.position + transform.up,transform.rotation);
-                    anchor.GetComponent<AnchorBomb>().bomb = gameObject;
-                    transform.GetChild(1).transform.gameObject.GetComponent<SpringJoint>().connectedBody = anchor.GetComponent<Rigidbody>();
-                    transform.GetChild(1).transform.gameObject.SetActive(true);
-                    transform.GetChild(2).transform.gameObject.SetActive(false);
-                }
                 if (!isTrain)
                 {
                     foreach (MeshCollider item in colliders)
                         item.gameObject.layer = LayerMask.NameToLayer("Placed");
-                    if (isBomb)
-                        transform.GetChild(1).gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 }
                 else
                 {
@@ -245,6 +225,37 @@ public class Piece : MonoBehaviour
         {
             DJ.instance.PlaySound(DJ.SoundsKeyWord.Impossible);
         }
+        if (isBomb)
+        {
+            if(gameObject.layer == LayerMask.NameToLayer("Placed"))
+            {
+                StartCoroutine(BombCheck(other.gameObject));
+            }
+        }
+    }
+
+    IEnumerator BombCheck(GameObject other)
+    {
+        if(other.layer == LayerMask.NameToLayer("Placed"))
+        {
+            GetComponent<Bomb>().Detonate();
+        }
+        else
+        {
+            yield return new WaitForSeconds(.2f);
+            if (other.layer == LayerMask.NameToLayer("Placed"))
+            {
+                GetComponent<Bomb>().Detonate();
+            }
+        }
+    }
+
+    public void Explode(float power, Vector3 explosionPosition, float radius, float upforce)
+    {
+        if (isTrain)
+            transform.GetChild(1).GetComponent<Rigidbody>().AddExplosionForce(power, explosionPosition, radius, upforce, ForceMode.Impulse);
+        else
+            rigid.AddExplosionForce(power, explosionPosition, radius, upforce, ForceMode.Impulse);
     }
 
     public void OnTriggerStay(Collider other)
