@@ -58,7 +58,7 @@ public class EventSystemScript : MonoBehaviour
                     break;
                 case "PlayersNumberSelection":
                     lastSelection = EventSystem.current.currentSelectedGameObject;
-                    lastSelection.GetComponent<TextMeshProUGUI>().color = highlightColor;
+                  //  lastSelection.GetComponent<TextMeshProUGUI>().color = highlightColor;
                     oneDetails.SetActive(false);
                     severalDetails.SetActive(false);
                     break;
