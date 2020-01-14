@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     GameObject camObject;
     float originalCamZoom;
     bool gameStarted;
+    bool alarmPlaying;
 
     TextMeshProUGUI playerText;
     TextMeshProUGUI timerText;
@@ -106,9 +107,15 @@ public class GameManager : MonoBehaviour
                 timer -= Time.deltaTime;
                 timerText.text = ((int)timer).ToString();
                 if ((int)timer == 0)
+                {
                     movingScript.DropPiece();
-                if ((int)timer == 6)
+                    alarmPlaying = false;
+                } 
+                if ((int)timer == 6 && !alarmPlaying)
+                {
+                    alarmPlaying = true;
                     DJ.instance.PlaySound(DJ.SoundsKeyWord.Warning);
+                }   
             }
             else
                 timerText.text = "";
@@ -218,13 +225,23 @@ public class GameManager : MonoBehaviour
 
     float GetMaxHigh()
     {
+        //PlayersManager.instance.players[0];
         float max = 0;
         if(AllPieces.Count != 0)
         {
             foreach (GameObject item in AllPieces)
             {
-                if (item.transform.position.y > max)
-                    max = item.transform.position.y;
+                if (item.GetComponent<Piece>().isTrain)
+                {
+                    Vector3 tmp = item.transform.InverseTransformPoint(new Vector3(0, item.transform.position.y, 0));
+                    if (tmp.y > max)
+                        max = tmp.y;
+                }
+                else
+                {
+                    if (item.transform.position.y > max)
+                        max = item.transform.position.y;
+                }
             }
         }
         if (movingScript.currentPiece && !defeat)

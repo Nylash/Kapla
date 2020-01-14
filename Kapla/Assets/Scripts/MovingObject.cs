@@ -72,7 +72,7 @@ public class MovingObject : MonoBehaviour
             }*/
             #endregion
             Vector3 desiredMoveDirection = Quaternion.Euler(new Vector3(0, GameManager.instance.cameraAngle, 0)) *
-                                new Vector3(GameManager.instance.movementDirection.x, GameManager.instance.up - GameManager.instance.down, GameManager.instance.movementDirection.y);
+                                new Vector3(GameManager.instance.movementDirection.x, GameManager.instance.up *1.2f - GameManager.instance.down * 1.2f, GameManager.instance.movementDirection.y);
 
             if (new Vector3(GameManager.instance.movementDirection.x, 0, GameManager.instance.movementDirection.y) != Vector3.zero)
             {

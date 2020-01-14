@@ -664,7 +664,7 @@ MonoBehaviour:
     type: 3}
   dropFX: {fileID: 4718650730638099371, guid: acc78df1200bbea45b5e19f569af71b2, type: 3}
   deathFX: {fileID: 450926826393389682, guid: ed1888b15bf4dcc4d959ae4e53590c29, type: 3}
-  offsetSpawn: {x: 0, y: 7, z: 0}
+  offsetSpawn: {x: 0, y: 6, z: 0}
   timeBeforeAutoDrop: 31
   magnitude: 2
   roughness: 2

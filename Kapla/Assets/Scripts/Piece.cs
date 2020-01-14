@@ -70,7 +70,7 @@ public class Piece : MonoBehaviour
             for (int i = 0; i < transform.childCount; i++)
             {
                 if (i == 0)
-                    transform.GetChild(i).gameObject.SetActive(false);
+                    Destroy(transform.GetChild(i).gameObject);
                 else
                     transform.GetChild(i).gameObject.SetActive(true);
             }
@@ -134,7 +134,7 @@ public class Piece : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("DeadZone"))
         {
-            if(shakeScreenCounter != 0)
+            if (shakeScreenCounter != 0)
             {
                 shakeScreenCounter--;
                 StartCoroutine(GameManager.instance.Shake());
