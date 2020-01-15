@@ -10,12 +10,14 @@ TagManager:
   - DeadZone
   - Guide
   - PlayerTurn
-  - DefeatCanvas
   - BombTrigger
   - ButtonOne
   - ButtonSeveral
   - PlayersNumberSelection
   - Piece
+  - Train
+  - PlayerTurnText
+  - WinOut
   layers:
   - Default
   - TransparentFX

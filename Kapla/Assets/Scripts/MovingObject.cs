@@ -156,6 +156,7 @@ public class MovingObject : MonoBehaviour
 
     public void DropPiece()
     {
+        DJ.instance.CancelWarning();
         guideRenderer.enabled = false;
         GameManager.instance.dropping = true;
         canDrop = true;

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using EZCameraShake;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject dropFX;
     [SerializeField] public GameObject deathFX;
     [SerializeField] Vector3 offsetSpawn = new Vector3(0,4,0);
-    [SerializeField] int timeBeforeAutoDrop = 16;
+    public int timeBeforeAutoDrop;
     [Header("SHAKE SCREEN CONFIGURATION")]
     [SerializeField] float magnitude;
     [SerializeField] float roughness;
@@ -40,6 +41,13 @@ public class GameManager : MonoBehaviour
     public float up;
     public float down;
     public bool cameraCanMove;
+    [Header("PLAYERS COLORS")]
+    public Color p1Color;
+    public Color p2Color;
+    public Color p3Color;
+    public Color p4Color;
+    public Color p5Color;
+    public Color p6Color;
 
     [HideInInspector]
     public MovingObject movingScript;
@@ -47,19 +55,22 @@ public class GameManager : MonoBehaviour
     public PiecesDistributor distributorScript;
     [HideInInspector]
     public static GameManager instance = null;
+    [HideInInspector]
     public float cameraAngle;
 
     GameObject center;
-    float timer;
-    bool timerStopped;
+    [HideInInspector]
+    public float timer;
+    [HideInInspector]
+    public bool timerStopped;
     GameObject camObject;
     float originalCamZoom;
     bool gameStarted;
     bool alarmPlaying;
 
     TextMeshProUGUI playerText;
-    TextMeshProUGUI timerText;
     TextMeshProUGUI playerTurn;
+    Image timerImg;
     Animator bannerTurnAnimator;
 
     void Awake()
@@ -88,10 +99,10 @@ public class GameManager : MonoBehaviour
         distributorScript = GetComponent<PiecesDistributor>();
         center = GameObject.FindGameObjectWithTag("Center");
         playerText = GameObject.FindGameObjectWithTag("PlayerText").GetComponent<TextMeshProUGUI>();
-        timerText = GameObject.FindGameObjectWithTag("Timer").GetComponent<TextMeshProUGUI>();
+        timerImg = GameObject.FindGameObjectWithTag("Timer").GetComponent<Image>();
         camObject = GameObject.FindGameObjectWithTag("MainCamera").gameObject;
         bannerTurnAnimator = GameObject.FindGameObjectWithTag("PlayerTurn").GetComponent<Animator>();
-        playerTurn = GameObject.FindGameObjectWithTag("PlayerTurn").GetComponentInChildren<TextMeshProUGUI>();
+        playerTurn = GameObject.FindGameObjectWithTag("PlayerTurnText").GetComponent<TextMeshProUGUI>();
         originalCamZoom = camObject.transform.localPosition.z;
         StartCoroutine(StartGame());
     }
@@ -105,7 +116,8 @@ public class GameManager : MonoBehaviour
             if (!timerStopped)
             {
                 timer -= Time.deltaTime;
-                timerText.text = ((int)timer).ToString();
+                float t = timer / timeBeforeAutoDrop;
+                timerImg.fillAmount = (timer / timeBeforeAutoDrop) - Mathf.Lerp(0.03324204f, 0,t);
                 if ((int)timer == 0)
                 {
                     movingScript.DropPiece();
@@ -118,7 +130,7 @@ public class GameManager : MonoBehaviour
                 }   
             }
             else
-                timerText.text = "";
+                //timerText.text = "";
             if (dropping)
                 center.transform.localEulerAngles = Vector3.Lerp(center.transform.localEulerAngles, new Vector3(20, center.transform.localEulerAngles.y, 0), Time.deltaTime);
         }
@@ -147,16 +159,12 @@ public class GameManager : MonoBehaviour
     {
         timerStopped = true;
         playerText.text = "P1";
+        playerText.color = p1Color;
         activePlayer = 0;
         if (!oneController)
-        {
             PlayersManager.instance.players[activePlayer].CleanInputs();
-            playerTurn.text = PlayersManager.instance.players[activePlayer].ID + " it's your turn !";
-        }
-        else
-        {
-            playerTurn.text = OneControllerManager.instance.players[activePlayer] + " it's your turn !";
-        }
+        playerTurn.text = "P1";
+        playerTurn.color = p1Color;
         bannerTurnAnimator.SetTrigger("Launch");
         yield return new WaitForSeconds(1.5f);
         gameStarted = true;
@@ -201,8 +209,35 @@ public class GameManager : MonoBehaviour
                     activePlayer = 0;
                 else
                     activePlayer++;
-                playerText.text = PlayersManager.instance.players[activePlayer].ID;
-                playerTurn.text = PlayersManager.instance.players[activePlayer].ID + " it's your turn !";
+                switch (PlayersManager.instance.players[activePlayer].ID)
+                {
+                    case "P1":
+                        playerText.text = "P1";
+                        playerText.color = p1Color;
+                        playerTurn.text = "P1";
+                        playerTurn.color = p1Color;
+                        break;
+                    case "P2":
+                        playerText.text = "P2";
+                        playerText.color = p2Color;
+                        playerTurn.text = "P2";
+                        playerTurn.color = p2Color;
+                        break;
+                    case "P3":
+                        playerText.text = "P3";
+                        playerText.color = p3Color;
+                        playerTurn.text = "P3";
+                        playerTurn.color = p3Color;
+                        break;
+                    case "P4":
+                        playerText.text = "P4";
+                        playerText.color = p4Color;
+                        playerTurn.text = "P4";
+                        playerTurn.color = p4Color;
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {
@@ -210,8 +245,47 @@ public class GameManager : MonoBehaviour
                     activePlayer = 0;
                 else
                     activePlayer++;
-                playerText.text = OneControllerManager.instance.players[activePlayer];
-                playerTurn.text = OneControllerManager.instance.players[activePlayer] + " it's your turn !";
+                switch (OneControllerManager.instance.players[activePlayer])
+                {
+                    case "P1":
+                        playerText.text = "P1";
+                        playerText.color = p1Color;
+                        playerTurn.text = "P1";
+                        playerTurn.color = p1Color;
+                        break;
+                    case "P2":
+                        playerText.text = "P2";
+                        playerText.color = p2Color;
+                        playerTurn.text = "P2";
+                        playerTurn.color = p2Color;
+                        break;
+                    case "P3":
+                        playerText.text = "P3";
+                        playerText.color = p3Color;
+                        playerTurn.text = "P3";
+                        playerTurn.color = p3Color;
+                        break;
+                    case "P4":
+                        playerText.text = "P4";
+                        playerText.color = p4Color;
+                        playerTurn.text = "P4";
+                        playerTurn.color = p4Color;
+                        break;
+                    case "P5":
+                        playerText.text = "P5";
+                        playerText.color = p5Color;
+                        playerTurn.text = "P5";
+                        playerTurn.color = p5Color;
+                        break;
+                    case "P6":
+                        playerText.text = "P6";
+                        playerText.color = p6Color;
+                        playerTurn.text = "P6";
+                        playerTurn.color = p6Color;
+                        break;
+                    default:
+                        break;
+                }
             }
             bannerTurnAnimator.SetTrigger("Launch");
             DJ.instance.PlaySound(DJ.SoundsKeyWord.Turn);

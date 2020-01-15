@@ -106,6 +106,7 @@ public class DJ : MonoBehaviour
 #pragma warning restore 0649
     public static DJ instance;
     AudioSource musicSource;
+    AudioSource warningSource;
 
     private void Awake()
     {
@@ -219,6 +220,7 @@ public class DJ : MonoBehaviour
                 warningSrc.volume = warning_volume;
                 warningSrc.clip = warning_clips[Random.Range(0, warning_clips.Count)];
                 warningSrc.Play();
+                warningSource = warningSrc;
                 break;
             case SoundsKeyWord.Validation:
                 AudioSource validationSrc = SelectUIAudioSource();
@@ -273,10 +275,18 @@ public class DJ : MonoBehaviour
         musicSource.Play();
     }
 
-    public void ValidationSound()
+    public void CancelWarning()
     {
-        PlaySound(SoundsKeyWord.Validation);
+        if (warningSource)
+        {
+            if (warningSource.clip == warning_clips[0])
+            {
+                warningSource.Stop();
+                warningSource.clip = null;
+            }
+        }
     }
+
 
     AudioSource SelectGameAudioSource()
     {

@@ -5,14 +5,14 @@ using TMPro;
 
 public class DefeatScript : MonoBehaviour
 {
-    Animator defeatAnimator;
-    TextMeshProUGUI defeatText;
+    Animator winOutAnimator;
+    public TextMeshProUGUI outPlayer;
+    public TextMeshProUGUI winPlayer;
     public bool destroySecurity;
 
     private void Start()
     {
-        defeatAnimator = GameObject.FindGameObjectWithTag("DefeatCanvas").GetComponent<Animator>();
-        defeatText = GameObject.FindGameObjectWithTag("DefeatCanvas").GetComponentInChildren<TextMeshProUGUI>();
+        winOutAnimator = GameObject.FindGameObjectWithTag("WinOut").GetComponent<Animator>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -25,8 +25,9 @@ public class DefeatScript : MonoBehaviour
                 {
                     StartCoroutine(GameManager.instance.BigShake());
                     GameManager.instance.defeat = true;
-                    defeatAnimator.SetTrigger("Defeat");
-                    defeatText.text = GameManager.instance.newPlayer + " WIN !";
+                    winOutAnimator.SetTrigger("Win");
+                    winPlayer.text = GameManager.instance.newPlayer;
+                    winPlayer.color = GetPlayerColor(GameManager.instance.newPlayer);
                 }
                 else
                 {
@@ -34,14 +35,16 @@ public class DefeatScript : MonoBehaviour
                     {
                         if (GameManager.instance.activePlayer == 0)
                         {
-                            defeatAnimator.SetTrigger("Out");
-                            defeatText.text = OneControllerManager.instance.players[OneControllerManager.instance.players.Count - 1] + " is out !";
+                            winOutAnimator.SetTrigger("Out");
+                            outPlayer.text = OneControllerManager.instance.players[OneControllerManager.instance.players.Count - 1];
+                            outPlayer.color = GetPlayerColor(OneControllerManager.instance.players[OneControllerManager.instance.players.Count - 1]);
                             OneControllerManager.instance.players.RemoveAt(OneControllerManager.instance.players.Count - 1);
                         }
                         else
                         {
-                            defeatAnimator.SetTrigger("Out");
-                            defeatText.text = OneControllerManager.instance.players[GameManager.instance.activePlayer - 1] + " is out !";
+                            winOutAnimator.SetTrigger("Out");
+                            outPlayer.text = OneControllerManager.instance.players[GameManager.instance.activePlayer - 1];
+                            outPlayer.color = GetPlayerColor(OneControllerManager.instance.players[GameManager.instance.activePlayer - 1]);
                             OneControllerManager.instance.players.RemoveAt(GameManager.instance.activePlayer - 1);
                             GameManager.instance.activePlayer--;
                         }
@@ -63,8 +66,9 @@ public class DefeatScript : MonoBehaviour
                     }
                     else
                     {
-                        defeatAnimator.SetTrigger("Out");
-                        defeatText.text = OneControllerManager.instance.players[GameManager.instance.activePlayer] + " is out !";
+                        winOutAnimator.SetTrigger("Out");
+                        outPlayer.text = OneControllerManager.instance.players[GameManager.instance.activePlayer];
+                        outPlayer.color = GetPlayerColor(OneControllerManager.instance.players[GameManager.instance.activePlayer]);
                         OneControllerManager.instance.players.RemoveAt(GameManager.instance.activePlayer);
                         GameManager.instance.activePlayer--;
                         if (collision.gameObject.GetComponent<TrainRigidbody>())
@@ -96,8 +100,9 @@ public class DefeatScript : MonoBehaviour
                 {
                     StartCoroutine(GameManager.instance.BigShake());
                     GameManager.instance.defeat = true;
-                    defeatAnimator.SetTrigger("Defeat");
-                    defeatText.text = GameManager.instance.newPlayer + " WIN !";
+                    winOutAnimator.SetTrigger("Win");
+                    winPlayer.text = GameManager.instance.newPlayer;
+                    winPlayer.color = GetPlayerColor(GameManager.instance.newPlayer);
                 }
                 else
                 {
@@ -105,14 +110,16 @@ public class DefeatScript : MonoBehaviour
                     {
                         if (GameManager.instance.activePlayer == 0)
                         {
-                            defeatAnimator.SetTrigger("Out");
-                            defeatText.text = PlayersManager.instance.players[PlayersManager.instance.players.Count - 1].ID + " is out !";
+                            winOutAnimator.SetTrigger("Out");
+                            outPlayer.text = PlayersManager.instance.players[PlayersManager.instance.players.Count - 1].ID;
+                            outPlayer.color = GetPlayerColor(PlayersManager.instance.players[PlayersManager.instance.players.Count - 1].ID);
                             PlayersManager.instance.players.RemoveAt(PlayersManager.instance.players.Count - 1);
                         }
                         else
                         {
-                            defeatAnimator.SetTrigger("Out");
-                            defeatText.text = PlayersManager.instance.players[GameManager.instance.activePlayer - 1].ID + " is out !";
+                            winOutAnimator.SetTrigger("Out");
+                            outPlayer.text = PlayersManager.instance.players[GameManager.instance.activePlayer - 1].ID;
+                            outPlayer.color = GetPlayerColor(PlayersManager.instance.players[GameManager.instance.activePlayer - 1].ID);
                             PlayersManager.instance.players.RemoveAt(GameManager.instance.activePlayer - 1);
                             GameManager.instance.activePlayer--;
                         }
@@ -134,8 +141,9 @@ public class DefeatScript : MonoBehaviour
                     }
                     else
                     {
-                        defeatAnimator.SetTrigger("Out");
-                        defeatText.text = PlayersManager.instance.players[GameManager.instance.activePlayer].ID + " is out !";
+                        winOutAnimator.SetTrigger("Out");
+                        outPlayer.text = PlayersManager.instance.players[GameManager.instance.activePlayer].ID;
+                        outPlayer.color = GetPlayerColor(PlayersManager.instance.players[GameManager.instance.activePlayer].ID);
                         PlayersManager.instance.players.RemoveAt(GameManager.instance.activePlayer);
                         GameManager.instance.activePlayer--;
                         if (collision.gameObject.GetComponent<TrainRigidbody>())
@@ -160,6 +168,27 @@ public class DefeatScript : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    Color GetPlayerColor(string player)
+    {
+        switch (player)
+        {
+            case "P1":
+                return GameManager.instance.p1Color;
+            case "P2":
+                return GameManager.instance.p2Color;
+            case "P3":
+                return GameManager.instance.p3Color;
+            case "P4":
+                return GameManager.instance.p4Color;
+            case "P5":
+                return GameManager.instance.p5Color;
+            case "P6":
+                return GameManager.instance.p6Color;
+            default:
+                return Color.white;
         }
     }
 }

@@ -41,6 +41,7 @@ public class EventSystemScript : MonoBehaviour
             switch (EventSystem.current.currentSelectedGameObject.tag)
             {
                 case "ButtonOne":
+                    EventSystem.current.currentSelectedGameObject.GetComponent<Animator>().SetTrigger("Selected");
                     DJ.instance.PlaySound(DJ.SoundsKeyWord.Change);
                     lastSelection.GetComponentInChildren<TextMeshProUGUI>().color = normalColor;
                     lastSelection = EventSystem.current.currentSelectedGameObject;
@@ -49,6 +50,7 @@ public class EventSystemScript : MonoBehaviour
                     severalDetails.SetActive(false);
                     break;
                 case "ButtonSeveral":
+                    EventSystem.current.currentSelectedGameObject.GetComponent<Animator>().SetTrigger("Selected");
                     DJ.instance.PlaySound(DJ.SoundsKeyWord.Change);
                     lastSelection.GetComponentInChildren<TextMeshProUGUI>().color = normalColor;
                     lastSelection = EventSystem.current.currentSelectedGameObject;

@@ -8,7 +8,13 @@ using UnityEngine.SceneManagement;
 public class PlayersManager : MonoBehaviour
 {
 #pragma warning disable 0649
+    [Header("LOBBY OBJECTS")]
     [SerializeField] GameObject loadObject;
+    [SerializeField] GameObject P1;
+    [SerializeField] GameObject P2;
+    [SerializeField] GameObject P3;
+    [SerializeField] GameObject P4;
+    [Header("INFO")]
 #pragma warning restore 0649
     public static PlayersManager instance = null;
     public List<PlayerInputs> players = new List<PlayerInputs>();
@@ -46,7 +52,39 @@ public class PlayersManager : MonoBehaviour
     {
         players.Add(player.GetComponent<PlayerInputs>());
         players[players.Count - 1].ID = "P" + players.Count;
-        GameObject.Find("Tmp").GetComponent<Text>().text += players[players.Count - 1].ID + " ";
+        switch (players.Count)
+        {
+            case 1:
+                P1.SetActive(true);
+                if (players[0].gameObject.GetComponent<PlayerInput>().currentControlScheme == "Gamepad")
+                    P1.transform.GetChild(2).gameObject.SetActive(true);
+                else
+                    P1.transform.GetChild(3).gameObject.SetActive(true);
+                break;
+            case 2:
+                P2.SetActive(true);
+                if (players[1].gameObject.GetComponent<PlayerInput>().currentControlScheme == "Gamepad")
+                    P2.transform.GetChild(2).gameObject.SetActive(true);
+                else
+                    P2.transform.GetChild(3).gameObject.SetActive(true);
+                break;
+            case 3:
+                P3.SetActive(true);
+                if (players[2].gameObject.GetComponent<PlayerInput>().currentControlScheme == "Gamepad")
+                    P3.transform.GetChild(2).gameObject.SetActive(true);
+                else
+                    P3.transform.GetChild(3).gameObject.SetActive(true);
+                break;
+            case 4:
+                P4.SetActive(true);
+                if (players[3].gameObject.GetComponent<PlayerInput>().currentControlScheme == "Gamepad")
+                    P4.transform.GetChild(2).gameObject.SetActive(true);
+                else
+                    P4.transform.GetChild(3).gameObject.SetActive(true);
+                break;
+            default:
+                break;
+        }
         if (players.Count == 2)
             loadObject.SetActive(true);
     }
