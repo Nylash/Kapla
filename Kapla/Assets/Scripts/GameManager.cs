@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject deathFX;
     [SerializeField] Vector3 offsetSpawn = new Vector3(0,4,0);
     public int timeBeforeAutoDrop;
+    public float invicibleTime = 1.5f;
+    public GameObject explosionFX;
     [Header("SHAKE SCREEN CONFIGURATION")]
     [SerializeField] float magnitude;
     [SerializeField] float roughness;

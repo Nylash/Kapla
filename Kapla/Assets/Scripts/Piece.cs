@@ -110,6 +110,8 @@ public class Piece : MonoBehaviour
         StartCoroutine(GameManager.instance.ChangePlayer());
         yield return new WaitForSeconds(1.5f);
         GameManager.instance.InstantiateNewPiece();
+        if (!addToPieces)
+            Explosion();
     }
 
     public void PieceFallen()
@@ -128,6 +130,12 @@ public class Piece : MonoBehaviour
                 item.gameObject.layer = LayerMask.NameToLayer("Placed");
         }
         StartCoroutine(NewTurn(false));
+    }
+
+    public void Explosion()
+    {
+        Instantiate(GameManager.instance.explosionFX, transform.position, GameManager.instance.explosionFX.transform.rotation);
+        Destroy(gameObject);
     }
 
     public void OnCollisionEnter(Collision collision)

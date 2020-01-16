@@ -9,6 +9,7 @@ public class DefeatScript : MonoBehaviour
     public TextMeshProUGUI outPlayer;
     public TextMeshProUGUI winPlayer;
     public bool destroySecurity;
+    public bool inRecovery;
 
     private void Start()
     {
@@ -21,7 +22,7 @@ public class DefeatScript : MonoBehaviour
         {
             if (GameManager.instance.oneController)
             {
-                if (OneControllerManager.instance.players.Count == 2)
+                if (OneControllerManager.instance.players.Count == 2 && !inRecovery)
                 {
                     StartCoroutine(GameManager.instance.BigShake());
                     GameManager.instance.defeat = true;
@@ -33,35 +34,25 @@ public class DefeatScript : MonoBehaviour
                 {
                     if (!GameManager.instance.dropping)
                     {
-                        if (GameManager.instance.activePlayer == 0)
+                        if (!inRecovery)
                         {
-                            winOutAnimator.SetTrigger("Out");
-                            outPlayer.text = OneControllerManager.instance.players[OneControllerManager.instance.players.Count - 1];
-                            outPlayer.color = GetPlayerColor(OneControllerManager.instance.players[OneControllerManager.instance.players.Count - 1]);
-                            OneControllerManager.instance.players.RemoveAt(OneControllerManager.instance.players.Count - 1);
-                        }
-                        else
-                        {
-                            winOutAnimator.SetTrigger("Out");
-                            outPlayer.text = OneControllerManager.instance.players[GameManager.instance.activePlayer - 1];
-                            outPlayer.color = GetPlayerColor(OneControllerManager.instance.players[GameManager.instance.activePlayer - 1]);
-                            OneControllerManager.instance.players.RemoveAt(GameManager.instance.activePlayer - 1);
-                            GameManager.instance.activePlayer--;
-                        }
-                        if (collision.gameObject.GetComponent<TrainRigidbody>())
-                        {
-                            if (GameManager.instance.AllPieces.Contains(collision.gameObject.transform.parent.gameObject))
-                                GameManager.instance.AllPieces.Remove(collision.gameObject.transform.parent.gameObject);
-                            foreach (TrainRigidbody item in collision.gameObject.transform.parent.GetComponentsInChildren<TrainRigidbody>())
+                            inRecovery = true;
+                            Invoke("EndRecovery", GameManager.instance.invicibleTime);
+                            if (GameManager.instance.activePlayer == 0)
                             {
-                                item.gameObject.tag = "Untagged";
+                                winOutAnimator.SetTrigger("Out");
+                                outPlayer.text = OneControllerManager.instance.players[OneControllerManager.instance.players.Count - 1];
+                                outPlayer.color = GetPlayerColor(OneControllerManager.instance.players[OneControllerManager.instance.players.Count - 1]);
+                                OneControllerManager.instance.players.RemoveAt(OneControllerManager.instance.players.Count - 1);
                             }
-                        }
-                        else
-                        {
-                            if (GameManager.instance.AllPieces.Contains(collision.gameObject))
-                                GameManager.instance.AllPieces.Remove(collision.gameObject);
-                            collision.gameObject.tag = "Untagged";
+                            else
+                            {
+                                winOutAnimator.SetTrigger("Out");
+                                outPlayer.text = OneControllerManager.instance.players[GameManager.instance.activePlayer - 1];
+                                outPlayer.color = GetPlayerColor(OneControllerManager.instance.players[GameManager.instance.activePlayer - 1]);
+                                OneControllerManager.instance.players.RemoveAt(GameManager.instance.activePlayer - 1);
+                                GameManager.instance.activePlayer--;
+                            }
                         }
                     }
                     else
@@ -71,32 +62,12 @@ public class DefeatScript : MonoBehaviour
                         outPlayer.color = GetPlayerColor(OneControllerManager.instance.players[GameManager.instance.activePlayer]);
                         OneControllerManager.instance.players.RemoveAt(GameManager.instance.activePlayer);
                         GameManager.instance.activePlayer--;
-                        if (collision.gameObject.GetComponent<TrainRigidbody>())
-                        {
-                            if (GameManager.instance.AllPieces.Contains(collision.gameObject.transform.parent.gameObject))
-                                GameManager.instance.AllPieces.Remove(collision.gameObject.transform.parent.gameObject);
-                            foreach (TrainRigidbody item in collision.gameObject.transform.parent.GetComponentsInChildren<TrainRigidbody>())
-                            {
-                                item.gameObject.tag = "Untagged";
-                            }
-                            if(collision.gameObject.layer == LayerMask.NameToLayer("ToPlace"))
-                                collision.gameObject.transform.parent.GetComponent<Piece>().PieceFallen();
-                        }
-                        else
-                        {
-                            if (GameManager.instance.AllPieces.Contains(collision.gameObject))
-                                GameManager.instance.AllPieces.Remove(collision.gameObject);
-                            collision.gameObject.tag = "Untagged";
-                            if(collision.gameObject.layer == LayerMask.NameToLayer("ToPlace"))
-                                collision.gameObject.GetComponent<Piece>().PieceFallen();
-                        }
-
                     }
                 }
             }
             else
             {
-                if (PlayersManager.instance.players.Count == 2)
+                if (PlayersManager.instance.players.Count == 2 && !inRecovery)
                 {
                     StartCoroutine(GameManager.instance.BigShake());
                     GameManager.instance.defeat = true;
@@ -108,35 +79,25 @@ public class DefeatScript : MonoBehaviour
                 {
                     if (!GameManager.instance.dropping)
                     {
-                        if (GameManager.instance.activePlayer == 0)
+                        if (!inRecovery)
                         {
-                            winOutAnimator.SetTrigger("Out");
-                            outPlayer.text = PlayersManager.instance.players[PlayersManager.instance.players.Count - 1].ID;
-                            outPlayer.color = GetPlayerColor(PlayersManager.instance.players[PlayersManager.instance.players.Count - 1].ID);
-                            PlayersManager.instance.players.RemoveAt(PlayersManager.instance.players.Count - 1);
-                        }
-                        else
-                        {
-                            winOutAnimator.SetTrigger("Out");
-                            outPlayer.text = PlayersManager.instance.players[GameManager.instance.activePlayer - 1].ID;
-                            outPlayer.color = GetPlayerColor(PlayersManager.instance.players[GameManager.instance.activePlayer - 1].ID);
-                            PlayersManager.instance.players.RemoveAt(GameManager.instance.activePlayer - 1);
-                            GameManager.instance.activePlayer--;
-                        }
-                        if (collision.gameObject.GetComponent<TrainRigidbody>())
-                        {
-                            if (GameManager.instance.AllPieces.Contains(collision.gameObject.transform.parent.gameObject))
-                                GameManager.instance.AllPieces.Remove(collision.gameObject.transform.parent.gameObject);
-                            foreach (TrainRigidbody item in collision.gameObject.transform.parent.GetComponentsInChildren<TrainRigidbody>())
+                            inRecovery = true;
+                            Invoke("EndRecovery", GameManager.instance.invicibleTime);
+                            if (GameManager.instance.activePlayer == 0)
                             {
-                                item.gameObject.tag = "Untagged";
+                                winOutAnimator.SetTrigger("Out");
+                                outPlayer.text = PlayersManager.instance.players[PlayersManager.instance.players.Count - 1].ID;
+                                outPlayer.color = GetPlayerColor(PlayersManager.instance.players[PlayersManager.instance.players.Count - 1].ID);
+                                PlayersManager.instance.players.RemoveAt(PlayersManager.instance.players.Count - 1);
                             }
-                        }
-                        else
-                        {
-                            if (GameManager.instance.AllPieces.Contains(collision.gameObject))
-                                GameManager.instance.AllPieces.Remove(collision.gameObject);
-                            collision.gameObject.tag = "Untagged";
+                            else
+                            {
+                                winOutAnimator.SetTrigger("Out");
+                                outPlayer.text = PlayersManager.instance.players[GameManager.instance.activePlayer - 1].ID;
+                                outPlayer.color = GetPlayerColor(PlayersManager.instance.players[GameManager.instance.activePlayer - 1].ID);
+                                PlayersManager.instance.players.RemoveAt(GameManager.instance.activePlayer - 1);
+                                GameManager.instance.activePlayer--;
+                            }
                         }
                     }
                     else
@@ -146,29 +107,38 @@ public class DefeatScript : MonoBehaviour
                         outPlayer.color = GetPlayerColor(PlayersManager.instance.players[GameManager.instance.activePlayer].ID);
                         PlayersManager.instance.players.RemoveAt(GameManager.instance.activePlayer);
                         GameManager.instance.activePlayer--;
-                        if (collision.gameObject.GetComponent<TrainRigidbody>())
-                        {
-                            if (GameManager.instance.AllPieces.Contains(collision.gameObject.transform.parent.gameObject))
-                                GameManager.instance.AllPieces.Remove(collision.gameObject.transform.parent.gameObject);
-                            foreach (TrainRigidbody item in collision.gameObject.transform.parent.GetComponentsInChildren<TrainRigidbody>())
-                            {
-                                item.gameObject.tag = "Untagged";
-                            }
-                            if(collision.gameObject.layer == LayerMask.NameToLayer("ToPlace"))
-                                collision.gameObject.transform.parent.GetComponent<Piece>().PieceFallen();
-                        }
-                        else
-                        {
-                            if (GameManager.instance.AllPieces.Contains(collision.gameObject))
-                                GameManager.instance.AllPieces.Remove(collision.gameObject);
-                            collision.gameObject.tag = "Untagged";
-                            if(collision.gameObject.layer == LayerMask.NameToLayer("ToPlace"))
-                                collision.gameObject.GetComponent<Piece>().PieceFallen();
-                        }
                     }
                 }
             }
+            if (collision.gameObject.GetComponent<TrainRigidbody>())
+            {
+                if (GameManager.instance.AllPieces.Contains(collision.gameObject.transform.parent.gameObject))
+                    GameManager.instance.AllPieces.Remove(collision.gameObject.transform.parent.gameObject);
+                foreach (TrainRigidbody item in collision.gameObject.transform.parent.GetComponentsInChildren<TrainRigidbody>())
+                {
+                    item.gameObject.tag = "Untagged";
+                }
+                if (collision.gameObject.layer == LayerMask.NameToLayer("ToPlace"))
+                    collision.gameObject.transform.parent.GetComponent<Piece>().PieceFallen();
+                else
+                    collision.gameObject.transform.parent.GetComponent<Piece>().Explosion();
+            }
+            else
+            {
+                if (GameManager.instance.AllPieces.Contains(collision.gameObject))
+                    GameManager.instance.AllPieces.Remove(collision.gameObject);
+                collision.gameObject.tag = "Untagged";
+                if (collision.gameObject.layer == LayerMask.NameToLayer("ToPlace"))
+                    collision.gameObject.GetComponent<Piece>().PieceFallen();
+                else
+                    collision.gameObject.GetComponent<Piece>().Explosion();
+            }
         }
+    }
+
+    void EndRecovery()
+    {
+        inRecovery = false;
     }
 
     Color GetPlayerColor(string player)
