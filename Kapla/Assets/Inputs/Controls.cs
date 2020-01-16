@@ -137,6 +137,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Controls"",
+                    ""type"": ""Button"",
+                    ""id"": ""03346d33-1609-40bb-88f3-b60994ee7cfc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -489,6 +497,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a5e71e7-c860-4ea2-becb-a35b680a2f5c"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Controls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""036820f6-c8a9-463a-8991-52b7be34c512"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Controls"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -852,6 +882,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Gameplay_DownTrigger = m_Gameplay.FindAction("DownTrigger", throwIfNotFound: true);
         m_Gameplay_DownTriggerRelease = m_Gameplay.FindAction("DownTriggerRelease", throwIfNotFound: true);
         m_Gameplay_Back = m_Gameplay.FindAction("Back", throwIfNotFound: true);
+        m_Gameplay_Controls = m_Gameplay.FindAction("Controls", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -920,6 +951,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_DownTrigger;
     private readonly InputAction m_Gameplay_DownTriggerRelease;
     private readonly InputAction m_Gameplay_Back;
+    private readonly InputAction m_Gameplay_Controls;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -939,6 +971,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @DownTrigger => m_Wrapper.m_Gameplay_DownTrigger;
         public InputAction @DownTriggerRelease => m_Wrapper.m_Gameplay_DownTriggerRelease;
         public InputAction @Back => m_Wrapper.m_Gameplay_Back;
+        public InputAction @Controls => m_Wrapper.m_Gameplay_Controls;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -993,6 +1026,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Back.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBack;
                 @Back.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBack;
                 @Back.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBack;
+                @Controls.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnControls;
+                @Controls.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnControls;
+                @Controls.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnControls;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -1042,6 +1078,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Back.started += instance.OnBack;
                 @Back.performed += instance.OnBack;
                 @Back.canceled += instance.OnBack;
+                @Controls.started += instance.OnControls;
+                @Controls.performed += instance.OnControls;
+                @Controls.canceled += instance.OnControls;
             }
         }
     }
@@ -1122,6 +1161,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnDownTrigger(InputAction.CallbackContext context);
         void OnDownTriggerRelease(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
+        void OnControls(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class OneControllerManager : MonoBehaviour
 {
+    public GameObject controlsPanel;
     public static OneControllerManager instance = null;
     public List<string> players = new List<string>();
     public bool inLobby = true;
@@ -54,6 +55,7 @@ public class OneControllerManager : MonoBehaviour
         controls.Gameplay.Restart.started += ctx => Restart();
         controls.Gameplay.ValidateChoice.started += ctx => ValidateChoice();
         controls.Gameplay.Back.started += ctx => Back();
+        controls.Gameplay.Controls.started += ctx => ControlsPanel();
     }
 
     private void Start()
@@ -105,7 +107,7 @@ public class OneControllerManager : MonoBehaviour
 
     void ValidateChoice()
     {
-        if (OneControllerManager.instance.inLobby)
+        if (OneControllerManager.instance.inLobby && !controlsPanel.activeSelf)
         {
             FillPlayersList(GameObject.FindObjectOfType<PlayersNumberSelection>().currentPlayersNumber);
             stockPlayers.AddRange(players);
@@ -135,8 +137,14 @@ public class OneControllerManager : MonoBehaviour
 
     void Back()
     {
-        if (OneControllerManager.instance.inLobby)
+        if (inLobby && !controlsPanel.activeSelf)
             SceneManager.LoadScene("Lobby");
+    }
+
+    void ControlsPanel()
+    {
+        if (inLobby)
+            controlsPanel.SetActive(!controlsPanel.activeSelf);
     }
 
     void FillPlayersList(int number)

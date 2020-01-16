@@ -121,6 +121,8 @@ public class DJ : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         musicSource = GetComponent<AudioSource>();
+
+        Cursor.visible = false;
     }
 
     public void PlaySound(SoundsKeyWord sound)

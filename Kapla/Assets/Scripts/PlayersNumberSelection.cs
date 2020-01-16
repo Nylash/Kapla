@@ -20,54 +20,56 @@ public class PlayersNumberSelection : MonoBehaviour
 
     private void Update()
     {
-        if(Gamepad.current != null && Keyboard.current != null)
+        if (!OneControllerManager.instance.controlsPanel.activeSelf)
         {
-            if ((Gamepad.current.leftStick.ReadValue().x > .8f || Keyboard.current.dKey.ReadValue() > .8f || Keyboard.current.rightArrowKey.ReadValue() > .8f) && !updatingValue)
+            if (Gamepad.current != null && Keyboard.current != null)
             {
-                IncreasePlayersNumber();
+                if ((Gamepad.current.leftStick.ReadValue().x > .8f || Keyboard.current.dKey.ReadValue() > .8f || Keyboard.current.rightArrowKey.ReadValue() > .8f) && !updatingValue)
+                {
+                    IncreasePlayersNumber();
+                }
+                if ((Gamepad.current.leftStick.ReadValue().x < -.8f || Keyboard.current.aKey.ReadValue() > .8f || Keyboard.current.qKey.ReadValue() > .8f || Keyboard.current.leftArrowKey.ReadValue() > .8f) && !updatingValue)
+                {
+                    DecreasePlayersNumber();
+                }
+                if ((Gamepad.current.leftStick.ReadValue().x < .2f && Gamepad.current.leftStick.ReadValue().x > -.2f && Keyboard.current.dKey.ReadValue() < .2f && Keyboard.current.aKey.ReadValue() < .2f
+                    && Keyboard.current.qKey.ReadValue() < .2f && Keyboard.current.rightArrowKey.ReadValue() < .2f && Keyboard.current.leftArrowKey.ReadValue() < .2f) && updatingValue)
+                {
+                    updatingValue = false;
+                }
             }
-            if ((Gamepad.current.leftStick.ReadValue().x < -.8f || Keyboard.current.aKey.ReadValue() > .8f || Keyboard.current.qKey.ReadValue() > .8f || Keyboard.current.leftArrowKey.ReadValue() > .8f) && !updatingValue)
+            else if (Gamepad.current == null)
             {
-                DecreasePlayersNumber();
+                if ((Keyboard.current.dKey.ReadValue() > .8f || Keyboard.current.rightArrowKey.ReadValue() > .8f) && !updatingValue)
+                {
+                    IncreasePlayersNumber();
+                }
+                if ((Keyboard.current.aKey.ReadValue() > .8f || Keyboard.current.qKey.ReadValue() > .8f || Keyboard.current.leftArrowKey.ReadValue() > .8f) && !updatingValue)
+                {
+                    DecreasePlayersNumber();
+                }
+                if ((Keyboard.current.dKey.ReadValue() < .2f && Keyboard.current.aKey.ReadValue() < .2f && Keyboard.current.qKey.ReadValue() < .2f
+                    && Keyboard.current.rightArrowKey.ReadValue() < .2f && Keyboard.current.leftArrowKey.ReadValue() < .2f) && updatingValue)
+                {
+                    updatingValue = false;
+                }
             }
-            if ((Gamepad.current.leftStick.ReadValue().x < .2f && Gamepad.current.leftStick.ReadValue().x > -.2f && Keyboard.current.dKey.ReadValue() < .2f && Keyboard.current.aKey.ReadValue() < .2f 
-                && Keyboard.current.qKey.ReadValue() < .2f && Keyboard.current.rightArrowKey.ReadValue() < .2f && Keyboard.current.leftArrowKey.ReadValue() < .2f) && updatingValue)
+            else
             {
-                updatingValue = false;
+                if (Gamepad.current.leftStick.ReadValue().x > .8f && !updatingValue)
+                {
+                    IncreasePlayersNumber();
+                }
+                if (Gamepad.current.leftStick.ReadValue().x < -.8f && !updatingValue)
+                {
+                    DecreasePlayersNumber();
+                }
+                if ((Gamepad.current.leftStick.ReadValue().x < .2f && Gamepad.current.leftStick.ReadValue().x > -.2f) && updatingValue)
+                {
+                    updatingValue = false;
+                }
             }
         }
-        else if(Gamepad.current == null)
-        {
-            if ((Keyboard.current.dKey.ReadValue() > .8f || Keyboard.current.rightArrowKey.ReadValue() > .8f)&& !updatingValue)
-            {
-                IncreasePlayersNumber();
-            }
-            if ((Keyboard.current.aKey.ReadValue() > .8f || Keyboard.current.qKey.ReadValue() > .8f || Keyboard.current.leftArrowKey.ReadValue() > .8f) && !updatingValue)
-            {
-                DecreasePlayersNumber();
-            }
-            if ((Keyboard.current.dKey.ReadValue() < .2f && Keyboard.current.aKey.ReadValue() < .2f && Keyboard.current.qKey.ReadValue() < .2f 
-                && Keyboard.current.rightArrowKey.ReadValue() < .2f && Keyboard.current.leftArrowKey.ReadValue() < .2f) && updatingValue)
-            {
-                updatingValue = false;
-            }
-        }
-        else
-        {
-            if (Gamepad.current.leftStick.ReadValue().x > .8f && !updatingValue)
-            {
-                IncreasePlayersNumber();
-            }
-            if (Gamepad.current.leftStick.ReadValue().x < -.8f && !updatingValue)
-            {
-                DecreasePlayersNumber();
-            }
-            if ((Gamepad.current.leftStick.ReadValue().x < .2f && Gamepad.current.leftStick.ReadValue().x > -.2f) && updatingValue)
-            {
-                updatingValue = false;
-            }
-        }
-        
     }
 
     void IncreasePlayersNumber()

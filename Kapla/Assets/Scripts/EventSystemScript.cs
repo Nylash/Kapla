@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class EventSystemScript : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class EventSystemScript : MonoBehaviour
     [SerializeField] GameObject severalDetails;
 #pragma warning restore 0649
     GameObject lastSelection;
+    bool canQuit = true;
 
     private void Awake()
     {
@@ -36,6 +38,24 @@ public class EventSystemScript : MonoBehaviour
 
     void Update()
     {
+        if (canQuit)
+        {
+            if (Gamepad.current != null && Keyboard.current != null)
+            {
+                if (Gamepad.current.buttonEast.ReadValue() > .8f || Keyboard.current.escapeKey.ReadValue() > .8f)
+                    Application.Quit();
+            }
+            else if (Gamepad.current == null)
+            {
+                if (Keyboard.current.escapeKey.ReadValue() > .8f)
+                    Application.Quit();
+            }
+            else
+            {
+                if (Gamepad.current.buttonEast.ReadValue() > .8f)
+                    Application.Quit();
+            }
+        }
         if(EventSystem.current.currentSelectedGameObject != lastSelection)
         {
             switch (EventSystem.current.currentSelectedGameObject.tag)
@@ -69,5 +89,10 @@ public class EventSystemScript : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void CantQuit()
+    {
+        canQuit = false;
     }
 }

@@ -14,6 +14,8 @@ public class PlayersManager : MonoBehaviour
     [SerializeField] GameObject P2;
     [SerializeField] GameObject P3;
     [SerializeField] GameObject P4;
+    [SerializeField] GameObject controlsHint;
+    public GameObject controls;
     [Header("INFO")]
 #pragma warning restore 0649
     public static PlayersManager instance = null;
@@ -60,6 +62,7 @@ public class PlayersManager : MonoBehaviour
                     P1.transform.GetChild(2).gameObject.SetActive(true);
                 else
                     P1.transform.GetChild(3).gameObject.SetActive(true);
+                controlsHint.SetActive(true);
                 break;
             case 2:
                 P2.SetActive(true);
@@ -67,6 +70,7 @@ public class PlayersManager : MonoBehaviour
                     P2.transform.GetChild(2).gameObject.SetActive(true);
                 else
                     P2.transform.GetChild(3).gameObject.SetActive(true);
+                loadObject.SetActive(true);
                 break;
             case 3:
                 P3.SetActive(true);
@@ -84,9 +88,7 @@ public class PlayersManager : MonoBehaviour
                 break;
             default:
                 break;
-        }
-        if (players.Count == 2)
-            loadObject.SetActive(true);
+        }  
     }
 
     public void Restart()

@@ -14,7 +14,7 @@ public class PlayerInputs : MonoBehaviour
     Vector2 cameraMovementMouse;
     float up;
     float down;
-    bool cameraCanMove;
+    bool cameraCanMove;  
 
     private void Update()
     {
@@ -128,14 +128,26 @@ public class PlayerInputs : MonoBehaviour
 
     void OnValidateChoice()
     {
-        if (PlayersManager.instance.inLobby && PlayersManager.instance.players.Count >= 2)
+        if (PlayersManager.instance.inLobby && PlayersManager.instance.players.Count >= 2 && PlayersManager.instance.controls.activeSelf != true)
             PlayersManager.instance.LoadGame();
     }
 
     void OnBack()
     {
-        if (PlayersManager.instance.inLobby)
+        if (PlayersManager.instance.inLobby && PlayersManager.instance.controls.activeSelf != true)
             SceneManager.LoadScene("Lobby");      
+    }
+
+    void OnControls()
+    {
+        if (PlayersManager.instance.inLobby)
+        {
+            PlayersManager.instance.controls.SetActive(!PlayersManager.instance.controls.activeSelf);
+            if (PlayersManager.instance.controls.activeSelf)
+                PlayersManager.instance.GetComponent<PlayerInputManager>().DisableJoining();
+            else
+                PlayersManager.instance.GetComponent<PlayerInputManager>().EnableJoining();
+        }
     }
 
     void OnRestart()
@@ -145,7 +157,6 @@ public class PlayerInputs : MonoBehaviour
             if (state == PlayerState.HisTurn || GameManager.instance.defeat) { }
                 PlayersManager.instance.Restart();
         }
-        
     }
 
     public void CleanInputs()
