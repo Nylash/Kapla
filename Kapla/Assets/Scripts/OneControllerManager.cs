@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class OneControllerManager : MonoBehaviour
 {
@@ -118,14 +119,25 @@ public class OneControllerManager : MonoBehaviour
 
     void Pause()
     {
-        if (canPlay)
+        if (!inLobby && EventSystem.current != null)
         {
-            print("pause");
-            /*players.Clear();
-            players.AddRange(stockPlayers);
-            GameManager.instance.Restart();*/
-        }
-            
+            if(!GameManager.instance.inPause)
+                GameManager.instance.Pause();
+            else
+                GameManager.instance.UnPause();
+        } 
+    }
+
+    public void DestroyPlayers()
+    {
+        Destroy(gameObject);
+    }
+
+    public void Restart()
+    {
+        players.Clear();
+        players.AddRange(stockPlayers);
+        GameManager.instance.Restart();
     }
 
     void LoadGame()
@@ -140,7 +152,10 @@ public class OneControllerManager : MonoBehaviour
     void Back()
     {
         if (inLobby && !controlsPanel.activeSelf)
+        {
+            DJ.instance.PlaySound(DJ.SoundsKeyWord.Validation);
             SceneManager.LoadScene("Lobby");
+        }  
     }
 
     void ControlsPanel()

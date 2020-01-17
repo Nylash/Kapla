@@ -144,7 +144,10 @@ public class PlayerInputs : MonoBehaviour
     void OnBack()
     {
         if (PlayersManager.instance.inLobby && PlayersManager.instance.controls.activeSelf != true)
-            SceneManager.LoadScene("Lobby");      
+        {
+            DJ.instance.PlaySound(DJ.SoundsKeyWord.Validation);
+            SceneManager.LoadScene("Lobby");
+        }
     }
 
     void OnControls()
@@ -163,9 +166,10 @@ public class PlayerInputs : MonoBehaviour
     {
         if (!PlayersManager.instance.inLobby)
         {
-            print("pause");
-            /*if (state == PlayerState.HisTurn || GameManager.instance.defeat) { }
-                PlayersManager.instance.Restart();*/
+            if (!GameManager.instance.inPause)
+                GameManager.instance.Pause();
+            else
+                GameManager.instance.UnPause();
         }
     }
 
@@ -174,6 +178,17 @@ public class PlayerInputs : MonoBehaviour
         if (inputModule.currentControlScheme == "Gamepad")
         {
             yield return new WaitForSeconds(0);
+        }
+        if (GameManager.instance.oneController)
+        {
+            StartCoroutine(OneControllerManager.instance.MakeRumble(.4f, .6f, .3f));
+        }
+        else
+        {
+            foreach (PlayerInputs item in PlayersManager.instance.players)
+            {
+                StartCoroutine(item.MakeRumble(.4f, .6f, .3f));
+            }
         }
     }
 

@@ -1009,7 +1009,8 @@ MonoBehaviour:
   xylophone_maxPitch: 1.1
   xylophone_minVolume: 0.4
   xylophone_maxVolume: 0.6
-  bomb_clips: []
+  bomb_clips:
+  - {fileID: 8300000, guid: f75a1b295f51cb54590c8d01cc4404c4, type: 3}
   bomb_minPitch: 0.95
   bomb_maxPitch: 1.1
   bomb_minVolume: 0.4

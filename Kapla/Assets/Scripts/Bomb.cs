@@ -28,7 +28,7 @@ public class Bomb : MonoBehaviour
                     }
                     else
                     {
-                        if (!item.attachedRigidbody.GetComponent<Piece>().isBomb)
+                        if (item.attachedRigidbody.gameObject.GetInstanceID() != gameObject.GetInstanceID())
                         {
                             if (!piecesList.Contains(item.attachedRigidbody.GetComponent<Piece>()))
                                 piecesList.Add(item.attachedRigidbody.GetComponent<Piece>());
@@ -41,18 +41,19 @@ public class Bomb : MonoBehaviour
         {
             item.Explode(power, transform.position, radius, upforce);
         }
-        if (GameManager.instance.oneController)
-        {
-            StartCoroutine(OneControllerManager.instance.MakeRumble(.4f, .6f, .3f));
-        }
-        else
-        {
-            foreach (PlayerInputs item in PlayersManager.instance.players)
-            {
-                StartCoroutine(item.MakeRumble(.4f, .6f, .3f));
-            }
-        }
         GameManager.instance.AllPieces.Remove(gameObject);
+        StartCoroutine(EliminateBomb());
+        Instantiate(GameManager.instance.explosionFX, transform.position, transform.rotation);
+    }
+
+    IEnumerator EliminateBomb()
+    {
+        Destroy(GetComponent<Rigidbody>());
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+        yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }
 

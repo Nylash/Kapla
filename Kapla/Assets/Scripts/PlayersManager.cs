@@ -39,8 +39,52 @@ public class PlayersManager : MonoBehaviour
         if (go != null) DestroyImmediate(go);
     }
 
+    private void Update()
+    {
+        if (inLobby)
+        {
+            if (players.Count == 0)
+            {
+                if (Gamepad.current != null && Keyboard.current != null)
+                {
+                    if (Gamepad.current.buttonEast.ReadValue() > .8f || Keyboard.current.escapeKey.ReadValue() > .8f)
+                    {
+                        if (controls.activeSelf != true)
+                        {
+                            DJ.instance.PlaySound(DJ.SoundsKeyWord.Validation);
+                            SceneManager.LoadScene("Lobby");
+                        }
+                    }
+                }
+                else if (Gamepad.current == null)
+                {
+                    if (Keyboard.current.escapeKey.ReadValue() > .8f)
+                    {
+                        if (inLobby && controls.activeSelf != true)
+                        {
+                            DJ.instance.PlaySound(DJ.SoundsKeyWord.Validation);
+                            SceneManager.LoadScene("Lobby");
+                        }
+                    }
+                }
+                else
+                {
+                    if (Gamepad.current.buttonEast.ReadValue() > .8f)
+                    {
+                        if (inLobby && controls.activeSelf != true)
+                        {
+                            DJ.instance.PlaySound(DJ.SoundsKeyWord.Validation);
+                            SceneManager.LoadScene("Lobby");
+                        }
+                    }
+                }
+            }
+        }  
+    }
+
     private void OnEnable()
     {
+        print("salute");
         StartCoroutine(ActivateJoining());
     }
 
@@ -96,6 +140,15 @@ public class PlayersManager : MonoBehaviour
         players.Clear();
         players.AddRange(stockedPlayers);
         GameManager.instance.Restart();
+    }
+
+    public void DestroyPlayers()
+    {
+        foreach (PlayerInputs item in players)
+        {
+            Destroy(item.gameObject);
+        }
+        Destroy(gameObject);
     }
 
     public void LoadGame()

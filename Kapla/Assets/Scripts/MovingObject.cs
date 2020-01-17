@@ -38,13 +38,14 @@ public class MovingObject : MonoBehaviour
         canDrop = true;
         directionGuide = Instantiate(directionGuidePrefab);
         guideRenderer = directionGuide.GetComponentInChildren<MeshRenderer>();
+        guideRenderer.enabled = false;
         arrowGuideObject = directionGuide.transform.GetChild(0).gameObject;
         guideObjectEmpty = GameObject.FindGameObjectWithTag("Guide");
     }
 
     private void Update()
     {
-        if (!GameManager.instance.defeat && currentPiece)
+        if (!GameManager.instance.defeat && currentPiece && !GameManager.instance.inPause)
         {
             #region OLD MOVEMENT SYSTEM
             //Déplacement relatif à la caméra
@@ -132,17 +133,6 @@ public class MovingObject : MonoBehaviour
 
     void Rotate(string axis)
     {
-        if (GameManager.instance.oneController)
-        {
-            StartCoroutine(OneControllerManager.instance.MakeRumble(.1f, .2f, .2f));
-        }
-        else
-        {
-            foreach (PlayerInputs item in PlayersManager.instance.players)
-            {
-                StartCoroutine(item.MakeRumble(.1f, .2f, .2f));
-            }
-        }
         DJ.instance.PlaySound(DJ.SoundsKeyWord.Rotation);
         rotating = true;
         rotationTime = 0;

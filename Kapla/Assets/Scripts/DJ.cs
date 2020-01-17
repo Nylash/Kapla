@@ -225,11 +225,8 @@ public class DJ : MonoBehaviour
                 warningSource = warningSrc;
                 break;
             case SoundsKeyWord.Validation:
-                AudioSource validationSrc = SelectUIAudioSource();
-                validationSrc.pitch = 1;
-                validationSrc.volume = validation_volume;
-                validationSrc.clip = validation_clips[Random.Range(0, validation_clips.Count)];
-                validationSrc.Play();
+                AudioSource.PlayClipAtPoint(validation_clips[Random.Range(0, validation_clips.Count)], transform.position, validation_volume);
+                DontDestroyOnLoad(GameObject.Find("One shot audio"));
                 break;
             case SoundsKeyWord.Change:
                 AudioSource changeSrc = SelectUIAudioSource();
@@ -275,6 +272,11 @@ public class DJ : MonoBehaviour
                 break;
         }
         musicSource.Play();
+    }
+
+    public void ValidationSound()
+    {
+        PlaySound(SoundsKeyWord.Validation);
     }
 
     public void CancelWarning()

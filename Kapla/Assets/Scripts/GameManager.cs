@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using EZCameraShake;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
     public float invicibleTime = 1.5f;
     public GameObject explosionFX;
     public GameObject pauseMenu;
+    public bool inPause;
     [Header("SHAKE SCREEN CONFIGURATION")]
     [SerializeField] float magnitude;
     [SerializeField] float roughness;
@@ -132,8 +135,6 @@ public class GameManager : MonoBehaviour
                     DJ.instance.PlaySound(DJ.SoundsKeyWord.Warning);
                 }   
             }
-            else
-                //timerText.text = "";
             if (dropping)
                 center.transform.localEulerAngles = Vector3.Lerp(center.transform.localEulerAngles, new Vector3(20, center.transform.localEulerAngles.y, 0), Time.deltaTime);
         }
@@ -176,6 +177,60 @@ public class GameManager : MonoBehaviour
         else
             OneControllerManager.instance.canPlay = true;
         InstantiateNewPiece();
+    }
+
+    public void Pause()
+    {
+        inPause = true;
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+        EventSystem.current.SetSelectedGameObject(pauseMenu.transform.GetChild(0).gameObject);
+        if (oneController)
+            OneControllerManager.instance.canPlay = false;
+        else
+            PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.NotHisTurn;
+        InputSystem.ResetHaptics();
+    }
+    
+    public void UnPause()
+    {
+        inPause = false;
+        pauseMenu.GetComponent<PauseMenu>().ResetFont();
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+        if (oneController)
+            OneControllerManager.instance.canPlay = true;
+        else
+            PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.HisTurn;
+    }
+
+    public void RestartButton()
+    {
+        if (oneController)
+            OneControllerManager.instance.Restart();
+        else
+            PlayersManager.instance.Restart();
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void LoadLobby()
+    {
+        if (oneController)
+            OneControllerManager.instance.DestroyPlayers();
+        else
+            PlayersManager.instance.DestroyPlayers();
+        DJ.instance.PlayMusic(DJ.MusicKeyWork.Menu);
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Lobby");   
+    }
+
+    public void ValidationSound()
+    {
+        DJ.instance.ValidationSound();
     }
 
     public void SetLastPlayer()
@@ -353,6 +408,7 @@ public class GameManager : MonoBehaviour
         }
         else
             OneControllerManager.instance.canPlay = false;
+        UnPause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

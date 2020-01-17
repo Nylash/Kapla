@@ -240,26 +240,21 @@ public class Piece : MonoBehaviour
         }
         if (isBomb)
         {
-            if(gameObject.layer == LayerMask.NameToLayer("Placed"))
+            if(!toPlace)
             {
-                StartCoroutine(BombCheck(other.gameObject));
+                    StartCoroutine(BombCheck(other.gameObject));
             }
         }
     }
 
     IEnumerator BombCheck(GameObject other)
     {
-        if(other.layer == LayerMask.NameToLayer("Placed"))
+        yield return new WaitForSeconds(.2f);
+        if (other.layer == LayerMask.NameToLayer("Placed"))
         {
+            DJ.instance.PlaySound(DJ.SoundsKeyWord.Bomb);
+            yield return new WaitForSeconds(.3f);
             GetComponent<Bomb>().Detonate();
-        }
-        else
-        {
-            yield return new WaitForSeconds(.2f);
-            if (other.layer == LayerMask.NameToLayer("Placed"))
-            {
-                GetComponent<Bomb>().Detonate();
-            }
         }
     }
 
