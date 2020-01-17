@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4624435206613183190}
   - component: {fileID: 3262561713320155821}
   m_Layer: 8
-  m_Name: Socle
+  m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a71144181ed7a04d8985d041cc21614, type: 2}
+  - {fileID: 2100000, guid: ee544831b38859645b4e6fcc0e22824d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
