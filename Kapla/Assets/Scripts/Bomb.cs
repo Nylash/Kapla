@@ -41,6 +41,17 @@ public class Bomb : MonoBehaviour
         {
             item.Explode(power, transform.position, radius, upforce);
         }
+        if (GameManager.instance.oneController)
+        {
+            StartCoroutine(OneControllerManager.instance.MakeRumble(.4f, .6f, .3f));
+        }
+        else
+        {
+            foreach (PlayerInputs item in PlayersManager.instance.players)
+            {
+                StartCoroutine(item.MakeRumble(.4f, .6f, .3f));
+            }
+        }
         GameManager.instance.AllPieces.Remove(gameObject);
         Destroy(gameObject);
     }

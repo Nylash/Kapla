@@ -28,7 +28,7 @@ public class DefeatScript : MonoBehaviour
                     GameManager.instance.defeat = true;
                     winOutAnimator.SetTrigger("Win");
                     winPlayer.text = GameManager.instance.newPlayer;
-                    winPlayer.color = GetPlayerColor(GameManager.instance.newPlayer);
+                    winPlayer.color = GameManager.instance.GetPlayerColor(GameManager.instance.newPlayer);
                 }
                 else
                 {
@@ -42,14 +42,14 @@ public class DefeatScript : MonoBehaviour
                             {
                                 winOutAnimator.SetTrigger("Out");
                                 outPlayer.text = OneControllerManager.instance.players[OneControllerManager.instance.players.Count - 1];
-                                outPlayer.color = GetPlayerColor(OneControllerManager.instance.players[OneControllerManager.instance.players.Count - 1]);
+                                outPlayer.color = GameManager.instance.GetPlayerColor(OneControllerManager.instance.players[OneControllerManager.instance.players.Count - 1]);
                                 OneControllerManager.instance.players.RemoveAt(OneControllerManager.instance.players.Count - 1);
                             }
                             else
                             {
                                 winOutAnimator.SetTrigger("Out");
                                 outPlayer.text = OneControllerManager.instance.players[GameManager.instance.activePlayer - 1];
-                                outPlayer.color = GetPlayerColor(OneControllerManager.instance.players[GameManager.instance.activePlayer - 1]);
+                                outPlayer.color = GameManager.instance.GetPlayerColor(OneControllerManager.instance.players[GameManager.instance.activePlayer - 1]);
                                 OneControllerManager.instance.players.RemoveAt(GameManager.instance.activePlayer - 1);
                                 GameManager.instance.activePlayer--;
                             }
@@ -59,7 +59,7 @@ public class DefeatScript : MonoBehaviour
                     {
                         winOutAnimator.SetTrigger("Out");
                         outPlayer.text = OneControllerManager.instance.players[GameManager.instance.activePlayer];
-                        outPlayer.color = GetPlayerColor(OneControllerManager.instance.players[GameManager.instance.activePlayer]);
+                        outPlayer.color = GameManager.instance.GetPlayerColor(OneControllerManager.instance.players[GameManager.instance.activePlayer]);
                         OneControllerManager.instance.players.RemoveAt(GameManager.instance.activePlayer);
                         GameManager.instance.activePlayer--;
                     }
@@ -73,7 +73,7 @@ public class DefeatScript : MonoBehaviour
                     GameManager.instance.defeat = true;
                     winOutAnimator.SetTrigger("Win");
                     winPlayer.text = GameManager.instance.newPlayer;
-                    winPlayer.color = GetPlayerColor(GameManager.instance.newPlayer);
+                    winPlayer.color = GameManager.instance.GetPlayerColor(GameManager.instance.newPlayer);
                 }
                 else
                 {
@@ -87,14 +87,14 @@ public class DefeatScript : MonoBehaviour
                             {
                                 winOutAnimator.SetTrigger("Out");
                                 outPlayer.text = PlayersManager.instance.players[PlayersManager.instance.players.Count - 1].ID;
-                                outPlayer.color = GetPlayerColor(PlayersManager.instance.players[PlayersManager.instance.players.Count - 1].ID);
+                                outPlayer.color = GameManager.instance.GetPlayerColor(PlayersManager.instance.players[PlayersManager.instance.players.Count - 1].ID);
                                 PlayersManager.instance.players.RemoveAt(PlayersManager.instance.players.Count - 1);
                             }
                             else
                             {
                                 winOutAnimator.SetTrigger("Out");
                                 outPlayer.text = PlayersManager.instance.players[GameManager.instance.activePlayer - 1].ID;
-                                outPlayer.color = GetPlayerColor(PlayersManager.instance.players[GameManager.instance.activePlayer - 1].ID);
+                                outPlayer.color = GameManager.instance.GetPlayerColor(PlayersManager.instance.players[GameManager.instance.activePlayer - 1].ID);
                                 PlayersManager.instance.players.RemoveAt(GameManager.instance.activePlayer - 1);
                                 GameManager.instance.activePlayer--;
                             }
@@ -104,7 +104,7 @@ public class DefeatScript : MonoBehaviour
                     {
                         winOutAnimator.SetTrigger("Out");
                         outPlayer.text = PlayersManager.instance.players[GameManager.instance.activePlayer].ID;
-                        outPlayer.color = GetPlayerColor(PlayersManager.instance.players[GameManager.instance.activePlayer].ID);
+                        outPlayer.color = GameManager.instance.GetPlayerColor(PlayersManager.instance.players[GameManager.instance.activePlayer].ID);
                         PlayersManager.instance.players.RemoveAt(GameManager.instance.activePlayer);
                         GameManager.instance.activePlayer--;
                     }
@@ -139,26 +139,5 @@ public class DefeatScript : MonoBehaviour
     void EndRecovery()
     {
         inRecovery = false;
-    }
-
-    Color GetPlayerColor(string player)
-    {
-        switch (player)
-        {
-            case "P1":
-                return GameManager.instance.p1Color;
-            case "P2":
-                return GameManager.instance.p2Color;
-            case "P3":
-                return GameManager.instance.p3Color;
-            case "P4":
-                return GameManager.instance.p4Color;
-            case "P5":
-                return GameManager.instance.p5Color;
-            case "P6":
-                return GameManager.instance.p6Color;
-            default:
-                return Color.white;
-        }
     }
 }

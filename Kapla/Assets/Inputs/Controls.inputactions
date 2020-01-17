@@ -78,7 +78,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Restart",
+                    "name": "Pause",
                     "type": "Button",
                     "id": "e1db491a-9358-457d-84bc-7e1d8af7b350",
                     "expectedControlType": "",
@@ -358,22 +358,22 @@
                 {
                     "name": "",
                     "id": "034cabed-fd1c-4e7c-afb0-8a3540b04ef6",
-                    "path": "<Gamepad>/select",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Restart",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "a45820bf-315a-478d-831d-cfaa7e3510dd",
-                    "path": "<Keyboard>/t",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Restart",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class OneControllerManager : MonoBehaviour
 {
@@ -52,7 +53,7 @@ public class OneControllerManager : MonoBehaviour
         controls.Gameplay.RotY.started += ctx => RotY();
         controls.Gameplay.RotZ.started += ctx => RotZ();
         controls.Gameplay.Drop.started += ctx => Drop();
-        controls.Gameplay.Restart.started += ctx => Restart();
+        controls.Gameplay.Pause.started += ctx => Pause();
         controls.Gameplay.ValidateChoice.started += ctx => ValidateChoice();
         controls.Gameplay.Back.started += ctx => Back();
         controls.Gameplay.Controls.started += ctx => ControlsPanel();
@@ -115,13 +116,14 @@ public class OneControllerManager : MonoBehaviour
         }
     }
 
-    void Restart()
+    void Pause()
     {
         if (canPlay)
         {
-            players.Clear();
+            print("pause");
+            /*players.Clear();
             players.AddRange(stockPlayers);
-            GameManager.instance.Restart();
+            GameManager.instance.Restart();*/
         }
             
     }
@@ -162,6 +164,19 @@ public class OneControllerManager : MonoBehaviour
     private void OnDisable()
     {
         controls.Gameplay.Disable();
+    }
+
+    public IEnumerator MakeRumble(float leftMotor, float rightMotor, float duration)
+    {
+        if(Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(leftMotor, rightMotor);
+            yield return new WaitForSeconds(duration);
+            for (int i = 0; i < Gamepad.all.Count; i++)
+            {
+                Gamepad.all[i].SetMotorSpeeds(0, 0);
+            }
+        }
     }
 
     public void DebugMode()

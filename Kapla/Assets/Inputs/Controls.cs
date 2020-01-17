@@ -91,7 +91,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Restart"",
+                    ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""e1db491a-9358-457d-84bc-7e1d8af7b350"",
                     ""expectedControlType"": """",
@@ -371,22 +371,22 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""034cabed-fd1c-4e7c-afb0-8a3540b04ef6"",
-                    ""path"": ""<Gamepad>/select"",
+                    ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Restart"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""a45820bf-315a-478d-831d-cfaa7e3510dd"",
-                    ""path"": ""<Keyboard>/t"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Restart"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -876,7 +876,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Gameplay_Drop = m_Gameplay.FindAction("Drop", throwIfNotFound: true);
         m_Gameplay_ValidateChoice = m_Gameplay.FindAction("ValidateChoice", throwIfNotFound: true);
         m_Gameplay_CameraMovementMouse = m_Gameplay.FindAction("CameraMovementMouse", throwIfNotFound: true);
-        m_Gameplay_Restart = m_Gameplay.FindAction("Restart", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_UpTrigger = m_Gameplay.FindAction("UpTrigger", throwIfNotFound: true);
         m_Gameplay_UpTriggerRelease = m_Gameplay.FindAction("UpTriggerRelease", throwIfNotFound: true);
         m_Gameplay_DownTrigger = m_Gameplay.FindAction("DownTrigger", throwIfNotFound: true);
@@ -945,7 +945,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Drop;
     private readonly InputAction m_Gameplay_ValidateChoice;
     private readonly InputAction m_Gameplay_CameraMovementMouse;
-    private readonly InputAction m_Gameplay_Restart;
+    private readonly InputAction m_Gameplay_Pause;
     private readonly InputAction m_Gameplay_UpTrigger;
     private readonly InputAction m_Gameplay_UpTriggerRelease;
     private readonly InputAction m_Gameplay_DownTrigger;
@@ -965,7 +965,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Drop => m_Wrapper.m_Gameplay_Drop;
         public InputAction @ValidateChoice => m_Wrapper.m_Gameplay_ValidateChoice;
         public InputAction @CameraMovementMouse => m_Wrapper.m_Gameplay_CameraMovementMouse;
-        public InputAction @Restart => m_Wrapper.m_Gameplay_Restart;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputAction @UpTrigger => m_Wrapper.m_Gameplay_UpTrigger;
         public InputAction @UpTriggerRelease => m_Wrapper.m_Gameplay_UpTriggerRelease;
         public InputAction @DownTrigger => m_Wrapper.m_Gameplay_DownTrigger;
@@ -1008,9 +1008,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @CameraMovementMouse.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovementMouse;
                 @CameraMovementMouse.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovementMouse;
                 @CameraMovementMouse.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovementMouse;
-                @Restart.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
-                @Restart.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
-                @Restart.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRestart;
+                @Pause.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
                 @UpTrigger.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpTrigger;
                 @UpTrigger.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpTrigger;
                 @UpTrigger.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUpTrigger;
@@ -1060,9 +1060,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @CameraMovementMouse.started += instance.OnCameraMovementMouse;
                 @CameraMovementMouse.performed += instance.OnCameraMovementMouse;
                 @CameraMovementMouse.canceled += instance.OnCameraMovementMouse;
-                @Restart.started += instance.OnRestart;
-                @Restart.performed += instance.OnRestart;
-                @Restart.canceled += instance.OnRestart;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
                 @UpTrigger.started += instance.OnUpTrigger;
                 @UpTrigger.performed += instance.OnUpTrigger;
                 @UpTrigger.canceled += instance.OnUpTrigger;
@@ -1155,7 +1155,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnDrop(InputAction.CallbackContext context);
         void OnValidateChoice(InputAction.CallbackContext context);
         void OnCameraMovementMouse(InputAction.CallbackContext context);
-        void OnRestart(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
         void OnUpTrigger(InputAction.CallbackContext context);
         void OnUpTriggerRelease(InputAction.CallbackContext context);
         void OnDownTrigger(InputAction.CallbackContext context);

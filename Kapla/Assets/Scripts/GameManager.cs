@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public int timeBeforeAutoDrop;
     public float invicibleTime = 1.5f;
     public GameObject explosionFX;
+    public GameObject pauseMenu;
     [Header("SHAKE SCREEN CONFIGURATION")]
     [SerializeField] float magnitude;
     [SerializeField] float roughness;
@@ -353,6 +354,27 @@ public class GameManager : MonoBehaviour
         else
             OneControllerManager.instance.canPlay = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public Color GetPlayerColor(string player)
+    {
+        switch (player)
+        {
+            case "P1":
+                return p1Color;
+            case "P2":
+                return p2Color;
+            case "P3":
+                return p3Color;
+            case "P4":
+                return p4Color;
+            case "P5":
+                return p5Color;
+            case "P6":
+                return p6Color;
+            default:
+                return Color.white;
+        }
     }
 
     public IEnumerator Shake()

@@ -14,7 +14,16 @@ public class PlayerInputs : MonoBehaviour
     Vector2 cameraMovementMouse;
     float up;
     float down;
-    bool cameraCanMove;  
+    bool cameraCanMove;
+    PlayerInput inputModule;
+    int playerDeviceID;
+
+    private void Start()
+    {
+        inputModule = GetComponent<PlayerInput>();
+        if(inputModule.currentControlScheme == "Gamepad")
+            playerDeviceID = inputModule.devices[0].deviceId;
+    }
 
     private void Update()
     {
@@ -150,12 +159,21 @@ public class PlayerInputs : MonoBehaviour
         }
     }
 
-    void OnRestart()
+    void OnPause()
     {
         if (!PlayersManager.instance.inLobby)
         {
-            if (state == PlayerState.HisTurn || GameManager.instance.defeat) { }
-                PlayersManager.instance.Restart();
+            print("pause");
+            /*if (state == PlayerState.HisTurn || GameManager.instance.defeat) { }
+                PlayersManager.instance.Restart();*/
+        }
+    }
+
+    public IEnumerator MakeRumble(float leftMotor, float rightMotor, float duration)
+    {
+        if (inputModule.currentControlScheme == "Gamepad")
+        {
+            yield return new WaitForSeconds(0);
         }
     }
 

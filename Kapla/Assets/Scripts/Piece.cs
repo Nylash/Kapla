@@ -8,7 +8,6 @@ public class Piece : MonoBehaviour
     public float arrowGuideOffset;
     public bool isTrain;
     public bool isBomb;
-    public GameObject anchorBomb;
     public PieceSound fallSound;
 
     Rigidbody rigid;
@@ -49,6 +48,12 @@ public class Piece : MonoBehaviour
         pieceOriginalMaterials = meshRender.materials;
         //GUIDE
         guide = Instantiate(GameManager.instance.guidePrefab, new Vector3(meshRender.bounds.center.x, meshRender.bounds.center.y / 2, meshRender.bounds.center.z), Quaternion.identity);
+        if (GameManager.instance.oneController)
+        {
+            guide.GetComponent<MeshRenderer>().material.SetColor("Color_CF75A6BC", GameManager.instance.GetPlayerColor(OneControllerManager.instance.players[GameManager.instance.activePlayer]));
+        }
+        else
+            guide.GetComponent<MeshRenderer>().material.color = GameManager.instance.GetPlayerColor(PlayersManager.instance.players[GameManager.instance.activePlayer].ID);
         guide.transform.localScale = new Vector3(meshRender.bounds.size.x, (1.95f * meshRender.bounds.center.y) / 4.3f, meshRender.bounds.size.z);
         toPlace = true;
     }

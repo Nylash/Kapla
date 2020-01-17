@@ -132,6 +132,17 @@ public class MovingObject : MonoBehaviour
 
     void Rotate(string axis)
     {
+        if (GameManager.instance.oneController)
+        {
+            StartCoroutine(OneControllerManager.instance.MakeRumble(.1f, .2f, .2f));
+        }
+        else
+        {
+            foreach (PlayerInputs item in PlayersManager.instance.players)
+            {
+                StartCoroutine(item.MakeRumble(.1f, .2f, .2f));
+            }
+        }
         DJ.instance.PlaySound(DJ.SoundsKeyWord.Rotation);
         rotating = true;
         rotationTime = 0;
