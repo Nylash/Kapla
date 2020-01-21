@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 6019221815755302939}
   - component: {fileID: 6689828980247123931}
   - component: {fileID: 6190046663555170180}
+  - component: {fileID: 8589407976102599545}
   m_Layer: 0
   m_Name: Lego
   m_TagString: Piece
@@ -217,5 +218,23 @@ MonoBehaviour:
   arrowGuideOffset: 0.25
   isTrain: 0
   isBomb: 0
-  anchorBomb: {fileID: 0}
   fallSound: 0
+--- !u!95 &8589407976102599545
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7337431974035233288}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a0d06d1365ab364fadbd6dc2cb97b37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

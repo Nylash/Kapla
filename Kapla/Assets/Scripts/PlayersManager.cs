@@ -141,15 +141,7 @@ public class PlayersManager : MonoBehaviour
     public void Restart()
     {
         players.Clear();
-        foreach (PlayerInputs item in stockedPlayers)
-        {
-            item.state = PlayerInputs.PlayerState.NotHisTurn;
-        }
         players.AddRange(stockedPlayers);
-        foreach (PlayerInputs item in players)
-        {
-            item.state = PlayerInputs.PlayerState.NotHisTurn;
-        }
         GameManager.instance.Restart();
     }
 
@@ -174,6 +166,5 @@ public class PlayersManager : MonoBehaviour
         inLobby = false;
         stockedPlayers.AddRange(players);
         SceneManager.LoadScene("Room");
-        DJ.instance.PlayMusic(DJ.MusicKeyWork.Game);
     }
 }

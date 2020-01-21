@@ -21,11 +21,12 @@ public class DefeatScript : MonoBehaviour
         {
             if (GameManager.instance.oneController)
             {
-                if (OneControllerManager.instance.players.Count == 2 && !inRecovery)
+                if (OneControllerManager.instance.players.Count == 2 && !inRecovery && !GameManager.instance.defeat)
                 {
                     StartCoroutine(GameManager.instance.BigShake());
                     GameManager.instance.defeat = true;
                     winOutAnimator.SetTrigger("Win");
+                    DJ.instance.PlaySound(DJ.SoundsKeyWord.Victory);
                     winPlayer.text = GameManager.instance.newPlayer;
                     winPlayer.color = GameManager.instance.GetPlayerColor(GameManager.instance.newPlayer);
                     GameManager.instance.replayButtons.SetActive(true);
@@ -69,11 +70,12 @@ public class DefeatScript : MonoBehaviour
             }
             else
             {
-                if (PlayersManager.instance.players.Count == 2 && !inRecovery)
+                if (PlayersManager.instance.players.Count == 2 && !inRecovery && !GameManager.instance.defeat)
                 {
                     StartCoroutine(GameManager.instance.BigShake());
                     GameManager.instance.defeat = true;
                     winOutAnimator.SetTrigger("Win");
+                    DJ.instance.PlaySound(DJ.SoundsKeyWord.Victory);
                     winPlayer.text = GameManager.instance.newPlayer;
                     winPlayer.color = GameManager.instance.GetPlayerColor(GameManager.instance.newPlayer);
                     GameManager.instance.replayButtons.SetActive(true);

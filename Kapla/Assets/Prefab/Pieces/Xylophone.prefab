@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 2305427982399518389}
   - component: {fileID: 2087921760958247479}
   - component: {fileID: 6864201360611437854}
+  - component: {fileID: 2967182088969184008}
   m_Layer: 0
   m_Name: Xylophone
   m_TagString: Piece
@@ -198,8 +199,26 @@ MonoBehaviour:
   arrowGuideOffset: 1
   isTrain: 0
   isBomb: 0
-  anchorBomb: {fileID: 0}
   fallSound: 2
+--- !u!95 &2967182088969184008
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001050269552067750}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a0d06d1365ab364fadbd6dc2cb97b37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4453916331047705323
 GameObject:
   m_ObjectHideFlags: 0

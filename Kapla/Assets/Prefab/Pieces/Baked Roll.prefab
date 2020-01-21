@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 4881265889325373411}
   - component: {fileID: 3615518888678948242}
   - component: {fileID: 3888487232742632342}
+  - component: {fileID: -6066142154687011557}
   m_Layer: 0
   m_Name: Baked Roll
   m_TagString: Piece
@@ -281,5 +282,23 @@ MonoBehaviour:
   arrowGuideOffset: 1.5
   isTrain: 0
   isBomb: 0
-  anchorBomb: {fileID: 0}
   fallSound: 0
+--- !u!95 &-6066142154687011557
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8495729183944517104}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a0d06d1365ab364fadbd6dc2cb97b37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

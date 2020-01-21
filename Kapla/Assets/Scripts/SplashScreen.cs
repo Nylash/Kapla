@@ -47,5 +47,6 @@ public class SplashScreen : MonoBehaviour
     void SplashScreenDone()
     {
         splashScreenDone = true;
+        DJ.instance.PlayMusic(DJ.MusicKeyWork.Game);
     }
 }

@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 8827564180464956263}
   - component: {fileID: 5376323271698601182}
   - component: {fileID: 6141593172892655619}
+  - component: {fileID: 4913451287017236072}
   m_Layer: 0
   m_Name: Tabler
   m_TagString: Piece
@@ -147,8 +148,26 @@ MonoBehaviour:
   arrowGuideOffset: 1
   isTrain: 0
   isBomb: 0
-  anchorBomb: {fileID: 0}
   fallSound: 0
+--- !u!95 &4913451287017236072
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537904730527072628}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a0d06d1365ab364fadbd6dc2cb97b37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6100671331477997145
 GameObject:
   m_ObjectHideFlags: 0

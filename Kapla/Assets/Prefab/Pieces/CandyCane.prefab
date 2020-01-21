@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4037111147704633962}
   - component: {fileID: 2974173630890521998}
   - component: {fileID: 2905205384773262745}
+  - component: {fileID: 2663989082986684143}
   m_Layer: 0
   m_Name: CandyCane
   m_TagString: Piece
@@ -73,8 +74,26 @@ MonoBehaviour:
   arrowGuideOffset: 0.5
   isTrain: 0
   isBomb: 0
-  anchorBomb: {fileID: 0}
   fallSound: 0
+--- !u!95 &2663989082986684143
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035241788331440249}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a0d06d1365ab364fadbd6dc2cb97b37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2884146136809553723
 GameObject:
   m_ObjectHideFlags: 0

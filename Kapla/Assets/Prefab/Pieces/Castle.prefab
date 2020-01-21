@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 9051612877021728298}
   - component: {fileID: 1849253703012126534}
   - component: {fileID: 2475949436939968501}
+  - component: {fileID: -347346511657014877}
   m_Layer: 0
   m_Name: Castle
   m_TagString: Piece
@@ -376,8 +377,26 @@ MonoBehaviour:
   arrowGuideOffset: 0.75
   isTrain: 0
   isBomb: 0
-  anchorBomb: {fileID: 0}
   fallSound: 0
+--- !u!95 &-347346511657014877
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5460210119783332921}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a0d06d1365ab364fadbd6dc2cb97b37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6852832191241615571
 GameObject:
   m_ObjectHideFlags: 0

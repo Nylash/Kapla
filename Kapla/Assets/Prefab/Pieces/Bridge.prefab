@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 1641600459054663944}
   - component: {fileID: 729067570540476929}
   - component: {fileID: 8409691511959214470}
+  - component: {fileID: 7155074877112551197}
   m_Layer: 0
   m_Name: Bridge
   m_TagString: Piece
@@ -114,8 +115,26 @@ MonoBehaviour:
   arrowGuideOffset: 1.25
   isTrain: 0
   isBomb: 0
-  anchorBomb: {fileID: 0}
   fallSound: 0
+--- !u!95 &7155074877112551197
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2347355291617901339}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a0d06d1365ab364fadbd6dc2cb97b37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4297578806331851838
 GameObject:
   m_ObjectHideFlags: 0

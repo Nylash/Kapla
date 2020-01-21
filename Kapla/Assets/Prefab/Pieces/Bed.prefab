@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 7666715078183622736}
   - component: {fileID: 8619660092752859733}
   - component: {fileID: 3441304754564890497}
+  - component: {fileID: 4714484582640486864}
   m_Layer: 0
   m_Name: Bed
   m_TagString: Piece
@@ -330,8 +331,26 @@ MonoBehaviour:
   arrowGuideOffset: 1
   isTrain: 0
   isBomb: 0
-  anchorBomb: {fileID: 0}
   fallSound: 0
+--- !u!95 &4714484582640486864
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6647028717574089283}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a0d06d1365ab364fadbd6dc2cb97b37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7226051962408105865
 GameObject:
   m_ObjectHideFlags: 0

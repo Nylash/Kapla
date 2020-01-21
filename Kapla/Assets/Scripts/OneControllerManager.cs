@@ -149,7 +149,6 @@ public class OneControllerManager : MonoBehaviour
         inLobby = false;
         DontDestroyOnLoad(gameObject);
         SceneManager.LoadScene("Room");
-        DJ.instance.PlayMusic(DJ.MusicKeyWork.Game);
     }
 
     void Back()

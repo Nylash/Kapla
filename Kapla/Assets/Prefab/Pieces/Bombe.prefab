@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 37333811}
   - component: {fileID: 1390757885031421514}
   - component: {fileID: 2880124771143374230}
+  - component: {fileID: 2903770335391251286}
   m_Layer: 0
   m_Name: Bombe
   m_TagString: Piece
@@ -86,6 +87,25 @@ MonoBehaviour:
   upforce: 1
   rigidList: []
   piecesList: []
+--- !u!95 &2903770335391251286
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395970932768510912}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a0d06d1365ab364fadbd6dc2cb97b37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4000392023745263863
 GameObject:
   m_ObjectHideFlags: 0

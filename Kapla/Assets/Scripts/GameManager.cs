@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 {
 #pragma warning disable 0649
     [Header("GAME CONFIGURATION")]
+    [SerializeField] float cameraHeightFactor;
     [SerializeField] GameObject managerPrefab;
     [SerializeField] GameObject DjPrefab;
     [SerializeField] public GameObject dropFX;
@@ -124,7 +125,7 @@ public class GameManager : MonoBehaviour
     {
         if (!defeat && gameStarted)
         {
-            center.transform.position = Vector3.Lerp(center.transform.position, new Vector3(0, GetMaxHigh()-2, 0), Time.deltaTime);
+            center.transform.position = Vector3.Lerp(center.transform.position, new Vector3(0, GetMaxHigh()-GetMaxHigh()*cameraHeightFactor, 0), Time.deltaTime);
             camObject.transform.localPosition = new Vector3(0, 0, Mathf.Lerp(camObject.transform.localPosition.z, GetMaxWidth(), Time.deltaTime));
             if (!timerStopped)
             {
@@ -230,7 +231,6 @@ public class GameManager : MonoBehaviour
             OneControllerManager.instance.DestroyPlayers();
         else
             PlayersManager.instance.DestroyPlayers();
-        DJ.instance.PlayMusic(DJ.MusicKeyWork.Menu);
         Time.timeScale = 1;
         SceneManager.LoadScene("Lobby");   
     }
