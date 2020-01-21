@@ -18,6 +18,7 @@ TagManager:
   - Train
   - PlayerTurnText
   - WinOut
+  - Replay
   layers:
   - Default
   - TransparentFX

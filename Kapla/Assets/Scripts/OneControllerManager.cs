@@ -119,12 +119,15 @@ public class OneControllerManager : MonoBehaviour
 
     void Pause()
     {
-        if (!inLobby && EventSystem.current != null)
+        if (!inLobby && GameManager.instance)
         {
-            if(!GameManager.instance.inPause)
-                GameManager.instance.Pause();
-            else
-                GameManager.instance.UnPause();
+            if (!GameManager.instance.defeat)
+            {
+                if (!GameManager.instance.inPause)
+                    GameManager.instance.Pause();
+                else
+                    GameManager.instance.UnPause();
+            }
         } 
     }
 

@@ -41,6 +41,10 @@ public class PlayersManager : MonoBehaviour
 
     private void Update()
     {
+        foreach (var item in stockedPlayers)
+        {
+            print(item.ID + " " + item.state);
+        }
         if (inLobby)
         {
             if (players.Count == 0)
@@ -84,7 +88,6 @@ public class PlayersManager : MonoBehaviour
 
     private void OnEnable()
     {
-        print("salute");
         StartCoroutine(ActivateJoining());
     }
 
@@ -138,7 +141,15 @@ public class PlayersManager : MonoBehaviour
     public void Restart()
     {
         players.Clear();
+        foreach (PlayerInputs item in stockedPlayers)
+        {
+            item.state = PlayerInputs.PlayerState.NotHisTurn;
+        }
         players.AddRange(stockedPlayers);
+        foreach (PlayerInputs item in players)
+        {
+            item.state = PlayerInputs.PlayerState.NotHisTurn;
+        }
         GameManager.instance.Restart();
     }
 

@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     public bool shaking;
     public bool oneController;
     public int activePlayer;
+    public GameObject replayButtons;
     [Header("INPUTS DATA")]
     public Vector2 movementDirection;
     public Vector2 cameraMovementPad;
@@ -54,6 +55,12 @@ public class GameManager : MonoBehaviour
     public Color p4Color;
     public Color p5Color;
     public Color p6Color;
+    public Material p1mat;
+    public Material p2mat;
+    public Material p3mat;
+    public Material p4mat;
+    public Material p5mat;
+    public Material p6mat;
 
     [HideInInspector]
     public MovingObject movingScript;
@@ -117,7 +124,7 @@ public class GameManager : MonoBehaviour
     {
         if (!defeat && gameStarted)
         {
-            center.transform.position = Vector3.Lerp(center.transform.position, new Vector3(0, GetMaxHigh(), 0), Time.deltaTime);
+            center.transform.position = Vector3.Lerp(center.transform.position, new Vector3(0, GetMaxHigh()-2, 0), Time.deltaTime);
             camObject.transform.localPosition = new Vector3(0, 0, Mathf.Lerp(camObject.transform.localPosition.z, GetMaxWidth(), Time.deltaTime));
             if (!timerStopped)
             {
@@ -396,6 +403,7 @@ public class GameManager : MonoBehaviour
                     max = item.transform.position.z;
             }
         }
+        
         return -max + originalCamZoom;
     }
 
@@ -408,7 +416,7 @@ public class GameManager : MonoBehaviour
         }
         else
             OneControllerManager.instance.canPlay = false;
-        UnPause();
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -430,6 +438,27 @@ public class GameManager : MonoBehaviour
                 return p6Color;
             default:
                 return Color.white;
+        }
+    }
+
+    public Material GetPlayerMaterial(string player)
+    {
+        switch (player)
+        {
+            case "P1":
+                return p1mat;
+            case "P2":
+                return p2mat;
+            case "P3":
+                return p3mat;
+            case "P4":
+                return p4mat;
+            case "P5":
+                return p5mat;
+            case "P6":
+                return p6mat;
+            default:
+                return null;
         }
     }
 

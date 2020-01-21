@@ -164,12 +164,15 @@ public class PlayerInputs : MonoBehaviour
 
     void OnPause()
     {
-        if (!PlayersManager.instance.inLobby)
+        if (!PlayersManager.instance.inLobby && GameManager.instance)
         {
-            if (!GameManager.instance.inPause)
-                GameManager.instance.Pause();
-            else
-                GameManager.instance.UnPause();
+            if (!GameManager.instance.defeat)
+            {
+                if (!GameManager.instance.inPause)
+                    GameManager.instance.Pause();
+                else
+                    GameManager.instance.UnPause();
+            }
         }
     }
 

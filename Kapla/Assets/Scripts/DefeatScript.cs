@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.EventSystems;
 using UnityEngine;
 using TMPro;
 
@@ -29,6 +28,9 @@ public class DefeatScript : MonoBehaviour
                     winOutAnimator.SetTrigger("Win");
                     winPlayer.text = GameManager.instance.newPlayer;
                     winPlayer.color = GameManager.instance.GetPlayerColor(GameManager.instance.newPlayer);
+                    GameManager.instance.replayButtons.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(GameManager.instance.replayButtons.transform.GetChild(0).gameObject);
+                    OneControllerManager.instance.canPlay = false;
                 }
                 else
                 {
@@ -74,6 +76,10 @@ public class DefeatScript : MonoBehaviour
                     winOutAnimator.SetTrigger("Win");
                     winPlayer.text = GameManager.instance.newPlayer;
                     winPlayer.color = GameManager.instance.GetPlayerColor(GameManager.instance.newPlayer);
+                    GameManager.instance.replayButtons.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(GameManager.instance.replayButtons.transform.GetChild(0).gameObject);
+                    foreach (PlayerInputs item in PlayersManager.instance.players)
+                        item.state = PlayerInputs.PlayerState.NotHisTurn;
                 }
                 else
                 {

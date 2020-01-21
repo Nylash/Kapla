@@ -50,10 +50,10 @@ public class Piece : MonoBehaviour
         guide = Instantiate(GameManager.instance.guidePrefab, new Vector3(meshRender.bounds.center.x, meshRender.bounds.center.y / 2, meshRender.bounds.center.z), Quaternion.identity);
         if (GameManager.instance.oneController)
         {
-            guide.GetComponent<MeshRenderer>().material.SetColor("Color_CF75A6BC", GameManager.instance.GetPlayerColor(OneControllerManager.instance.players[GameManager.instance.activePlayer]));
+            guide.GetComponent<MeshRenderer>().material = GameManager.instance.GetPlayerMaterial(OneControllerManager.instance.players[GameManager.instance.activePlayer]);
         }
         else
-            guide.GetComponent<MeshRenderer>().material.color = GameManager.instance.GetPlayerColor(PlayersManager.instance.players[GameManager.instance.activePlayer].ID);
+            guide.GetComponent<MeshRenderer>().material = GameManager.instance.GetPlayerMaterial(PlayersManager.instance.players[GameManager.instance.activePlayer].ID);
         guide.transform.localScale = new Vector3(meshRender.bounds.size.x, (1.95f * meshRender.bounds.center.y) / 4.3f, meshRender.bounds.size.z);
         toPlace = true;
     }
@@ -106,17 +106,14 @@ public class Piece : MonoBehaviour
     {
         GameManager.instance.dropping = false;
         if (addToPieces)
-        {
             GameManager.instance.AllPieces.Add(gameObject);
-            yield return new WaitForSeconds(.2f);
-        }   
-        else
-            yield return new WaitForSeconds(1);
-        StartCoroutine(GameManager.instance.ChangePlayer());
-        yield return new WaitForSeconds(1.5f);
-        GameManager.instance.InstantiateNewPiece();
-        if (!addToPieces)
-            Explosion();
+        yield return new WaitForSeconds(.2f);
+        if (!GameManager.instance.defeat)
+        {
+            StartCoroutine(GameManager.instance.ChangePlayer());
+            yield return new WaitForSeconds(1.5f);
+            GameManager.instance.InstantiateNewPiece();
+        }
     }
 
     public void PieceFallen()
@@ -135,11 +132,28 @@ public class Piece : MonoBehaviour
                 item.gameObject.layer = LayerMask.NameToLayer("Placed");
         }
         StartCoroutine(NewTurn(false));
+        Explosion();
     }
 
     public void Explosion()
     {
-        Instantiate(GameManager.instance.explosionFX, transform.position, GameManager.instance.explosionFX.transform.rotation);
+        if(isTrain)
+            Instantiate(GameManager.instance.explosionFX, transform.GetChild(1).transform.position, GameManager.instance.explosionFX.transform.rotation);
+        else
+            Instantiate(GameManager.instance.explosionFX, transform.position, GameManager.instance.explosionFX.transform.rotation);
+        Destroy(rigid);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+        StartCoroutine(EliminatePiece());
+        if (GetComponent<Bomb>())
+            Destroy(GetComponent<Bomb>());
+    }
+
+    IEnumerator EliminatePiece()
+    {
+        yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
 

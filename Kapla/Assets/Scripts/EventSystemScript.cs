@@ -18,6 +18,7 @@ public class EventSystemScript : MonoBehaviour
 #pragma warning restore 0649
     GameObject lastSelection;
     bool canQuit = true;
+    public bool quitSecurityOff;
 
     private void Awake()
     {
@@ -33,12 +34,12 @@ public class EventSystemScript : MonoBehaviour
         }
         else
             Debug.LogError("The first object should be ButtonOneController.");
-            
+        Invoke("QuitSecurity",.75f);
     }
 
     void Update()
     {
-        if (canQuit)
+        if (canQuit && quitSecurityOff)
         {
             if (Gamepad.current != null && Keyboard.current != null)
             {
@@ -89,6 +90,11 @@ public class EventSystemScript : MonoBehaviour
                     break;
             }
         }
+    }
+
+    void QuitSecurity()
+    {
+        quitSecurityOff = true;
     }
 
     public void CantQuit()

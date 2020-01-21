@@ -11,6 +11,6 @@ public class ArenaRandomizer : MonoBehaviour
 
     private void Awake()
     {
-        Instantiate(arenaPrefabs[Random.Range(0, arenaPrefabs.Length)],Vector3.zero, Quaternion.identity);
+        Instantiate(arenaPrefabs[Random.Range(0, arenaPrefabs.Length)],new Vector3(0,.5f,0), Quaternion.identity);
     }
 }
