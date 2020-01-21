@@ -954,11 +954,11 @@ MonoBehaviour:
   - {fileID: 2140906945}
   - {fileID: 1215829740}
   drop_clips:
-  - {fileID: 8300000, guid: 7351891ddf2d32c458e42e5da8cc0f85, type: 3}
-  drop_minPitch: 1
-  drop_maxPitch: 1
-  drop_minVolume: 0
-  drop_maxVolume: 0
+  - {fileID: 8300000, guid: 95afd88f2aac88349883bd23057cadba, type: 3}
+  drop_minPitch: 0.9
+  drop_maxPitch: 1.1
+  drop_minVolume: 0.3
+  drop_maxVolume: 0.5
   rotation_clips:
   - {fileID: 8300000, guid: 8b70282a71208484eb11ea6452dbfaf4, type: 3}
   - {fileID: 8300000, guid: 6b9fa838bfbc5584198df87cfda20e31, type: 3}
@@ -1049,8 +1049,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 887dfe17bd18688478969a85cbae4f63, type: 3}
   pause_volume: 0.5
   victory_clips:
-  - {fileID: 8300000, guid: 7c80b665325600646b87996288d2fbf6, type: 3}
-  victory_volume: 1
+  - {fileID: 8300000, guid: 08acd6678c8decb4d8a5d587b4ab0732, type: 3}
+  victory_volume: 0.7
   inMenuMusic: {fileID: 0}
   inMenuMusic_volume: 0
   inGameMusic: {fileID: 8300000, guid: 319790bca7e7c7b43a97ad985b4a0ced, type: 3}
