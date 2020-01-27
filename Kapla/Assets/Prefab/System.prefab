@@ -4430,7 +4430,7 @@ MonoBehaviour:
   dropFX: {fileID: 4718650730638099371, guid: acc78df1200bbea45b5e19f569af71b2, type: 3}
   deathFX: {fileID: 450926826393389682, guid: ed1888b15bf4dcc4d959ae4e53590c29, type: 3}
   offsetSpawn: {x: 0, y: 7, z: 0}
-  timeBeforeAutoDrop: 30
+  timeBeforeAutoDrop: 42
   invicibleTime: 1.5
   explosionFX: {fileID: 289797713545387273, guid: 46747ebe0ea58db4da608407b832736e,
     type: 3}
@@ -4452,6 +4452,7 @@ MonoBehaviour:
   oneController: 0
   activePlayer: 0
   replayButtons: {fileID: 8333831355958850031}
+  lastPlayerOut: 0
   movementDirection: {x: 0, y: 0}
   cameraMovementPad: {x: 0, y: 0}
   cameraMovementMouse: {x: 0, y: 0}

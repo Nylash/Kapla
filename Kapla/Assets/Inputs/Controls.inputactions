@@ -324,6 +324,17 @@
                 },
                 {
                     "name": "",
+                    "id": "18335941-ddf7-4559-8478-c510455001bd",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Drop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "02218a44-7aff-4dbd-b621-bf744d6cede8",
                     "path": "<Keyboard>/enter",
                     "interactions": "Press",
@@ -508,6 +519,61 @@
                     "action": "Controls",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Arrows",
+                    "id": "2bb0cd9e-96af-41b0-959a-0f58b9163dd3",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraMovementPad",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "1257b8b1-3f01-4329-8d0b-ec420193ea70",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "CameraMovementPad",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "54ee9eee-2694-4cbe-9fc4-f13d60a40412",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "CameraMovementPad",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "275a385b-7872-47ea-9796-90bc88357adf",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "CameraMovementPad",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "56916150-f3af-4602-b797-5d0d30f6e127",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "CameraMovementPad",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

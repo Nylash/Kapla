@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
             {
                 timer -= Time.deltaTime;
                 float t = timer / timeBeforeAutoDrop;
-                timerImg.fillAmount = (timer / timeBeforeAutoDrop) - Mathf.Lerp(0.03324204f, 0,t);
+                timerImg.fillAmount = (timer / timeBeforeAutoDrop) - Mathf.Lerp(0.03f, 0,t);
                 if ((int)timer == 0)
                 {
                     movingScript.DropPiece();
