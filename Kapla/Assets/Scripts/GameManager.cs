@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public bool oneController;
     public int activePlayer;
     public GameObject replayButtons;
+    public bool lastPlayerOut;
     [Header("INPUTS DATA")]
     public Vector2 movementDirection;
     public Vector2 cameraMovementPad;
@@ -143,7 +144,7 @@ public class GameManager : MonoBehaviour
                     DJ.instance.PlaySound(DJ.SoundsKeyWord.Warning);
                 }   
             }
-            if (dropping)
+            else//if (dropping)
                 center.transform.localEulerAngles = Vector3.Lerp(center.transform.localEulerAngles, new Vector3(20, center.transform.localEulerAngles.y, 0), Time.deltaTime);
         }
         if(defeat)
@@ -242,12 +243,14 @@ public class GameManager : MonoBehaviour
 
     public void SetLastPlayer()
     {
-        timerStopped = true;
         if (!oneController)
         {
             PlayersManager.instance.players[activePlayer].state = PlayerInputs.PlayerState.NotHisTurn;
             PlayersManager.instance.players[activePlayer].CleanInputs();
-            lastPlayer = PlayersManager.instance.players[activePlayer].ID;
+            if (activePlayer == -1)
+                lastPlayer = PlayersManager.instance.players[PlayersManager.instance.players.Count - 1].ID;
+            else
+                lastPlayer = PlayersManager.instance.players[activePlayer].ID;
             if (activePlayer == PlayersManager.instance.players.Count - 1)
                 newPlayer = PlayersManager.instance.players[0].ID;
             else
@@ -255,13 +258,17 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            lastPlayer = OneControllerManager.instance.players[activePlayer];
+            if (activePlayer == -1)
+                lastPlayer = OneControllerManager.instance.players[OneControllerManager.instance.players.Count - 1];
+            else
+                lastPlayer = OneControllerManager.instance.players[activePlayer];
             OneControllerManager.instance.canPlay = false;
             if (activePlayer == OneControllerManager.instance.players.Count - 1)
                 newPlayer = OneControllerManager.instance.players[0];
             else
                 newPlayer = OneControllerManager.instance.players[activePlayer + 1];
         }
+        lastPlayerOut = false;
     }
 
     public IEnumerator ChangePlayer()

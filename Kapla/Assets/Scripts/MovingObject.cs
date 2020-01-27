@@ -157,6 +157,7 @@ public class MovingObject : MonoBehaviour
 
     public void DropPiece()
     {
+        GameManager.instance.timerStopped = true;
         DJ.instance.CancelWarning();
         guideRenderer.enabled = false;
         GameManager.instance.dropping = true;

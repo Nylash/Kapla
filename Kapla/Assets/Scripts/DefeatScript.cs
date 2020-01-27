@@ -8,7 +8,6 @@ public class DefeatScript : MonoBehaviour
     public TextMeshProUGUI outPlayer;
     public TextMeshProUGUI winPlayer;
     public bool destroySecurity;
-    public bool inRecovery;
 
     private void Start()
     {
@@ -21,26 +20,30 @@ public class DefeatScript : MonoBehaviour
         {
             if (GameManager.instance.oneController)
             {
-                if (OneControllerManager.instance.players.Count == 2 && !inRecovery && !GameManager.instance.defeat)
+                if (OneControllerManager.instance.players.Count == 2 && !GameManager.instance.defeat)
                 {
-                    StartCoroutine(GameManager.instance.BigShake());
-                    GameManager.instance.defeat = true;
-                    winOutAnimator.SetTrigger("Win");
-                    DJ.instance.PlaySound(DJ.SoundsKeyWord.Victory);
-                    winPlayer.text = GameManager.instance.newPlayer;
-                    winPlayer.color = GameManager.instance.GetPlayerColor(GameManager.instance.newPlayer);
-                    GameManager.instance.replayButtons.SetActive(true);
-                    EventSystem.current.SetSelectedGameObject(GameManager.instance.replayButtons.transform.GetChild(0).gameObject);
-                    OneControllerManager.instance.canPlay = false;
+                    if (!GameManager.instance.lastPlayerOut || GameManager.instance.dropping)
+                    {
+                        if (collision.gameObject.layer == LayerMask.NameToLayer("ToPlace"))
+                            GameManager.instance.SetLastPlayer();
+                        StartCoroutine(GameManager.instance.BigShake());
+                        GameManager.instance.defeat = true;
+                        winOutAnimator.SetTrigger("Win");
+                        DJ.instance.PlaySound(DJ.SoundsKeyWord.Victory);
+                        winPlayer.text = GameManager.instance.newPlayer;
+                        winPlayer.color = GameManager.instance.GetPlayerColor(GameManager.instance.newPlayer);
+                        GameManager.instance.replayButtons.SetActive(true);
+                        EventSystem.current.SetSelectedGameObject(GameManager.instance.replayButtons.transform.GetChild(0).gameObject);
+                        OneControllerManager.instance.canPlay = false;
+                    }
                 }
                 else
                 {
                     if (!GameManager.instance.dropping)
                     {
-                        if (!inRecovery)
+                        if (!GameManager.instance.lastPlayerOut)
                         {
-                            inRecovery = true;
-                            Invoke("EndRecovery", GameManager.instance.invicibleTime);
+                            GameManager.instance.lastPlayerOut = true;
                             if (GameManager.instance.activePlayer == 0)
                             {
                                 winOutAnimator.SetTrigger("Out");
@@ -70,27 +73,31 @@ public class DefeatScript : MonoBehaviour
             }
             else
             {
-                if (PlayersManager.instance.players.Count == 2 && !inRecovery && !GameManager.instance.defeat)
+                if (PlayersManager.instance.players.Count == 2 && !GameManager.instance.defeat)
                 {
-                    StartCoroutine(GameManager.instance.BigShake());
-                    GameManager.instance.defeat = true;
-                    winOutAnimator.SetTrigger("Win");
-                    DJ.instance.PlaySound(DJ.SoundsKeyWord.Victory);
-                    winPlayer.text = GameManager.instance.newPlayer;
-                    winPlayer.color = GameManager.instance.GetPlayerColor(GameManager.instance.newPlayer);
-                    GameManager.instance.replayButtons.SetActive(true);
-                    EventSystem.current.SetSelectedGameObject(GameManager.instance.replayButtons.transform.GetChild(0).gameObject);
-                    foreach (PlayerInputs item in PlayersManager.instance.players)
-                        item.state = PlayerInputs.PlayerState.NotHisTurn;
+                    if (!GameManager.instance.lastPlayerOut || GameManager.instance.dropping)
+                    {
+                        if (collision.gameObject.layer == LayerMask.NameToLayer("ToPlace"))
+                            GameManager.instance.SetLastPlayer();
+                        StartCoroutine(GameManager.instance.BigShake());
+                        GameManager.instance.defeat = true;
+                        winOutAnimator.SetTrigger("Win");
+                        DJ.instance.PlaySound(DJ.SoundsKeyWord.Victory);
+                        winPlayer.text = GameManager.instance.newPlayer;
+                        winPlayer.color = GameManager.instance.GetPlayerColor(GameManager.instance.newPlayer);
+                        GameManager.instance.replayButtons.SetActive(true);
+                        EventSystem.current.SetSelectedGameObject(GameManager.instance.replayButtons.transform.GetChild(0).gameObject);
+                        foreach (PlayerInputs item in PlayersManager.instance.players)
+                            item.state = PlayerInputs.PlayerState.NotHisTurn;
+                    }
                 }
                 else
                 {
                     if (!GameManager.instance.dropping)
                     {
-                        if (!inRecovery)
+                        if (!GameManager.instance.lastPlayerOut)
                         {
-                            inRecovery = true;
-                            Invoke("EndRecovery", GameManager.instance.invicibleTime);
+                            GameManager.instance.lastPlayerOut = true;
                             if (GameManager.instance.activePlayer == 0)
                             {
                                 winOutAnimator.SetTrigger("Out");
@@ -142,10 +149,5 @@ public class DefeatScript : MonoBehaviour
                     collision.gameObject.GetComponent<Piece>().Explosion();
             }
         }
-    }
-
-    void EndRecovery()
-    {
-        inRecovery = false;
     }
 }

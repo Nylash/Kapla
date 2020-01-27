@@ -80,7 +80,6 @@ public class Piece : MonoBehaviour
                     transform.GetChild(i).gameObject.SetActive(true);
             }
         }
-        GameManager.instance.SetLastPlayer();
     }
 
     private void Update()
@@ -106,7 +105,10 @@ public class Piece : MonoBehaviour
     {
         GameManager.instance.dropping = false;
         if (addToPieces)
+        {
             GameManager.instance.AllPieces.Add(gameObject);
+            GameManager.instance.SetLastPlayer();
+        } 
         yield return new WaitForSeconds(.2f);
         if (!GameManager.instance.defeat)
         {
